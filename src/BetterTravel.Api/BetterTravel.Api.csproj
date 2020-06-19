@@ -24,21 +24,30 @@
         <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
         <PackageReference Include="Serilog.Sinks.XUnit" Version="2.0.4" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Folder Include="Controllers" />
+        <PackageReference Include="Telegram.Bot" Version="15.7.1" />
     </ItemGroup>
 
     <ItemGroup>
         <Content Update="appsettings.Development.json">
             <DependentUpon>appsettings.json</DependentUpon>
         </Content>
+        <Content Update="appsettings.Production.json">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BetterTravel.Common\BetterTravel.Common.csproj" />
       <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
+      <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
+      <ProjectReference Include="..\BetterTravel.Queries\BetterTravel.Queries.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Requests\Telegram" />
     </ItemGroup>
 
 

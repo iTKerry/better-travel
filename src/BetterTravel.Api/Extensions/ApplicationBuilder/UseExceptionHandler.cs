@@ -1,4 +1,4 @@
-﻿using BetterTravel.Api.Infrastructure;
+﻿using BetterTravel.Api.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;

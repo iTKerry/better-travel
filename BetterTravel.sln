@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.MediatR.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Common", "src\BetterTravel.Common\BetterTravel.Common.csproj", "{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Queries", "src\BetterTravel.Queries\BetterTravel.Queries.csproj", "{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Commands", "src\BetterTravel.Commands\BetterTravel.Commands.csproj", "{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +70,8 @@ Global
 		{5BB7B441-51DD-4C9A-AF9D-3CE266D913EC} = {64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}
 		{8EB07336-1403-4773-99F4-628AD9FAD397} = {64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}
 		{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D} = {64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}
+		{E53A25C8-2FD8-4967-9E4B-CB5344C6633A} = {64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}
+		{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F} = {64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B1F0DFD-6D6C-41E4-9CDA-131D374DD12A}

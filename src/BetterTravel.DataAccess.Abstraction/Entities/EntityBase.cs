@@ -1,7 +1,7 @@
 ﻿namespace BetterTravel.DataAccess.Abstraction.Entities
 {
-    public class EntityBase<TKey> : IEntity<TKey>
+    public abstract class EntityBase
     {
-        public TKey Id { get; set; }
+        public int Id { get; set; }
     }
 }
