@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="refit" Version="5.1.67" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.Domain\BetterTravel.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

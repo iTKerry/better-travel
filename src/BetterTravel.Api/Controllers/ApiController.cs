@@ -18,14 +18,19 @@ namespace BetterTravel.Api.Controllers
         protected IActionResult FromResult<T>(IHandlerResult<T> result) where T : class =>
             result switch
             {
-                OkHandlerResult _ => Ok() as IActionResult,
                 OkHandlerResult<T> ok => Ok(ok.Data) as IActionResult,
-                
-                NotFoundHandlerResult _ => NotFound() as IActionResult,
                 NotFoundHandlerResult<T> _ => NotFound() as IActionResult,
-                
-                ValidationFailedHandlerResult vf => BadRequest(vf.Message) as IActionResult,
                 ValidationFailedHandlerResult<T> vf => BadRequest(vf.Message) as IActionResult, 
+                
+                _ => throw new InvalidOperationException(),
+            };
+        
+        protected IActionResult FromResult(IHandlerResult result) =>
+            result switch
+            {
+                OkHandlerResult _ => Ok() as IActionResult,
+                NotFoundHandlerResult _ => NotFound() as IActionResult,
+                ValidationFailedHandlerResult vf => BadRequest(vf.Message) as IActionResult,
                 
                 _ => throw new InvalidOperationException(),
             };
