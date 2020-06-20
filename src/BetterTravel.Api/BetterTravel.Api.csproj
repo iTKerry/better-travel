@@ -48,7 +48,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="IoC" />
       <Folder Include="Requests\Telegram" />
     </ItemGroup>
 
