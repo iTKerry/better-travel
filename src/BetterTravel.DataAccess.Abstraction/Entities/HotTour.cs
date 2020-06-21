@@ -1,9 +1,10 @@
 ﻿using System;
 using BetterTravel.DataAccess.Abstraction.Entities.Enums;
+using BetterTravel.DataAccess.Abstraction.ValueObjects;
 
 namespace BetterTravel.DataAccess.Abstraction.Entities
 {
-    public class HotTour
+    public class HotTour : Entity
     {
         public string Name { get; set; }
         public int Duration { get; set; }

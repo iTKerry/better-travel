@@ -3,7 +3,7 @@ using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 
 namespace BetterTravel.DataAccess.Abstraction.Entities
 {
-    public class Chat
+    public class Chat : Entity
     {
         public long ChatId { get; set; }
         public string Title { get; set; }

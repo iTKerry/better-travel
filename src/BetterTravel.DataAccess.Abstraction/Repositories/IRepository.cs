@@ -6,7 +6,7 @@ using BetterTravel.DataAccess.Abstraction.Entities;
 
 namespace BetterTravel.DataAccess.Abstraction.Repositories
 {
-    public interface IRepository<T> where T : EntityBase
+    public interface IRepository<T> where T : Entity
     {
         Task<List<T>> GetAllAsync(
             Expression<Func<T, bool>> wherePredicate);

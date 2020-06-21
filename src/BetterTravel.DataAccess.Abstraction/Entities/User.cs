@@ -2,7 +2,7 @@
 
 namespace BetterTravel.DataAccess.Abstraction.Entities
 {
-    public class User
+    public class User : Entity
     {
         public string Username { get; set; }
         public string FirstName { get; set; }
