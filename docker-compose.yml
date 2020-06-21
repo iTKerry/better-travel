@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  api:
+    image: bettertravel.api
+    container_name: bettertravel.api
+    networks:
+      - bettertravel
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: src/BetterTravel.Api/Dockerfile
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
+    container_name: bettertravel.db
+    networks:
+      - bettertravel
+    environment:
+        SA_PASSWORD: "Your_password123"
+        ACCEPT_EULA: "Y"
+networks:
+  devchallenge:
+    name: bettertravel.network

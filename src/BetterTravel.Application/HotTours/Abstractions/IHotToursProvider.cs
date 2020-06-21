@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BetterTravel.Domain;
+using BetterTravel.DataAccess.Abstraction.Entities;
 
 namespace BetterTravel.Application.HotTours.Abstractions
 {

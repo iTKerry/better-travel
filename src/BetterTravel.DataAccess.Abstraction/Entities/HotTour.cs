@@ -1,8 +1,7 @@
 ﻿using System;
-using BetterTravel.Domain.Enums;
-using CSharpFunctionalExtensions;
+using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 
-namespace BetterTravel.Domain
+namespace BetterTravel.DataAccess.Abstraction.Entities
 {
     public class HotTour
     {
@@ -14,10 +13,10 @@ namespace BetterTravel.Domain
         public Stars Stars { get; set; }
         public PriceType PriceType { get; set; }
 
-        public Maybe<Country> Country { get; set; }
-        public Maybe<Resort> Resort { get; set; }
+        public Country Country { get; set; }
+        public Resort Resort { get; set; }
         
-        public Maybe<Uri> ImageUri { get; set; }
-        public Maybe<Uri> DetailsUri { get; set; }
+        public Uri ImageUri { get; set; }
+        public Uri DetailsUri { get; set; }
     }
 }

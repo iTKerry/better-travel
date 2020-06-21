@@ -2,6 +2,8 @@
 {
     internal static class Tables
     {
-        
+        public const string HotTour = nameof(HotTour);
+        public const string Chat = nameof(Chat);
+        public const string User = nameof(User);
     }
 }

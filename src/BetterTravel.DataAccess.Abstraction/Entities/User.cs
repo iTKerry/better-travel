@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BetterTravel.Domain
+namespace BetterTravel.DataAccess.Abstraction.Entities
 {
     public class User
     {
@@ -10,6 +10,6 @@ namespace BetterTravel.Domain
         public string LanguageCode { get; set; }
         public bool IsBot { get; set; }
 
-        public List<Chat> Chat { get; set; }
+        public virtual ICollection<Chat> Chat { get; set; }
     }
 }

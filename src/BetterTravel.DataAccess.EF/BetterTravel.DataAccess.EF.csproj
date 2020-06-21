@@ -15,5 +15,9 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" PrivateAssets="All" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
+    </ItemGroup>
 
 </Project>

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BetterTravel.Application.HotTours.Abstractions;
-using BetterTravel.Domain;
+using BetterTravel.DataAccess.Abstraction.Entities;
 using Refit;
 
 namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
 {
-    public class HotToursProvider : IHotToursProvider
+    public class PoehalisnamiProvider : IHotToursProvider
     {
         private readonly IPoehalisnamiApi _api;
 
-        public HotToursProvider() => 
+        public PoehalisnamiProvider() => 
             _api = RestService.For<IPoehalisnamiApi>("https://www.poehalisnami.ua");
 
         public async Task<HotTour> GetHotToursAsync(HotToursQueryObject queryObject)

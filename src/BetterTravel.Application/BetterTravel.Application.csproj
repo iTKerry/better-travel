@@ -9,6 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
       <ProjectReference Include="..\BetterTravel.Domain\BetterTravel.Domain.csproj" />
     </ItemGroup>
 

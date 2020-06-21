@@ -1,4 +1,4 @@
-﻿namespace BetterTravel.Domain.Enums
+﻿namespace BetterTravel.DataAccess.Abstraction.Entities.Enums
 {
     public enum ChatType
     {

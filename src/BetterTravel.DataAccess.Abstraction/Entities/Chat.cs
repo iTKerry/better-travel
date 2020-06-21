@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BetterTravel.Domain.Enums;
+using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 
-namespace BetterTravel.Domain
+namespace BetterTravel.DataAccess.Abstraction.Entities
 {
     public class Chat
     {
@@ -9,7 +9,8 @@ namespace BetterTravel.Domain
         public string Title { get; set; }
         public string Description { get; set; }
         public ChatType ChatType { get; set; }
+        public bool IsSubscribed { get; set; }
 
-        public List<User> User { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }
