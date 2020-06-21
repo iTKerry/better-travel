@@ -1,4 +1,5 @@
 ﻿using System;
+using BetterTravel.DataAccess.Abstraction.ValueObjects.Base;
 
 namespace BetterTravel.DataAccess.Abstraction.ValueObjects
 {
@@ -18,14 +19,10 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         public string Name { get; }
         public Uri Details { get; }
         
-        protected override int GetHashCodeCore()
-        {
-            throw new NotImplementedException();
-        }
+        protected override int GetHashCodeCore() => 
+            Name.GetHashCode() + Details.GetHashCode();
 
-        protected override bool EqualCore(Resort other)
-        {
-            throw new NotImplementedException();
-        }
+        protected override bool EqualCore(Resort other) => 
+            Name == other.Name && Details == other.Details;
     }
 }

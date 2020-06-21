@@ -1,3 +1,4 @@
+using System;
 using BetterTravel.DataAccess.Abstraction.Entities;
 using BetterTravel.DataAccess.EF.Metadata;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,8 @@ namespace BetterTravel.DataAccess.EF.Configurations
                 p.Property(pp => pp.Name).HasColumnName("ResortName");
                 p.Property(pp => pp.Details).HasColumnName("ResortDetails");
             });
+            
+            throw new NotImplementedException();
         }
     }
 }

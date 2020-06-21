@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Abstraction.Entities.Base;
 
 namespace BetterTravel.DataAccess.Abstraction.Repositories
 {

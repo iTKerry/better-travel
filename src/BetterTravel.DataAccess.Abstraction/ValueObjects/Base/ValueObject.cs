@@ -1,4 +1,4 @@
-namespace BetterTravel.DataAccess.Abstraction.ValueObjects
+namespace BetterTravel.DataAccess.Abstraction.ValueObjects.Base
 {
     public abstract class ValueObject<T>
         where T : ValueObject<T>

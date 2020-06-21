@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BetterTravel.DataAccess.Abstraction.Entities.Base;
 using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 
 namespace BetterTravel.DataAccess.Abstraction.Entities

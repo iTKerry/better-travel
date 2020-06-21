@@ -1,14 +1,12 @@
-﻿namespace BetterTravel.DataAccess.Abstraction.Entities
+﻿namespace BetterTravel.DataAccess.Abstraction.Entities.Base
 {
     public abstract class Entity
     {
         public int Id { get; private set; }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
-            var other = obj as Entity;
-            
-            if (ReferenceEquals(other, null))
+            if (!(obj is Entity other))
                 return false;
 
             if (ReferenceEquals(other, this))
