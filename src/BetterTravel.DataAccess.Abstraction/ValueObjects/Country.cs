@@ -9,19 +9,19 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         {
         }
 
-        public Country(string name, Uri details)
+        public Country(string name, Uri detailsUri)
         {
             Name = name;
-            Details = details;
+            DetailsUri = detailsUri;
         }
         
         public string Name { get; }
-        public Uri Details { get; }
+        public Uri DetailsUri { get; }
         
         protected override int GetHashCodeCore() => 
-            Name.GetHashCode() + Details.GetHashCode();
+            Name.GetHashCode() + DetailsUri.GetHashCode();
 
         protected override bool EqualCore(Country other) => 
-            Name == other.Name && Details == other.Details;
+            Name == other.Name && DetailsUri == other.DetailsUri;
     }
 }

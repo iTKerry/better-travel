@@ -27,7 +27,7 @@ namespace BetterTravel.Api
                 .AddBetterTravelCompression()
                 .AddBetterTravelMvc()
                 .AddBetterTravelProfiler()
-                .AddDevChallengeDb(_configuration)
+                .AddBetterTravelDb(_configuration)
                 .AddMemoryCache()
                 .AddBetterTravelCors()
                 .AddRouteOptions()

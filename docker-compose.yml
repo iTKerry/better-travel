@@ -20,5 +20,5 @@ services:
         SA_PASSWORD: "Your_password123"
         ACCEPT_EULA: "Y"
 networks:
-  devchallenge:
+  bettertravel:
     name: bettertravel.network

@@ -3,7 +3,7 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects.Base
     public abstract class ValueObject<T>
         where T : ValueObject<T>
     {
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is T valueObject))
                 return false;

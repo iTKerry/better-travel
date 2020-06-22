@@ -9,19 +9,19 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         {
         }
         
-        public Price(int count, PriceType type)
+        public Price(int amount, PriceType type)
         {
-            Count = count;
+            Amount = amount;
             Type = type;
         }
 
-        public int Count { get; }
+        public int Amount { get; }
         public PriceType Type { get; }
         
         protected override int GetHashCodeCore() => 
-            Count.GetHashCode() + Type.GetHashCode();
+            Amount.GetHashCode() + Type.GetHashCode();
 
         protected override bool EqualCore(Price other) => 
-            Count == other.Count && Type == other.Type;
+            Amount == other.Amount && Type == other.Type;
     }
 }

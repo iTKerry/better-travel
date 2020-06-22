@@ -9,20 +9,19 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         {
         }
         
-        public Resort(string name, Uri details)
-            : base()
+        public Resort(string name, Uri detailsUri)
         {
             Name = name;
-            Details = details;
+            DetailsUri = detailsUri;
         }
         
         public string Name { get; }
-        public Uri Details { get; }
+        public Uri DetailsUri { get; }
         
         protected override int GetHashCodeCore() => 
-            Name.GetHashCode() + Details.GetHashCode();
+            Name.GetHashCode() + DetailsUri.GetHashCode();
 
         protected override bool EqualCore(Resort other) => 
-            Name == other.Name && Details == other.Details;
+            Name == other.Name && DetailsUri == other.DetailsUri;
     }
 }

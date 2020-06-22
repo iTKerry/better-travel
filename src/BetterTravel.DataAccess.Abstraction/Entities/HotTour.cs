@@ -1,20 +1,35 @@
-﻿using System;
-using BetterTravel.DataAccess.Abstraction.Entities.Base;
-using BetterTravel.DataAccess.Abstraction.Entities.Enums;
+﻿using BetterTravel.DataAccess.Abstraction.Entities.Base;
 using BetterTravel.DataAccess.Abstraction.ValueObjects;
 
 namespace BetterTravel.DataAccess.Abstraction.Entities
 {
     public class HotTour : Entity
     {
-        public string Name { get; set; }
-        public Stars Stars { get; set; }
-        public Uri ImageUri { get; set; }
-        public Uri DetailsUri { get; set; }
-        public Duration Duration { get; set; }
-        public Departure Departure { get; set; }
-        public Price Price { get; set; }
-        public Country Country { get; set; }
-        public Resort Resort { get; set; }
+        protected HotTour()
+        {
+        }
+        
+        public HotTour(
+            HotTourInfo info,
+            Duration duration, 
+            Departure departure, 
+            Price price, 
+            Country country, 
+            Resort resort)
+        {
+            Info = info;
+            Duration = duration;
+            Departure = departure;
+            Price = price;
+            Country = country;
+            Resort = resort;
+        }
+
+        public virtual HotTourInfo Info { get; }
+        public virtual Duration Duration { get; }
+        public virtual Departure Departure { get; }
+        public virtual Price Price { get; }
+        public virtual Country Country { get; }
+        public virtual Resort Resort { get; }
     }
 }

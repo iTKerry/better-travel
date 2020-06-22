@@ -9,21 +9,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.DataAccess.Abs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.DataAccess.EF", "src\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj", "{DCD7E53E-7B6F-483E-A416-4B6CB1FC415C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.ConsoleApp", "src\BetterTravel.ConsoleApp\BetterTravel.ConsoleApp.csproj", "{10AB4F4A-C76C-44AC-9451-6C1B3DFC1F23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.ConsoleApp", "src\BetterTravel.ConsoleApp\BetterTravel.ConsoleApp.csproj", "{10AB4F4A-C76C-44AC-9451-6C1B3DFC1F23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Api", "src\BetterTravel.Api\BetterTravel.Api.csproj", "{5BB7B441-51DD-4C9A-AF9D-3CE266D913EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Api", "src\BetterTravel.Api\BetterTravel.Api.csproj", "{5BB7B441-51DD-4C9A-AF9D-3CE266D913EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.MediatR.Core", "src\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj", "{8EB07336-1403-4773-99F4-628AD9FAD397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.MediatR.Core", "src\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj", "{8EB07336-1403-4773-99F4-628AD9FAD397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Common", "src\BetterTravel.Common\BetterTravel.Common.csproj", "{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Common", "src\BetterTravel.Common\BetterTravel.Common.csproj", "{F50B0256-65D2-46C5-9D57-1AFA6BFF6D5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Queries", "src\BetterTravel.Queries\BetterTravel.Queries.csproj", "{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Queries", "src\BetterTravel.Queries\BetterTravel.Queries.csproj", "{E53A25C8-2FD8-4967-9E4B-CB5344C6633A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Commands", "src\BetterTravel.Commands\BetterTravel.Commands.csproj", "{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Commands", "src\BetterTravel.Commands\BetterTravel.Commands.csproj", "{5C20065A-CA03-45EB-AA7C-CAC8F7AC092F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterTravel.Application", "src\BetterTravel.Application\BetterTravel.Application.csproj", "{AD5CC516-46FA-45CE-9693-2ADF9FE79B71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Application", "src\BetterTravel.Application\BetterTravel.Application.csproj", "{AD5CC516-46FA-45CE-9693-2ADF9FE79B71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docker-compose", "docker-compose.dcproj", "{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "docker-compose", "docker-compose.dcproj", "{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +67,10 @@ Global
 		{AD5CC516-46FA-45CE-9693-2ADF9FE79B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD5CC516-46FA-45CE-9693-2ADF9FE79B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD5CC516-46FA-45CE-9693-2ADF9FE79B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D9C1347-358B-44D1-8F8C-B5E94A4B2B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

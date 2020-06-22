@@ -17,7 +17,7 @@ namespace BetterTravel.Api.Controllers
             : base(mapper, mediator)
         {
         }
-        
+
         [HttpPost("update/{token}")]
         public async Task Update([FromRoute] string token, [FromBody] Update update)
         {
