@@ -2,8 +2,8 @@
 {
     public enum PriceType
     {
+        Unknown,
         Single,
-        Double,
-        Unknown
+        Double
     }
 }

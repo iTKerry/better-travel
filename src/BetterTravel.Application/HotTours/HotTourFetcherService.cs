@@ -13,12 +13,12 @@ namespace BetterTravel.Application.HotTours
         public TourFetcherService(IEnumerable<IHotToursProvider> hotToursProviders) => 
             _hotToursProviders = hotToursProviders;
 
-        public async Task<List<HotTour>> FetchToursAsync(int count, int skip)
+        public async Task<List<HotTour>> FetchToursAsync(int count)
         {
-            var query = GetQuery(count + skip);
+            var query = GetQuery(count);
             var hotToursTasks = _hotToursProviders.Select(provider => provider.GetHotToursAsync(query));
             var hotTours = await Task.WhenAll(hotToursTasks);
-            return hotTours.Skip(skip).ToList();
+            return hotTours.SelectMany(t => t).ToList();
         }
         
         private static HotToursQueryObject GetQuery(int count) =>

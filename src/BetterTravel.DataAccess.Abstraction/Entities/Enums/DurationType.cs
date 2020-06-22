@@ -2,7 +2,7 @@
 {
     public enum DurationType
     {
+        Unknown,
         Nights,
-        Unknown
     }
 }

@@ -42,20 +42,20 @@ namespace BetterTravel.DataAccess.EF.Configurations
 
             builder.OwnsOne(p => p.Departure, p =>
             {
-                p.Property(pp => pp.Location).HasColumnName("Location");
-                p.Property(pp => pp.Date).HasColumnName("Date");
+                p.Property(pp => pp.Location).HasColumnName("DepartureLocation");
+                p.Property(pp => pp.Date).HasColumnName("DepartureDate");
             });
             
             builder.OwnsOne(p => p.Duration, p =>
             {
-                p.Property(pp => pp.Count).HasColumnName("Count");
-                p.Property(pp => pp.Type).HasColumnName("Type");
+                p.Property(pp => pp.Count).HasColumnName("DurationCount");
+                p.Property(pp => pp.Type).HasColumnName("DurationType");
             });
 
             builder.OwnsOne(p => p.Price, p =>
             {
-                p.Property(pp => pp.Amount).HasColumnName("Amount");
-                p.Property(pp => pp.Type).HasColumnName("Type");
+                p.Property(pp => pp.Amount).HasColumnName("PriceAmount");
+                p.Property(pp => pp.Type).HasColumnName("PriceType");
             });
         }
     }

@@ -5,11 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ViewModels" />
     </ItemGroup>
 
 </Project>

@@ -9,4 +9,8 @@
     <PackageReference Include="refit" Version="5.1.67" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BetterTravel.Application\BetterTravel.Application.csproj" />
+  </ItemGroup>
+
 </Project>
