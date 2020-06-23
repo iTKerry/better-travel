@@ -5,7 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Telegram.Bot" Version="15.7.1" />
     </ItemGroup>
 
 </Project>

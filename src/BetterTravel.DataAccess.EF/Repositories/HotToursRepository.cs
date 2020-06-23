@@ -5,7 +5,7 @@ namespace BetterTravel.DataAccess.EF.Repositories
 {
     public class HotToursRepository : Repository<HotTour>, IHotToursRepository
     {
-        public HotToursRepository(AppDbContext db) : base(db)
+        public HotToursRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
     }

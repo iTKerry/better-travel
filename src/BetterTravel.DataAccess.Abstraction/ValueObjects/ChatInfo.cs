@@ -1,15 +1,15 @@
 ﻿using BetterTravel.DataAccess.Abstraction.Entities.Enums;
-using BetterTravel.DataAccess.Abstraction.ValueObjects.Base;
+using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Abstraction.ValueObjects
 {
-    public class ChatInfo : ValueObject<ChatInfo>
+    public class ChatInfo : Base.ValueObject<ChatInfo>
     {
         protected ChatInfo()
         {
         }
         
-        public ChatInfo(string title, string description, ChatType type)
+        private ChatInfo(string title, string description, ChatType type)
         {
             Title = title;
             Description = description;
@@ -19,6 +19,12 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         public string Title { get; }
         public string Description { get; }
         public ChatType Type { get; }
+
+        public static Result<ChatInfo> Create(string title, string description, ChatType type)
+        {
+            var chat = new ChatInfo(title, description, type);
+            return Result.Ok(chat);
+        }
         
         protected override int GetHashCodeCore() => 
             Title.GetHashCode() + 

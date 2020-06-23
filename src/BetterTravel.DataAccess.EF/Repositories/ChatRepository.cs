@@ -5,8 +5,13 @@ namespace BetterTravel.DataAccess.EF.Repositories
 {
     public class ChatRepository : Repository<Chat>, IChatRepository
     {
-        public ChatRepository(AppDbContext db) : base(db)
+        public ChatRepository(AppDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public void Save(Chat chat)
+        {
+            DbContext.Chats.Attach(chat);
         }
     }
 }

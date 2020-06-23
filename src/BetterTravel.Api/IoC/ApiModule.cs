@@ -2,7 +2,11 @@
 using Autofac;
 using BetterTravel.Api.ExceptionHandling;
 using BetterTravel.Api.ExceptionHandling.Abstractions;
+using BetterTravel.Api.Extensions.Configuration;
+using BetterTravel.Common.Configurations;
 using MediatR;
+using Microsoft.Extensions.Configuration;
+using Telegram.Bot;
 
 namespace BetterTravel.Api.IoC
 {
@@ -11,8 +15,27 @@ namespace BetterTravel.Api.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
+            RegisterTelegram(builder);
             RegisterExceptionHandling(builder);
             RegisterMediator(builder);
+        }
+
+        private static void RegisterTelegram(ContainerBuilder builder)
+        {
+            builder
+                .Register(context =>
+                {
+                    var c = context.Resolve<IConfiguration>();
+                    return c.GetOptions<BotConfiguration>(nameof(BotConfiguration));
+                }).SingleInstance();
+
+            builder
+                .Register(context =>
+                {
+                    var config = context.Resolve<BotConfiguration>();
+                    return new TelegramBotClient(config.BotToken);
+                }).As<ITelegramBotClient>()
+                .SingleInstance();
         }
 
         private void RegisterExceptionHandling(ContainerBuilder builder)
