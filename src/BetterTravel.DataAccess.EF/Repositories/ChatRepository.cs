@@ -8,10 +8,5 @@ namespace BetterTravel.DataAccess.EF.Repositories
         public ChatRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
-
-        public void Save(Chat chat)
-        {
-            DbContext.Chats.Attach(chat);
-        }
     }
 }

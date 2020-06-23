@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using AutoMapper;
 using BetterTravel.MediatR.Core.HandlerResults;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BetterTravel.Api.Controllers
 {
+    [Produces(MediaTypeNames.Application.Json)]
     public abstract class ApiController : ControllerBase
     {
         protected IMapper Mapper { get; }

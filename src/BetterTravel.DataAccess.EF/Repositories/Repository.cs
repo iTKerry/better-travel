@@ -32,22 +32,22 @@ namespace BetterTravel.DataAccess.EF.Repositories
                 .Select(projection)
                 .ToListAsync();
 
-        public async Task<Maybe<T>> GetByIdAsync(int id) => 
+        public virtual async Task<Maybe<T>> GetByIdAsync(int id) => 
             await DbContext.Set<T>().FindAsync(id);
 
-        public async Task<Maybe<T>> GetByAsync(Expression<Func<T, bool>> wherePredicate) => 
+        public virtual async Task<Maybe<T>> GetByAsync(Expression<Func<T, bool>> wherePredicate) => 
             await DbContext.Set<T>().FirstOrDefaultAsync(wherePredicate);
 
-        public void Save(T chat) => 
+        public virtual void Save(T chat) => 
             DbContext.Set<T>().Attach(chat);
 
-        public async Task DeleteByIdAsync(int id)
+        public virtual async Task DeleteByIdAsync(int id)
         {
             var entity = await DbContext.Set<T>().FindAsync(id);
             Delete(entity);
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             if (DbContext.Entry(entity).State == EntityState.Detached) 
                 DbContext.Set<T>().Attach(entity);

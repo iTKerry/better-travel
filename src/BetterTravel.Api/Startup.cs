@@ -2,6 +2,7 @@ using Autofac;
 using AutoMapper;
 using BetterTravel.Api.Extensions.ApplicationBuilder;
 using BetterTravel.Api.Extensions.ServiceCollection;
+using BetterTravel.Api.Infrastructure.HostedServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,8 @@ namespace BetterTravel.Api
                 .AddBetterTravelCors()
                 .AddRouteOptions()
                 .AddBetterTravelHealthChecks()
-                .AddBetterTravelSwagger();
+                .AddBetterTravelSwagger()
+                .AddHostedService<TelegramHostedService>();
 
         public static void ConfigureContainer(ContainerBuilder builder) =>
             builder.RegisterAssemblyModules(typeof(Startup).Assembly);

@@ -13,8 +13,9 @@ namespace BetterTravel.Api.IoC
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .AsClosedTypesOf(typeof(IRequestHandler<>))
+            builder
+                .RegisterAssemblyTypes(ThisAssembly)
+                .AsClosedTypesOf(typeof(IRequestHandler<,>))
                 .AsImplementedInterfaces();
         }
     }

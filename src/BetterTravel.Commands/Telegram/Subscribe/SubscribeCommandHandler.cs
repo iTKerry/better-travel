@@ -16,21 +16,17 @@ namespace BetterTravel.Commands.Telegram.Subscribe
         private readonly ITelegramBotClient _telegram;
 
         public SubscribeCommandHandler(IUnitOfWork unitOfWork, ITelegramBotClient telegram) 
-            : base(unitOfWork)
-        {
+            : base(unitOfWork) =>
             _telegram = telegram;
-        }
-        
+
         public override async Task<IHandlerResult> Handle(
             SubscribeCommand request, 
-            CancellationToken cancellationToken)
-        {
-            if (request.IsBot)
-                return ValidationFailed("Bots are not allowed to subscribe.");
-            
-            return await UnitOfWork.ChatRepository
-                .GetByAsync(c => c.ChatId == request.ChatId)
-                .ToResult("Chat was not found.")
+            CancellationToken cancellationToken) =>
+            await Result
+                .SuccessIf(!request.IsBot, "Bots are not allowed to subscribe.")
+                .Bind(() => UnitOfWork.ChatRepository
+                    .GetByAsync(c => c.ChatId == request.ChatId)
+                    .ToResult("Chat was not found."))
                 .Tap(chat => chat.UpdateInfo(request.Title, request.Description, request.Type))
                 .OnFailureCompensate(() => CreateChat(request))
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
@@ -40,7 +36,6 @@ namespace BetterTravel.Commands.Telegram.Subscribe
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
                     : Ok());
-        }
 
         private static Result<Chat> CreateChat(SubscribeCommand cmd) =>
             ChatInfo

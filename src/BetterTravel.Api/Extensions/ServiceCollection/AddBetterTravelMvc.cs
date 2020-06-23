@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace BetterTravel.Api.Extensions.ServiceCollection
 {
@@ -9,15 +9,8 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
         public static IServiceCollection AddBetterTravelMvc(this IServiceCollection services) =>
             services
                 .AddControllers()
-                .AddJsonOptions(SetupJsonOptions)
+                .AddNewtonsoftJson(options => options.SerializerSettings.Formatting = Formatting.Indented)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest)
                 .Services;
-
-        private static void SetupJsonOptions(JsonOptions options)
-        {
-            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-            options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-            options.JsonSerializerOptions.MaxDepth = 16;
-        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities.Base;
+﻿using BetterTravel.DataAccess.Abstraction.Entities.Base;
 using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 using BetterTravel.DataAccess.Abstraction.ValueObjects;
 using CSharpFunctionalExtensions;
@@ -19,14 +18,12 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
             IsSubscribed = isSubscribed;
         }
 
-        public long ChatId { get; }
+        public long ChatId { get; private set; }
         public ChatInfo Info { get; private set; }
         public bool IsSubscribed { get; private set; }
 
         public static Result<Chat> Create(long chatId, ChatInfo info, bool subscribe)
         {
-             if (chatId <= 0)
-                 return Result.Failure<Chat>("Bad chat ID.");
              if (info is null)
                  Result.Failure<Chat>("Chat information not provided.");
              

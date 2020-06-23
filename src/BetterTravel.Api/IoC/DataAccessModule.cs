@@ -26,6 +26,10 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterType<ChatRepository>()
                 .As<IChatRepository>();
+
+            builder
+                .RegisterType<UnitOfWork>()
+                .As<IUnitOfWork>();
         }
     }
 }

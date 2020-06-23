@@ -4,7 +4,7 @@ services:
   api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:8080
+      - ASPNETCORE_URLS=http://*:443
     ports:
       - "8888:80/tcp"
   db:

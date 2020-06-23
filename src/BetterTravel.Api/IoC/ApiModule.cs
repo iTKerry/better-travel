@@ -23,7 +23,7 @@ namespace BetterTravel.Api.IoC
         private static void RegisterTelegram(ContainerBuilder builder)
         {
             builder
-                .Register(context =>
+                .Register<BotConfiguration>(context =>
                 {
                     var c = context.Resolve<IConfiguration>();
                     return c.GetOptions<BotConfiguration>(nameof(BotConfiguration));
