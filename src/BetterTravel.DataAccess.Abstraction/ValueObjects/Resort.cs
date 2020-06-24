@@ -15,8 +15,8 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
             DetailsUri = detailsUri;
         }
         
-        public string Name { get;private set; }
-        public Uri DetailsUri { get;private set; }
+        public string Name { get; }
+        public Uri DetailsUri { get; }
         
         protected override int GetHashCodeCore() => 
             Name.GetHashCode() + DetailsUri.GetHashCode();

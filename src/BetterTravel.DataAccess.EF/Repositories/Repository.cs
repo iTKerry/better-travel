@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 using BetterTravel.DataAccess.Abstraction.Entities.Base;
 using BetterTravel.DataAccess.Abstraction.Repositories;
 using CSharpFunctionalExtensions;
-using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF.Repositories
 {
     public abstract class Repository<T> : IRepository<T>
-        where T : Entity
+        where T : AggregateRoot
     {
         protected readonly AppDbContext DbContext;
 
         protected Repository(AppDbContext dbContext) => 
             DbContext = dbContext;
 
-        public async Task<List<T>> GetAsync(QueryObject<T> queryObject)
+        public virtual async Task<List<T>> GetAsync(QueryObject<T> queryObject)
         {
             var query = DbContext.Set<T>().AsQueryable();
 
@@ -38,7 +37,7 @@ namespace BetterTravel.DataAccess.EF.Repositories
             return await query.ToListAsync();
         }
         
-        public async Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject)
+        public virtual async Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject)
         {
             var query = DbContext.Set<T>().AsQueryable();
 

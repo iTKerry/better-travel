@@ -5,7 +5,7 @@ using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Abstraction.Entities
 {
-    public class Chat : Entity
+    public class Chat : AggregateRoot
     {
         protected Chat()
         {
@@ -18,7 +18,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
             IsSubscribed = isSubscribed;
         }
 
-        public long ChatId { get; private set; }
+        public long ChatId { get; }
         public ChatInfo Info { get; private set; }
         public bool IsSubscribed { get; private set; }
 

@@ -28,14 +28,6 @@ namespace BetterTravel.DataAccess.EF.Configurations
                     .HasColumnName("ImageLink");
             });
             
-            builder.OwnsOne(p => p.Country, p =>
-            {
-                p.Property(pp => pp.Name).HasColumnName("CountryName");
-                p.Property(pp => pp.DetailsUri)
-                    .HasConversion(pp => pp.ToString(), str => new Uri(str))
-                    .HasColumnName("CountryDetailsLink");
-            });
-            
             builder.OwnsOne(p => p.Resort, p =>
             {
                 p.Property(pp => pp.Name).HasColumnName("ResortName");
@@ -44,12 +36,6 @@ namespace BetterTravel.DataAccess.EF.Configurations
                     .HasColumnName("ResortDetailsLink");
             });
 
-            builder.OwnsOne(p => p.Departure, p =>
-            {
-                p.Property(pp => pp.Location).HasColumnName("DepartureLocation");
-                p.Property(pp => pp.Date).HasColumnName("DepartureDate");
-            });
-            
             builder.OwnsOne(p => p.Duration, p =>
             {
                 p.Property(pp => pp.Count).HasColumnName("DurationCount");

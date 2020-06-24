@@ -2,7 +2,17 @@
 {
     public abstract class Entity
     {
-        public int Id { get; private set; }
+        protected Entity()
+        {
+        }
+
+        protected Entity(int id)
+            : this()
+        {
+            Id = id;
+        }
+        
+        public int Id { get; }
 
         public override bool Equals(object obj)
         {

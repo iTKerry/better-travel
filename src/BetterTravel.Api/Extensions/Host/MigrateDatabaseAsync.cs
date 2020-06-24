@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using BetterTravel.DataAccess.EF.Seeder.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +17,8 @@ namespace BetterTravel.Api.Extensions.Host
             await appDbContext.Database.EnsureDeletedAsync();
             await appDbContext.Database.MigrateAsync();
 
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+            await dbInitializer.InitializeAsync();
             return host;
         }
     }

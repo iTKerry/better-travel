@@ -7,7 +7,7 @@ using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Abstraction.Repositories
 {
-    public interface IRepository<T> where T : Entity
+    public interface IRepository<T> where T : AggregateRoot
     {
         Task<List<T>> GetAsync(QueryObject<T> queryObject);
         Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject);

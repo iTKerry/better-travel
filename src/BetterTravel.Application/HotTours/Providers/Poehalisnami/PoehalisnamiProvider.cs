@@ -55,6 +55,7 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 new HotTourInfo(
                     source.TourName,
                     GetStars(source.StarsCount.Count),
+                    GetDate(source.Date),
                     source.ImageUrl,
                     source.TourDetailsUrl),
                 new Duration(
@@ -62,7 +63,7 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                     GetDurationType(source.NightsText)),
                 new Departure(
                     source.DeparturePointNameGenitive, 
-                    GetDate(source.Date)),
+                    ),
                 new Price(
                     source.PriceFrom, 
                     GetPriceType(source.PriceDescription)),

@@ -10,28 +10,32 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
         {
         }
         
-        public HotTourInfo(string name, Stars stars, Uri imageUri, Uri detailsUri)
+        public HotTourInfo(string name, Stars stars, DateTime departureDate, Uri imageUri, Uri detailsUri)
         {
-            DetailsUri = detailsUri;
-            ImageUri = imageUri;
-            Stars = stars;
             Name = name;
+            Stars = stars;
+            DepartureDate = departureDate;
+            ImageUri = imageUri;
+            DetailsUri = detailsUri;
         }
 
-        public string Name { get; private set; }
-        public Stars Stars { get; private set; }
-        public Uri ImageUri { get; private set; }
-        public Uri DetailsUri { get; private set; }
+        public string Name { get; }
+        public Stars Stars { get; }
+        public DateTime DepartureDate { get; }
+        public Uri ImageUri { get; }
+        public Uri DetailsUri { get; }
         
         protected override int GetHashCodeCore() => 
             Name.GetHashCode() + 
-            Stars.GetHashCode() + 
+            Stars.GetHashCode() +
+            DepartureDate.GetHashCode() +
             ImageUri.GetHashCode() + 
             DetailsUri.GetHashCode();
 
         protected override bool EqualCore(HotTourInfo other) =>
             Name == other.Name &&
             Stars == other.Stars &&
+            DepartureDate == other.DepartureDate &&
             ImageUri == other.ImageUri &&
             DetailsUri == other.DetailsUri;
     }

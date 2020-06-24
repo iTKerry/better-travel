@@ -4,6 +4,8 @@ using Autofac;
 using BetterTravel.DataAccess.Abstraction.Repositories;
 using BetterTravel.DataAccess.EF;
 using BetterTravel.DataAccess.EF.Repositories;
+using BetterTravel.DataAccess.EF.Seeder;
+using BetterTravel.DataAccess.EF.Seeder.Abstractions;
 using Module = Autofac.Module;
 
 namespace BetterTravel.Api.IoC
@@ -15,6 +17,10 @@ namespace BetterTravel.Api.IoC
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder
+                .RegisterType<DbInitializer>()
+                .As<IDbInitializer>();
+            
             builder
                 .RegisterType<UnitOfWork>()
                 .As<IUnitOfWork>();
