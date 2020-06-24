@@ -2,6 +2,7 @@
 using System.Reflection;
 using Autofac;
 using BetterTravel.Commands.Abstractions;
+using BetterTravel.DataAccess.Abstraction.Specification;
 using MediatR;
 
 namespace BetterTravel.Api.IoC
@@ -16,6 +17,10 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterAssemblyTypes(ThisAssembly)
                 .AsClosedTypesOf(typeof(IRequestHandler<,>))
+                .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .AsClosedTypesOf(typeof(ISpecification<,>))
                 .AsImplementedInterfaces();
         }
     }

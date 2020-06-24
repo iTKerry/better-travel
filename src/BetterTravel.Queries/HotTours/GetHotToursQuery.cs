@@ -9,8 +9,8 @@ namespace BetterTravel.Queries.HotTours
     {
         public int Take { get; set; }
         public int Skip { get; set; }
-        public string Country { get; set; }
-        public string Resort { get; set; }
+        public string CountryName { get; set; }
+        public string ResortName { get; set; }
         public Stars Stars { get; set; }
     }
 }

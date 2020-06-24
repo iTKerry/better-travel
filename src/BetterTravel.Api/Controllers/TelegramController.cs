@@ -32,7 +32,7 @@ namespace BetterTravel.Api.Controllers
         }
 
         private ICommand GetCommand(Update update) =>
-            CommandWithoutSignature(update) switch
+            CommandWithoutSignature(update.Message.Text) switch
             {
                 "/start" => Mapper.Map<StartCommand>(update),
                 "/subscribe" => Mapper.Map<SubscribeCommand>(update),
@@ -41,9 +41,8 @@ namespace BetterTravel.Api.Controllers
                 _ => null
             };
 
-        private static string CommandWithoutSignature(Update update) => 
-            update.Message.Text
-                .Replace("@BetterTravelBot", string.Empty);
+        private static string CommandWithoutSignature(string updateMessageText) => 
+            updateMessageText.Replace("@BetterTravelBot", string.Empty);
 
         private async Task<Message> HandleResultAsync(IHandlerResult result, long chatId) =>
             result switch

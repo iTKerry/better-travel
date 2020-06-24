@@ -9,17 +9,14 @@ namespace BetterTravel.DataAccess.Abstraction.Repositories
 {
     public interface IRepository<T> where T : Entity
     {
-        Task<List<T>> GetAllAsync(
-            Expression<Func<T, bool>> wherePredicate);
-
-        Task<List<TResult>> GetAllAsync<TResult>(
-            Expression<Func<T, bool>> wherePredicate,
-            Expression<Func<T, TResult>> projection);
+        Task<List<T>> GetAsync(QueryObject<T> queryObject);
+        Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject);
 
         Task<Maybe<T>> GetByIdAsync(int id);
-        Task<Maybe<T>> GetByAsync(Expression<Func<T, bool>> wherePredicate);
+        Task<Maybe<T>> GetFirstAsync(Expression<Func<T, bool>> wherePredicate);
 
         void Save(T chat);
+        Task SaveAsync(List<T> chats);
         
         Task DeleteByIdAsync(int id);
         void Delete(T entity);

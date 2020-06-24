@@ -3,6 +3,9 @@ using Autofac;
 using BetterTravel.Api.ExceptionHandling;
 using BetterTravel.Api.ExceptionHandling.Abstractions;
 using BetterTravel.Api.Extensions.Configuration;
+using BetterTravel.Application.HotTours;
+using BetterTravel.Application.HotTours.Abstractions;
+using BetterTravel.Application.HotTours.Providers.Poehalisnami;
 using BetterTravel.Common.Configurations;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +21,14 @@ namespace BetterTravel.Api.IoC
             RegisterTelegram(builder);
             RegisterExceptionHandling(builder);
             RegisterMediator(builder);
+
+            builder
+                .RegisterType<TourFetcherService>()
+                .As<ITourFetcherService>();
+
+            builder
+                .RegisterType<PoehalisnamiProvider>()
+                .As<IHotToursProvider>();
         }
 
         private static void RegisterTelegram(ContainerBuilder builder)

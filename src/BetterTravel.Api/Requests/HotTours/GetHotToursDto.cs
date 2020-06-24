@@ -4,10 +4,10 @@ namespace BetterTravel.Api.Requests.HotTours
 {
     public class GetHotToursDto
     {
-        public int Take { get; set; } = 10;
-        public int Skip { get; set; } = 0;
-        public string Country { get; set; } = string.Empty;
-        public string Resort { get; set; } = string.Empty;
-        public Stars Stars { get; set; } = Stars.Unknown;
+        public int Take { get; set; }
+        public int Skip { get; set; }
+        public string CountryName { get; set; }
+        public string ResortName { get; set; }
+        public Stars Stars { get; set; } = Stars.All;
     }
 }

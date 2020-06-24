@@ -25,11 +25,11 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
             Resort = resort;
         }
 
-        public virtual HotTourInfo Info { get; }
-        public virtual Duration Duration { get; }
-        public virtual Departure Departure { get; }
-        public virtual Price Price { get; }
-        public virtual Country Country { get; }
-        public virtual Resort Resort { get; }
+        public virtual HotTourInfo Info { get;private set; }
+        public virtual Duration Duration { get;private set; }
+        public virtual Departure Departure { get;private set; }
+        public virtual Price Price { get;private set; }
+        public virtual Country Country { get;private set; }
+        public virtual Resort Resort { get;private set; }
     }
 }

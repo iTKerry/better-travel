@@ -7,8 +7,8 @@ namespace BetterTravel.Queries.ViewModels
     {
         public string Name { get; set; }
         public Stars StarsCount { get; set; }
-        public string ImageLink { get; set; }
-        public string DetailsLink { get; set; }
+        public Uri ImageLink { get; set; }
+        public Uri DetailsLink { get; set; }
         
         public int DurationCount { get; set; }
         public DurationType DurationType { get; set; }
@@ -20,9 +20,9 @@ namespace BetterTravel.Queries.ViewModels
         public PriceType PriceType { get; set; }
         
         public string CountryName { get; set; }
-        public string CountryDetailsLink { get; set; }
+        public Uri CountryDetailsLink { get; set; }
         
         public string ResortName { get; set; }
-        public string ResortDetailsLink { get; set; }
+        public Uri ResortDetailsLink { get; set; }
     }
 }

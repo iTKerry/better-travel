@@ -25,7 +25,7 @@ namespace BetterTravel.Commands.Telegram.Subscribe
             await Result
                 .SuccessIf(!request.IsBot, "Bots are not allowed to subscribe.")
                 .Bind(() => UnitOfWork.ChatRepository
-                    .GetByAsync(c => c.ChatId == request.ChatId)
+                    .GetFirstAsync(c => c.ChatId == request.ChatId)
                     .ToResult("Chat was not found."))
                 .Tap(chat => chat.UpdateInfo(request.Title, request.Description, request.Type))
                 .OnFailureCompensate(() => CreateChat(request))

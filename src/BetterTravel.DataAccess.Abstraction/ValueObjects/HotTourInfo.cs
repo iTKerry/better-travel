@@ -18,10 +18,10 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
             Name = name;
         }
 
-        public string Name { get; }
-        public Stars Stars { get; }
-        public Uri ImageUri { get; }
-        public Uri DetailsUri { get; }
+        public string Name { get; private set; }
+        public Stars Stars { get; private set; }
+        public Uri ImageUri { get; private set; }
+        public Uri DetailsUri { get; private set; }
         
         protected override int GetHashCodeCore() => 
             Name.GetHashCode() + 

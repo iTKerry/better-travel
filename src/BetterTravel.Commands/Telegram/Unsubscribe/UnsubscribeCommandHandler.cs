@@ -21,7 +21,7 @@ namespace BetterTravel.Commands.Telegram.Unsubscribe
             UnsubscribeCommand request, 
             CancellationToken cancellationToken) =>
             await UnitOfWork.ChatRepository
-                .GetByAsync(c => c.ChatId == request.ChatId)
+                .GetFirstAsync(c => c.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
                 .Tap(chat => chat.Unsubscribe())

@@ -1,8 +1,10 @@
 using System;
 using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 using BetterTravel.DataAccess.EF.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterTravel.DataAccess.EF.Configurations
 {
@@ -15,7 +17,9 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder.OwnsOne(p => p.Info, p =>
             {
                 p.Property(pp => pp.Name).HasColumnName("Name");
-                p.Property(pp => pp.Stars).HasColumnName("StarsCount");
+                p.Property(pp => pp.Stars)
+                    .HasConversion(new EnumToNumberConverter<Stars, int>())
+                    .HasColumnName("StarsCount");
                 p.Property(pp => pp.DetailsUri)
                     .HasConversion(pp => pp.ToString(), str => new Uri(str))
                     .HasColumnName("DetailsLink");

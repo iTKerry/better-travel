@@ -15,8 +15,8 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
             Type = type;
         }
 
-        public int Amount { get; }
-        public PriceType Type { get; }
+        public int Amount { get; private set; }
+        public PriceType Type { get; private set; }
         
         protected override int GetHashCodeCore() => 
             Amount.GetHashCode() + Type.GetHashCode();

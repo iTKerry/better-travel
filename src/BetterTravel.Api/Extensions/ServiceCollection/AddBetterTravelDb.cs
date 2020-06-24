@@ -11,10 +11,12 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
         public static IServiceCollection AddBetterTravelDb(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString(ConnectionStrings.BetterTravelDb);
-            return services.AddDbContextPool<AppDbContext>(builder => 
-                builder.UseSqlServer(
-                    connectionString,
-                    x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+            return services.AddDbContextPool<AppDbContext>(builder =>
+                builder
+                    .EnableSensitiveDataLogging()
+                    .UseSqlServer(
+                        connectionString,
+                        x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
         }
     }
 }

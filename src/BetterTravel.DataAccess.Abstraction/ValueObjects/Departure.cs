@@ -15,8 +15,8 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
             Date = date;
         }
 
-        public string Location { get; }
-        public DateTime Date { get; }
+        public string Location { get; private set; }
+        public DateTime Date { get; private set; }
         
         protected override int GetHashCodeCore() => 
             Location.GetHashCode() + Date.GetHashCode();

@@ -3,7 +3,7 @@ using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Abstraction.ValueObjects
 {
-    public class ChatInfo : Base.ValueObject<ChatInfo>
+    public class ChatInfo : ValueObject<ChatInfo>
     {
         protected ChatInfo()
         {
@@ -25,15 +25,15 @@ namespace BetterTravel.DataAccess.Abstraction.ValueObjects
             var chat = new ChatInfo(title, description, type);
             return Result.Ok(chat);
         }
-        
+
+        protected override bool EqualsCore(ChatInfo other) => 
+            Title == other.Title &&
+            Description == other.Description &&
+            Type == other.Type;
+
         protected override int GetHashCodeCore() => 
             Title.GetHashCode() + 
             Description.GetHashCode() + 
             Type.GetHashCode();
-
-        protected override bool EqualCore(ChatInfo other) =>
-            Title == other.Title &&
-            Description == other.Description &&
-            Type == other.Type;
     }
 }

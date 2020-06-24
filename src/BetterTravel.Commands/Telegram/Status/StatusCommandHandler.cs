@@ -14,20 +14,18 @@ namespace BetterTravel.Commands.Telegram.Status
         private readonly ITelegramBotClient _telegram;
         
         public StatusCommandHandler(IUnitOfWork unitOfWork, ITelegramBotClient telegram) 
-            : base(unitOfWork)
-        {
+            : base(unitOfWork) =>
             _telegram = telegram;
-        }
 
         public override async Task<IHandlerResult> Handle(
             StatusCommand request,
             CancellationToken cancellationToken) =>
             await UnitOfWork.ChatRepository
-                .GetByAsync(chat => chat.ChatId == request.ChatId)
+                .GetFirstAsync(chat => chat.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
                 .Tap(chat => chat.IsSubscribed
                     ? SendMessageAsync(chat.ChatId, "You are subscribed", cancellationToken)
-                    : SendMessageAsync(chat.ChatId, "You are unsubscribed", cancellationToken))
+                    : SendMessageAsync(chat.ChatId, "You are not subscribed", cancellationToken))
                 .Finally(result => result.IsFailure
                     ? ValidationFailed(result.Error)
                     : Ok());
