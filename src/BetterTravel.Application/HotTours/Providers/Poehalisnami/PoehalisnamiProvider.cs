@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Threading.Tasks;
 using BetterTravel.Application.HotTours.Abstractions;
 using BetterTravel.Application.HotTours.Providers.Poehalisnami.Responses;
+using BetterTravel.Common.Localization;
 using BetterTravel.DataAccess.Abstraction.Entities;
 using BetterTravel.DataAccess.Abstraction.Entities.Enums;
 using BetterTravel.DataAccess.Abstraction.ValueObjects;
@@ -61,18 +63,29 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 new Duration(
                     source.DurationDay,
                     GetDurationType(source.NightsText)),
-                new Departure(
-                    source.DeparturePointNameGenitive, 
-                    ),
                 new Price(
                     source.PriceFrom, 
                     GetPriceType(source.PriceDescription)),
-                new Country(
-                    source.CountryLinks.Links.FirstOrDefault()?.Text,
-                    source.CountryLinks.Links.FirstOrDefault()?.Href),
+                GetCountry(source.CountryLinks.Links.FirstOrDefault()?.Text),
                 new Resort(
                     source.ResortLinks.Links.FirstOrDefault()?.Text,
-                    source.ResortLinks.Links.FirstOrDefault()?.Href));
+                    source.ResortLinks.Links.FirstOrDefault()?.Href),
+                GetDepartureLocation(source.DeparturePointNameGenitive));
+
+        private static Country GetCountry(string source)
+        {
+            var resource = new ResourceHelper();
+            resource.GetResourceName(source);
+            
+            Console.WriteLine(resource.GetResourceName(source));
+            
+            return null;
+        }
+
+        private static DepartureLocation GetDepartureLocation(string source)
+        {
+            return null;
+        }
 
         private static PriceType GetPriceType(string source) =>
             source switch
@@ -81,10 +94,10 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 _ => PriceType.Unknown
             };
 
-        private static DateTime GetDate(string sourceDate)
+        private static DateTime GetDate(string source)
         {
             const string pattern = "dd.MM.yyyy";
-            DateTime.TryParseExact(sourceDate, pattern, null, DateTimeStyles.None, out var result);
+            DateTime.TryParseExact(source, pattern, null, DateTimeStyles.None, out var result);
             return result;
         }
 

@@ -20,7 +20,6 @@ namespace BetterTravel.Queries.ViewModels
         public PriceType PriceType { get; set; }
         
         public string CountryName { get; set; }
-        public Uri CountryDetailsLink { get; set; }
         
         public string ResortName { get; set; }
         public Uri ResortDetailsLink { get; set; }

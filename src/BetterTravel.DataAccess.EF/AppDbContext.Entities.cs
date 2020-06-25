@@ -7,7 +7,5 @@ namespace BetterTravel.DataAccess.EF
     {
         public DbSet<HotTour> HotTours { get; set; }
         public DbSet<Chat> Chats { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<DepartureLocation> DepartureLocations { get; set; }
     }
 }

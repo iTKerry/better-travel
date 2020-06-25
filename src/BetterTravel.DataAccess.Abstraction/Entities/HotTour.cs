@@ -14,16 +14,19 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
             Duration duration, 
             Price price, 
             Country country, 
-            Resort resort)
+            Resort resort,
+            DepartureLocation departureLocation)
         {
             Info = info;
             Duration = duration;
             Price = price;
             Country = country;
             Resort = resort;
+            DepartureLocation = departureLocation;
         }
 
         public virtual HotTourInfo Info { get; }
+        public virtual DepartureLocation DepartureLocation { get; }
         public virtual Duration Duration { get; }
         public virtual Price Price { get; }
         public virtual Country Country { get; }

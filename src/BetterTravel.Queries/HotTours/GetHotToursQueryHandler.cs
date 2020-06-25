@@ -56,8 +56,8 @@ namespace BetterTravel.Queries.HotTours
             {
                 Name = tour.Info.Name,
                 StarsCount = tour.Info.Stars,
-                DepartureDate = tour.Departure.Date,
-                DepartureLocation = tour.Departure.Location,
+                DepartureDate = tour.Info.DepartureDate,
+                DepartureLocation = tour.DepartureLocation.Name,
                 DetailsLink = tour.Info.DetailsUri,
                 DurationCount = tour.Duration.Count,
                 DurationType = tour.Duration.Type,
@@ -65,7 +65,6 @@ namespace BetterTravel.Queries.HotTours
                 PriceAmount = tour.Price.Amount,
                 PriceType = tour.Price.Type,
                 CountryName = tour.Country.Name,
-                CountryDetailsLink = tour.Country.DetailsUri,
                 ResortName = tour.Resort.Name,
                 ResortDetailsLink = tour.Resort.DetailsUri
             };

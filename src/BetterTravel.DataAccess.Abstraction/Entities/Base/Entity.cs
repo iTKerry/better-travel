@@ -12,7 +12,7 @@
             Id = id;
         }
         
-        public int Id { get; }
+        public int Id { get; private set; }
 
         public override bool Equals(object obj)
         {
