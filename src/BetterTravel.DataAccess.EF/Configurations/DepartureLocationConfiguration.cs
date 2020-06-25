@@ -10,7 +10,7 @@ namespace BetterTravel.DataAccess.EF.Configurations
         public void Configure(EntityTypeBuilder<DepartureLocation> builder)
         {
             builder.ToTable(Tables.DepartureLocation, Schemas.Dbo).HasKey(p => p.Id);
-            builder.Property(p => p.Id).HasColumnName("DepartureLocationID");
+            builder.Property(p => p.Id).HasColumnName("DepartureLocationID").ValueGeneratedNever();
             builder.Property(p => p.Name);
         }
     }

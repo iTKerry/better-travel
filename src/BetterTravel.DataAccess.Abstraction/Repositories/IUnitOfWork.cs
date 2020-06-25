@@ -8,6 +8,6 @@ namespace BetterTravel.DataAccess.Abstraction.Repositories
         IHotToursRepository HotToursRepository { get; }
         IChatRepository ChatRepository { get; }
 
-        Task CommitAsync();
+        Task<int> CommitAsync();
     }
 }

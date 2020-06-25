@@ -21,8 +21,8 @@ namespace BetterTravel.DataAccess.EF.Configurations
 
             builder.OwnsOne(p => p.Info, p =>
             {
-                p.Property(pp => pp.Name);
-                p.Property(pp => pp.DepartureDate);
+                p.Property(pp => pp.Name).HasColumnName("Name");
+                p.Property(pp => pp.DepartureDate).HasColumnName("DepartureDate");
                 p.Property(pp => pp.Stars)
                     .HasConversion(new EnumToNumberConverter<Stars, int>())
                     .HasColumnName("StarsCount");
@@ -37,9 +37,6 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder.OwnsOne(p => p.Resort, p =>
             {
                 p.Property(pp => pp.Name).HasColumnName("ResortName");
-                p.Property(pp => pp.DetailsUri)
-                    .HasConversion(pp => pp.ToString(), str => new Uri(str))
-                    .HasColumnName("ResortDetailsLink");
             });
 
             builder.OwnsOne(p => p.Duration, p =>

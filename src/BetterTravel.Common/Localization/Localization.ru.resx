@@ -117,10 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  
+  <!-- Countries -->
   <data name="Egypt" xml:space="preserve">
     <value>Египет</value>
   </data>
   <data name="Turkey" xml:space="preserve">
     <value>Турция</value>
+  </data>
+  <data name="Ukraine" xml:space="preserve">
+    <value>Украина</value>
+  </data>
+  <data name="Spain" xml:space="preserve">
+    <value>Испания</value>
+  </data>
+  <data name="Bulgaria" xml:space="preserve">
+    <value>Болгария</value>
+  </data>
+  <data name="Tunisia" xml:space="preserve">
+    <value>Тунис</value>
+  </data>
+  <data name="Dominican" xml:space="preserve">
+    <value>Греция</value>
+  </data>
+  <data name="UAE" xml:space="preserve">
+    <value>ОАЕ</value>
+  </data>
+  <data name="Greece" xml:space="preserve">
+    <value>Греция</value>
+  </data>
+  <data name="Georgia" xml:space="preserve">
+    <value>Грузия</value>
+  </data>
+  <data name="Albania" xml:space="preserve">
+    <value>Албания</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Нет страны</value>
+  </data>
+
+  <!-- Departures -->
+  <data name="Kyiv" xml:space="preserve">
+    <value>Киева</value>
+  </data>
+  <data name="Zaporizhzhia" xml:space="preserve">
+    <value>Запарожья</value>
+  </data>
+  <data name="Lviv" xml:space="preserve">
+    <value>Львова</value>
+  </data>
+  <data name="Odessa" xml:space="preserve">
+    <value>Одессы</value>
+  </data>
+  <data name="Kharkiv" xml:space="preserve">
+    <value>Харькова</value>
+  </data>
+  <data name="NoDeparture" xml:space="preserve">
+    <value>Без проезда</value>
   </data>
 </root>

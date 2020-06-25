@@ -66,7 +66,6 @@ namespace BetterTravel.Queries.HotTours
                 PriceType = tour.Price.Type,
                 CountryName = tour.Country.Name,
                 ResortName = tour.Resort.Name,
-                ResortDetailsLink = tour.Resort.DetailsUri
             };
     }
 }

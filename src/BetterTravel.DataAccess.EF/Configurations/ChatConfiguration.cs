@@ -19,9 +19,9 @@ namespace BetterTravel.DataAccess.EF.Configurations
             
             builder.OwnsOne(p => p.Info, p =>
             {
-                p.Property(pp => pp.Title);
-                p.Property(pp => pp.Description);
-                p.Property(pp => pp.Type);
+                p.Property(pp => pp.Title).HasColumnName("Title");
+                p.Property(pp => pp.Description).HasColumnName("Description");
+                p.Property(pp => pp.Type).HasColumnName("Type");
             });
         }
     }

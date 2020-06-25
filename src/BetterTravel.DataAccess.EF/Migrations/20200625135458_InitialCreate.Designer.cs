@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterTravel.DataAccess.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200622152233_AddPriceType")]
-    partial class AddPriceType
+    [Migration("20200625135458_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,11 +25,11 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ChatID")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsSubscribed")
-                        .HasColumnName("Subscribed")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -37,14 +37,53 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("Chat","dbo");
                 });
 
+            modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("CountryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Country","dbo");
+                });
+
+            modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.DepartureLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("DepartureLocationID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DepartureLocation","dbo");
+                });
+
             modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.HotTour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("HotTourID")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartureLocationId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("DepartureLocationId");
 
                     b.ToTable("HotTour","dbo");
                 });
@@ -81,51 +120,13 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
             modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.HotTour", b =>
                 {
-                    b.OwnsOne("BetterTravel.DataAccess.Abstraction.ValueObjects.Country", "Country", b1 =>
-                        {
-                            b1.Property<int>("HotTourId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasOne("BetterTravel.DataAccess.Abstraction.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
 
-                            b1.Property<string>("DetailsUri")
-                                .HasColumnName("CountryDetailsLink")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Name")
-                                .HasColumnName("CountryName")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("HotTourId");
-
-                            b1.ToTable("HotTour");
-
-                            b1.WithOwner()
-                                .HasForeignKey("HotTourId");
-                        });
-
-                    b.OwnsOne("BetterTravel.DataAccess.Abstraction.ValueObjects.Departure", "Departure", b1 =>
-                        {
-                            b1.Property<int>("HotTourId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<DateTime>("Date")
-                                .HasColumnName("DepartureDate")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<string>("Location")
-                                .HasColumnName("DepartureLocation")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("HotTourId");
-
-                            b1.ToTable("HotTour");
-
-                            b1.WithOwner()
-                                .HasForeignKey("HotTourId");
-                        });
+                    b.HasOne("BetterTravel.DataAccess.Abstraction.Entities.DepartureLocation", "DepartureLocation")
+                        .WithMany()
+                        .HasForeignKey("DepartureLocationId");
 
                     b.OwnsOne("BetterTravel.DataAccess.Abstraction.ValueObjects.Duration", "Duration", b1 =>
                         {
@@ -156,6 +157,10 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<DateTime>("DepartureDate")
+                                .HasColumnName("DepartureDate")
+                                .HasColumnType("datetime2");
 
                             b1.Property<string>("DetailsUri")
                                 .HasColumnName("DetailsLink")
@@ -210,10 +215,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<string>("DetailsUri")
-                                .HasColumnName("ResortDetailsLink")
-                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Name")
                                 .HasColumnName("ResortName")

@@ -8,15 +8,17 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
 {
     public static partial class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddBetterTravelDb(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddBetterTravelDb(this IServiceCollection services, 
+            IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString(ConnectionStrings.BetterTravelDb);
             return services.AddDbContextPool<AppDbContext>(builder =>
+            {
                 builder
-                    .EnableSensitiveDataLogging()
-                    .UseSqlServer(
-                        connectionString,
-                        x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+                    .UseSqlServer(connectionString,
+                        x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName))
+                    .UseLazyLoadingProxies();
+            });
         }
     }
 }

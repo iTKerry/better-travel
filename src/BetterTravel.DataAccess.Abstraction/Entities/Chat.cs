@@ -19,7 +19,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
         }
 
         public long ChatId { get; }
-        public ChatInfo Info { get; private set; }
+        public virtual ChatInfo Info { get; private set; }
         public bool IsSubscribed { get; private set; }
 
         public static Result<Chat> Create(long chatId, ChatInfo info, bool subscribe)

@@ -66,21 +66,21 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                     source.PriceFrom, 
                     GetPriceType(source.PriceDescription)),
                 GetCountry(source.CountryLinks.Links.FirstOrDefault()?.Text),
-                new Resort(
-                    source.ResortLinks.Links.FirstOrDefault()?.Text,
-                    source.ResortLinks.Links.FirstOrDefault()?.Href),
+                new Resort(source.ResortLinks.Links.FirstOrDefault()?.Text),
                 GetDepartureLocation(source.DeparturePointNameGenitive));
 
         private static Country GetCountry(string source)
         {
             var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
-            return Country.FromName(name);
+            var country = Country.FromName(name);
+            return country;
         }
 
         private static DepartureLocation GetDepartureLocation(string source)
         {
             var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
-            return DepartureLocation.FromName(name);
+            var departure = DepartureLocation.FromName(name);
+            return departure;
         }
 
         private static PriceType GetPriceType(string source) =>

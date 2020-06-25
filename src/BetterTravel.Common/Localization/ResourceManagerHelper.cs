@@ -12,12 +12,13 @@ namespace BetterTravel.Common.Localization
         {
             var comparisonType =
                 ignoreCase ? System.StringComparison.OrdinalIgnoreCase : System.StringComparison.Ordinal;
-            var entry = resourceManager.GetResourceSet(cultureInfo, true, true)
-                ?
+            var entry = resourceManager.GetResourceSet(cultureInfo, true, true)?
                 .OfType<DictionaryEntry>()
-                .FirstOrDefault(dictionaryEntry => dictionaryEntry.Value.ToString().Equals(value, comparisonType));
+                .FirstOrDefault(de => 
+                    de.Value != null && 
+                    de.Value.ToString().Equals(value, comparisonType));
 
-            return entry?.Key.ToString();
+            return entry?.Key?.ToString();
         }
     }
 }

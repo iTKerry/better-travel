@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using BetterTravel.DataAccess.Abstraction.Entities;
 using BetterTravel.DataAccess.Abstraction.Entities.Enums;
@@ -12,8 +13,7 @@ namespace BetterTravel.Queries.HotTours.Specification
     {
         public override Expression<Func<HotTour, bool>> ToExpression(GetHotToursQuery request) =>
             tour =>
-                (request.CountryName == null || request.CountryName == tour.Country.Name) &&
-                (request.ResortName == null || request.ResortName == tour.Resort.Name) &&
+                (!request.Countries.Any() || request.Countries.Contains(tour.Country.Id)) &&
                 (request.Stars == Stars.All || request.Stars == tour.Info.Stars);
     }
 }

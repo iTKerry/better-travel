@@ -23,13 +23,10 @@ namespace BetterTravel.DataAccess.EF.Repositories
         public IHotToursRepository HotToursRepository { get; }
         public IChatRepository ChatRepository { get; }
         
-        public async Task CommitAsync()
-        {
-            if (_disposed)
-                throw new ObjectDisposedException(_db.GetType().FullName);
-            
-            await _db.SaveChangesAsync();
-        }
+        public async Task<int> CommitAsync() => 
+            _disposed 
+                ? throw new ObjectDisposedException(_db.GetType().FullName) 
+                : await _db.SaveChangesAsync();
 
         public async void Dispose()
         {

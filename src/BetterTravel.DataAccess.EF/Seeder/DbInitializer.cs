@@ -10,10 +10,8 @@ namespace BetterTravel.DataAccess.EF.Seeder
     {
         private readonly AppDbContext _dbContext;
 
-        public DbInitializer(AppDbContext dbContext)
-        {
+        public DbInitializer(AppDbContext dbContext) => 
             _dbContext = dbContext;
-        }
 
         public async Task InitializeAsync(CancellationToken cancellationToken = default)
         {
@@ -25,8 +23,7 @@ namespace BetterTravel.DataAccess.EF.Seeder
         private async Task InitializeInternalAsync(CancellationToken cancellationToken)
         {
             await _dbContext.Countries.AddRangeAsync(Country.AllCountries, cancellationToken);
-            await _dbContext.DepartureLocations.AddRangeAsync(DepartureLocation.AllDepartureLocations, cancellationToken);
-            
+            await _dbContext.DepartureLocations.AddRangeAsync(DepartureLocation.AllDepartures, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }

@@ -16,7 +16,7 @@ namespace BetterTravel.DataAccess.Abstraction.Repositories
         Task<Maybe<T>> GetFirstAsync(Expression<Func<T, bool>> wherePredicate);
 
         void Save(T chat);
-        Task SaveAsync(List<T> chats);
+        void Save(List<T> chats);
         
         Task DeleteByIdAsync(int id);
         void Delete(T entity);

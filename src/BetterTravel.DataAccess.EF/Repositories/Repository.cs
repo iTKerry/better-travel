@@ -67,8 +67,8 @@ namespace BetterTravel.DataAccess.EF.Repositories
         public virtual void Save(T chat) => 
             DbContext.Set<T>().Attach(chat);
         
-        public virtual async Task SaveAsync(List<T> chats) => 
-            await DbContext.Set<T>().AddRangeAsync(chats);
+        public virtual void Save(List<T> chats) => 
+            DbContext.Set<T>().AttachRange(chats);
 
         public virtual async Task DeleteByIdAsync(int id)
         {

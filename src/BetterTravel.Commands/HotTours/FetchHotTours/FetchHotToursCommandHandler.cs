@@ -44,7 +44,7 @@ namespace BetterTravel.Commands.HotTours.FetchHotTours
                             db.Info.Stars != t.Info.Stars))
                     .ToList();
             
-            await UnitOfWork.HotToursRepository.SaveAsync(uniqueTours);
+            UnitOfWork.HotToursRepository.Save(uniqueTours);
             await UnitOfWork.CommitAsync();
             
             return Ok();

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:443",
+      "applicationUrl": "https://localhost:443",
       "sslPort": 44303
     }
   },
@@ -15,7 +15,7 @@
       "launchUrl": "api/docs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://*:443"
+        "ASPNETCORE_URLS": "https://*:443"
       },
       "applicationUrl": "https://localhost:443"
     },
