@@ -12,11 +12,17 @@ namespace BetterTravel.DataAccess.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<HotTour> builder)
         {
-            builder.ToTable(Tables.HotTour, Schemas.Dbo);
+            builder.ToTable(Tables.HotTour, Schemas.Dbo).HasKey(p => p.Id);
+
+            builder.Property(p => p.Id).HasColumnName("HotTourID");;
+
+            builder.HasOne(p => p.DepartureLocation).WithMany();
+            builder.HasOne(p => p.Country).WithMany();
 
             builder.OwnsOne(p => p.Info, p =>
             {
-                p.Property(pp => pp.Name).HasColumnName("Name");
+                p.Property(pp => pp.Name);
+                p.Property(pp => pp.DepartureDate);
                 p.Property(pp => pp.Stars)
                     .HasConversion(new EnumToNumberConverter<Stars, int>())
                     .HasColumnName("StarsCount");
@@ -27,7 +33,7 @@ namespace BetterTravel.DataAccess.EF.Configurations
                     .HasConversion(pp => pp.ToString(), str => new Uri(str))
                     .HasColumnName("ImageLink");
             });
-            
+
             builder.OwnsOne(p => p.Resort, p =>
             {
                 p.Property(pp => pp.Name).HasColumnName("ResortName");

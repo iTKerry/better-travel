@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Threading.Tasks;
 using BetterTravel.Application.HotTours.Abstractions;
 using BetterTravel.Application.HotTours.Providers.Poehalisnami.Responses;
@@ -74,15 +73,14 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
 
         private static Country GetCountry(string source)
         {
-            var temp = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
-            Console.WriteLine(temp);
-            
-            return null;
+            var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
+            return Country.FromName(name);
         }
 
         private static DepartureLocation GetDepartureLocation(string source)
         {
-            return null;
+            var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
+            return DepartureLocation.FromName(name);
         }
 
         private static PriceType GetPriceType(string source) =>

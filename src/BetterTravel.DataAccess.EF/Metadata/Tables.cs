@@ -4,5 +4,7 @@
     {
         public const string HotTour = nameof(HotTour);
         public const string Chat = nameof(Chat);
+        public const string Country = nameof(Country);
+        public const string DepartureLocation = nameof(DepartureLocation);
     }
 }

@@ -14,7 +14,8 @@
       "launchBrowser": true,
       "launchUrl": "api/docs",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://*:443"
       },
       "applicationUrl": "https://localhost:443"
     },

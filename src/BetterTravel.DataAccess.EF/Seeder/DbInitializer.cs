@@ -24,8 +24,8 @@ namespace BetterTravel.DataAccess.EF.Seeder
 
         private async Task InitializeInternalAsync(CancellationToken cancellationToken)
         {
-            //await _dbContext.Countries.AddRangeAsync(Country.AllCountries, cancellationToken);
-            //await _dbContext.DepartureLocations.AddRangeAsync(DepartureLocation.AllDepartureLocations, cancellationToken);
+            await _dbContext.Countries.AddRangeAsync(Country.AllCountries, cancellationToken);
+            await _dbContext.DepartureLocations.AddRangeAsync(DepartureLocation.AllDepartureLocations, cancellationToken);
             
             await _dbContext.SaveChangesAsync(cancellationToken);
         }

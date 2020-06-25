@@ -9,17 +9,19 @@ namespace BetterTravel.DataAccess.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-            builder.ToTable(Tables.Chat, Schemas.Dbo);
-
             builder
-                .Property(p => p.IsSubscribed)
-                .HasColumnName("Subscribed");
+                .ToTable(Tables.Chat, Schemas.Dbo)
+                .HasKey(p => p.Id);
+
+            builder.Property(p => p.Id).HasColumnName("ChatID");
+            
+            builder.Property(p => p.IsSubscribed);
             
             builder.OwnsOne(p => p.Info, p =>
             {
-                p.Property(pp => pp.Title).HasColumnName("Title");
-                p.Property(pp => pp.Description).HasColumnName("Description");
-                p.Property(pp => pp.Type).HasColumnName("Type");
+                p.Property(pp => pp.Title);
+                p.Property(pp => pp.Description);
+                p.Property(pp => pp.Type);
             });
         }
     }
