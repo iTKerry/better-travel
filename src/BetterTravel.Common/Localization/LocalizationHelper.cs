@@ -2,31 +2,22 @@
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading;
 
 namespace BetterTravel.Common.Localization
 {
-    public class ResourceHelper
+    public static class ResourceManagerHelper
     {
-        private ResourceManager ResourceManager { get; }
-        
-        public ResourceHelper() => 
-            ResourceManager = Localization.ResourceManager;
-
-        public string GetResourceName(string value)
+        public static string GetResourceName(this ResourceManager resourceManager, string value,
+            CultureInfo cultureInfo, bool ignoreCase = false)
         {
-            var entry = ResourceManager
-                .GetResourceSet(CultureInfo.GetCultureInfo("ru"), true, true)?
-                .OfType<DictionaryEntry?>()
-                .FirstOrDefault(dictionaryEntry =>
-                    dictionaryEntry.Value.Value != null && dictionaryEntry.Value.ToString() == value);
-            return entry?.ToString();
-        }
+            var comparisonType =
+                ignoreCase ? System.StringComparison.OrdinalIgnoreCase : System.StringComparison.Ordinal;
+            var entry = resourceManager.GetResourceSet(cultureInfo, true, true)
+                ?
+                .OfType<DictionaryEntry>()
+                .FirstOrDefault(dictionaryEntry => dictionaryEntry.Value.ToString().Equals(value, comparisonType));
 
-        public string GetResourceValue(string name)
-        {
-            var value = ResourceManager.GetString(name);
-            return !string.IsNullOrEmpty(value) ? value : null;
+            return entry?.Key.ToString();
         }
     }
 }
