@@ -72,15 +72,13 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
         private static Country GetCountry(string source)
         {
             var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
-            var country = Country.FromName(name);
-            return country;
+            return Country.FromName(name);
         }
 
         private static DepartureLocation GetDepartureLocation(string source)
         {
             var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
-            var departure = DepartureLocation.FromName(name);
-            return departure;
+            return DepartureLocation.FromName(name);
         }
 
         private static PriceType GetPriceType(string source) =>

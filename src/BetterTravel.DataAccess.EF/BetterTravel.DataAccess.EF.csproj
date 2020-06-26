@@ -28,9 +28,5 @@
     <ItemGroup>
       <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Migrations" />
-    </ItemGroup>
 
 </Project>

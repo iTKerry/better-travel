@@ -19,16 +19,17 @@ namespace BetterTravel.Commands.Telegram.Status
 
         public override async Task<IHandlerResult> Handle(
             StatusCommand request,
-            CancellationToken cancellationToken) =>
+            CancellationToken cancellationToken) => 
             await UnitOfWork.ChatRepository
-                .GetFirstAsync(chat => chat.ChatId == request.ChatId)
+                .GetFirstAsync(chat => chat.ChatId == 489903473)
                 .ToResult("That chat wasn't found between our subscribers.")
-                .Tap(chat => chat.IsSubscribed
+                .Tap(chat => chat.Settings.IsSubscribed
                     ? SendMessageAsync(chat.ChatId, "You are subscribed", cancellationToken)
                     : SendMessageAsync(chat.ChatId, "You are not subscribed", cancellationToken))
                 .Finally(result => result.IsFailure
                     ? ValidationFailed(result.Error)
                     : Ok());
+
 
         private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 
             await _telegram.SendTextMessageAsync(chatId, message, cancellationToken: token);

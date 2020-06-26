@@ -27,12 +27,36 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsSubscribed")
-                        .HasColumnType("bit");
+                    b.Property<long>("ChatId")
+                        .HasColumnName("TelegramChatID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.ToTable("Chat","dbo");
+                });
+
+            modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.ChatSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ChatSettingsID")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsSubscribed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SettingsOfChatId")
+                        .HasColumnName("SettingsOfChatID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SettingsOfChatId")
+                        .IsUnique();
+
+                    b.ToTable("ChatSettings");
                 });
 
             modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.Country", b =>
@@ -114,6 +138,15 @@ namespace BetterTravel.DataAccess.EF.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("ChatId");
                         });
+                });
+
+            modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.ChatSettings", b =>
+                {
+                    b.HasOne("BetterTravel.DataAccess.Abstraction.Entities.Chat", "Chat")
+                        .WithOne("Settings")
+                        .HasForeignKey("BetterTravel.DataAccess.Abstraction.Entities.ChatSettings", "SettingsOfChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BetterTravel.DataAccess.Abstraction.Entities.HotTour", b =>

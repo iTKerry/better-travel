@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Commands.Abstractions;
+using BetterTravel.DataAccess.Abstraction.Entities;
 using BetterTravel.DataAccess.Abstraction.Repositories;
 using BetterTravel.DataAccess.Abstraction.ValueObjects;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
@@ -37,11 +38,17 @@ namespace BetterTravel.Commands.Telegram.Subscribe
                     ? ValidationFailed(result.Error) 
                     : Ok());
 
-        private static Result<Chat> CreateChat(SubscribeCommand cmd) =>
-            ChatInfo
-                .Create(cmd.Title, cmd.Description, cmd.Type)
-                .Bind(info => Chat.Create(cmd.ChatId, info, false));
-        
+        private static Result<Chat> CreateChat(SubscribeCommand cmd)
+        {
+            var infoResult = ChatInfo.Create(cmd.Title, cmd.Description, cmd.Type);
+            var settingsResult = ChatSettings.Create(false);
+
+            var result = Result.Combine(infoResult, settingsResult)
+                .Bind(() => Chat.Create(cmd.ChatId, infoResult.Value, settingsResult.Value));
+            var value = result.Value;
+            return result;
+        }
+
         private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 
             await _telegram.SendTextMessageAsync(chatId, message, cancellationToken: token);
     }

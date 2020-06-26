@@ -14,8 +14,14 @@ namespace BetterTravel.DataAccess.EF.Configurations
                 .HasKey(p => p.Id);
 
             builder.Property(p => p.Id).HasColumnName("ChatID");
+
+            builder.Property(p => p.ChatId).HasColumnName("TelegramChatID");
             
-            builder.Property(p => p.IsSubscribed);
+            builder
+                .HasOne(p => p.Settings)
+                .WithOne(p => p.Chat)
+                .HasForeignKey<ChatSettings>(p => p.SettingsOfChatId)
+                .OnDelete(DeleteBehavior.Cascade);
             
             builder.OwnsOne(p => p.Info, p =>
             {

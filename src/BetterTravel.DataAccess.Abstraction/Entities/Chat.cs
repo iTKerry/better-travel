@@ -11,42 +11,34 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
         {
         }
         
-        private Chat(long chatId, ChatInfo info, bool isSubscribed)
+        private Chat(long chatId, ChatInfo info, ChatSettings settings)
         {
             ChatId = chatId;
             Info = info;
-            IsSubscribed = isSubscribed;
+            Settings = settings;
         }
 
-        public long ChatId { get; }
+        public long ChatId { get; private set; }
+        public virtual ChatSettings Settings { get; private set; }
         public virtual ChatInfo Info { get; private set; }
-        public bool IsSubscribed { get; private set; }
 
-        public static Result<Chat> Create(long chatId, ChatInfo info, bool subscribe)
+        public static Result<Chat> Create(long chatId, ChatInfo info, ChatSettings settings)
         {
              if (info is null)
                  Result.Failure<Chat>("Chat information not provided.");
+             if (settings is null)
+                 Result.Failure<Chat>("Settings information not provided.");
              
-             var chat = new Chat(chatId, info, subscribe);
+             var chat = new Chat(chatId, info, settings);
              
              return Result.Ok(chat);
         }
 
-        public Result Subscribe()
-        {
-            if (IsSubscribed)
-                return Result.Failure("You already subscribed.");
-            IsSubscribed = true;
-            return Result.Success();
-        }
+        public Result Subscribe() =>
+            Settings.Subscribe();
 
-        public Result Unsubscribe()
-        {
-            if (!IsSubscribed)
-                return Result.Failure("You already unsubscribed.");
-            IsSubscribed = false;
-            return Result.Success();
-        }
+        public Result Unsubscribe() =>
+            Settings.Unsubscribe();
 
         public Result UpdateInfo(string title, string description, ChatType type)
         {

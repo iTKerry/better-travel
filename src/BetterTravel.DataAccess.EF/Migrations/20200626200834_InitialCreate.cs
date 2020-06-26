@@ -17,10 +17,10 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 {
                     ChatID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TelegramChatID = table.Column<long>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: true),
-                    IsSubscribed = table.Column<bool>(nullable: false)
+                    Type = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,6 +51,27 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DepartureLocation", x => x.DepartureLocationID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChatSettings",
+                columns: table => new
+                {
+                    ChatSettingsID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsSubscribed = table.Column<bool>(nullable: false),
+                    SettingsOfChatID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChatSettings", x => x.ChatSettingsID);
+                    table.ForeignKey(
+                        name: "FK_ChatSettings_Chat_SettingsOfChatID",
+                        column: x => x.SettingsOfChatID,
+                        principalSchema: "dbo",
+                        principalTable: "Chat",
+                        principalColumn: "ChatID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,6 +114,12 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ChatSettings_SettingsOfChatID",
+                table: "ChatSettings",
+                column: "SettingsOfChatID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_HotTour_CountryId",
                 schema: "dbo",
                 table: "HotTour",
@@ -108,11 +135,14 @@ namespace BetterTravel.DataAccess.EF.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Chat",
-                schema: "dbo");
+                name: "ChatSettings");
 
             migrationBuilder.DropTable(
                 name: "HotTour",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Chat",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
