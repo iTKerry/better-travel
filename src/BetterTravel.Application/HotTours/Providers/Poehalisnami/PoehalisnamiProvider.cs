@@ -20,9 +20,9 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
         public PoehalisnamiProvider() => 
             _api = RestService.For<IPoehalisnamiApi>("https://www.poehalisnami.ua");
 
-        public async Task<List<HotTour>> GetHotToursAsync(HotToursQueryObject queryObject)
+        public async Task<List<HotTour>> GetHotToursAsync(HotToursRequestObject requestObject)
         {
-            var request = MapRequest(queryObject);
+            var request = MapRequest(requestObject);
             var response = await _api.HotTours(request);
 
             return response.TourListItems
@@ -30,7 +30,7 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 .ToList();
         }
 
-        private static PoehalisnamiRequest MapRequest(HotToursQueryObject queryObject) =>
+        private static PoehalisnamiRequest MapRequest(HotToursRequestObject requestObject) =>
             new PoehalisnamiRequest
             {
                 CountryIds = string.Empty,
@@ -41,13 +41,13 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 RestTypeIds = string.Empty,
                 DateFrom = DateTime.Now.ToString("dd-MM-yyyy"),
                 DateTo = DateTime.Now.AddYears(1).ToString("dd-MM-yyyy"),
-                DurationQtyDayFrom = queryObject.DurationFrom,
-                DurationQtyDayTo = queryObject.DurationTo,
-                PriceFrom = queryObject.PriceFrom,
-                PriceTo = queryObject.PriceTo,
+                DurationQtyDayFrom = requestObject.DurationFrom,
+                DurationQtyDayTo = requestObject.DurationTo,
+                PriceFrom = requestObject.PriceFrom,
+                PriceTo = requestObject.PriceTo,
                 LanguageId = 2,
                 CurrentPage = 1,
-                PageSize = queryObject.Count,
+                PageSize = requestObject.Count,
                 SortId = 0
             };
 

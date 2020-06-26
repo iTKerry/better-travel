@@ -17,8 +17,8 @@ namespace BetterTravel.Api.Extensions.Host
             await appDbContext.Database.EnsureDeletedAsync();
             await appDbContext.Database.MigrateAsync();
 
-            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-            await dbInitializer.InitializeAsync();
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbSeeder>();
+            await dbInitializer.SeedAsync();
             return host;
         }
     }

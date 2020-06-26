@@ -18,8 +18,8 @@ namespace BetterTravel.Api.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterType<DbInitializer>()
-                .As<IDbInitializer>();
+                .RegisterType<DbSeeder>()
+                .As<IDbSeeder>();
             
             builder
                 .RegisterType<UnitOfWork>()

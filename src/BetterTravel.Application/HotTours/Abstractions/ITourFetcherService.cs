@@ -6,6 +6,6 @@ namespace BetterTravel.Application.HotTours.Abstractions
 {
     public interface ITourFetcherService
     {
-        Task<List<HotTour>> FetchToursAsync(int count);
+        Task<List<HotTour>> FetchToursAsync(HotToursRequestObject requestObject);
     }
 }

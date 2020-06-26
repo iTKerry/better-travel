@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using BetterTravel.Application.HotTours;
 using BetterTravel.Application.HotTours.Abstractions;
 using BetterTravel.Commands.Abstractions;
 using BetterTravel.DataAccess.Abstraction.Entities;
@@ -25,7 +26,16 @@ namespace BetterTravel.Commands.HotTours.FetchHotTours
             FetchHotToursCommand request, 
             CancellationToken cancellationToken)
         {
-            var tours = await _service.FetchToursAsync(100);
+            var requestObject = new HotToursRequestObject
+            {
+                DurationFrom = 1,
+                DurationTo = 21,
+                PriceFrom = 1,
+                PriceTo = 200000,
+                Count = 1000
+            };
+            
+            var tours = await _service.FetchToursAsync(requestObject);
             var aTours = tours
                 .Select(q => q.Info.Name)
                 .ToList();

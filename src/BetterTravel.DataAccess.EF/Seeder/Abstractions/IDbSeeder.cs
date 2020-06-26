@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace BetterTravel.DataAccess.EF.Seeder.Abstractions
 {
-    public interface IDbInitializer
+    public interface IDbSeeder
     {
-        Task InitializeAsync(CancellationToken cancellationToken = default);
+        Task SeedAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BetterTravel.Api.Controllers
 {
+    [Route("api/[controller]")]
     public class HotToursController : ApiController
     {
         public HotToursController(IMapper mapper, IMediator mediator) 
@@ -17,7 +18,7 @@ namespace BetterTravel.Api.Controllers
         {
         }
 
-        [HttpGet("[action]")]
+        [HttpGet("get", Name = nameof(GetTours))]
         [ProducesResponseType(typeof(List<GetHotToursViewModel>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTours([FromQuery] GetHotToursDto data)
         {

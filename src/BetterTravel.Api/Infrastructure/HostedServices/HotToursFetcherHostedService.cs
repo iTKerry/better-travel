@@ -46,7 +46,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
             }
             catch (Exception e)
             {
-                _logger.Error(e.Message, e.StackTrace);
+                _logger.Error(e, nameof(HotToursFetcherHostedService));
             }
         }
     }
