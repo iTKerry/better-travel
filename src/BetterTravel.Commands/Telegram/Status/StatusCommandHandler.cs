@@ -21,7 +21,7 @@ namespace BetterTravel.Commands.Telegram.Status
             StatusCommand request,
             CancellationToken cancellationToken) => 
             await UnitOfWork.ChatRepository
-                .GetFirstAsync(chat => chat.ChatId == 489903473)
+                .GetFirstAsync(chat => chat.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
                 .Tap(chat => chat.Settings.IsSubscribed
                     ? SendMessageAsync(chat.ChatId, "You are subscribed", cancellationToken)
