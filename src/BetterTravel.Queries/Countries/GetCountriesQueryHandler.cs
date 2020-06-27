@@ -9,7 +9,8 @@ using BetterTravel.Queries.ViewModels;
 
 namespace BetterTravel.Queries.Countries
 {
-    public class GetCountriesQueryHandler : QueryHandlerBase<GetCountriesQuery, List<GetCountriesViewModel>>
+    public class GetCountriesQueryHandler 
+        : QueryHandlerBase<GetCountriesQuery, List<GetCountriesViewModel>>
     {
         public override Task<IHandlerResult<List<GetCountriesViewModel>>> Handle(
             GetCountriesQuery request, 

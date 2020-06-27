@@ -13,7 +13,8 @@ using BetterTravel.Queries.ViewModels;
 
 namespace BetterTravel.Queries.HotTours
 {
-    public class GetHotToursQueryHandler : QueryHandlerBase<GetHotToursQuery, List<GetHotToursViewModel>>
+    public class GetHotToursQueryHandler 
+        : QueryHandlerBase<GetHotToursQuery, List<GetHotToursViewModel>>
     {
         private readonly IHotToursRepository _repository;
         private readonly IGetHotToursSpecification _specification;
