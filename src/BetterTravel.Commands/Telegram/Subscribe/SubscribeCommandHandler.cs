@@ -43,10 +43,9 @@ namespace BetterTravel.Commands.Telegram.Subscribe
             var infoResult = ChatInfo.Create(cmd.Title, cmd.Description, cmd.Type);
             var settingsResult = ChatSettings.Create(false);
 
-            var result = Result.Combine(infoResult, settingsResult)
+            return Result
+                .Combine(infoResult, settingsResult)
                 .Bind(() => Chat.Create(cmd.ChatId, infoResult.Value, settingsResult.Value));
-            var value = result.Value;
-            return result;
         }
 
         private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 

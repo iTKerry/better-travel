@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://localhost:443",
+      "applicationUrl": "http://localhost:8443",
       "sslPort": 44303
     }
   },
@@ -15,9 +15,9 @@
       "launchUrl": "api/docs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "https://*:443"
+        "ASPNETCORE_URLS": "http://*:8443"
       },
-      "applicationUrl": "https://localhost:443"
+      "applicationUrl": "http://localhost:8443"
     },
     "Docker": {
       "commandName": "Docker",

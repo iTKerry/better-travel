@@ -11,7 +11,7 @@ RUN for file in $(ls *.csproj); do \
     done
 
 # Restore api csproj
-RUN dotnet restore ./src/BetterTravel.API/BetterTravel.API.csproj
+RUN dotnet restore ./src/BetterTravel.Api/BetterTravel.Api.csproj
 
 # Copy everything else and build
 COPY . ./
@@ -30,7 +30,7 @@ COPY --from=build /app/out .
 
 # Container healthcheck
 HEALTHCHECK --interval=30s --timeout=30s --retries=3 \
-   CMD curl --silent --fail http://localhost:8080/_health || exit 1
+   CMD curl --silent --fail http://localhost:8443/_health || exit 1
 
-EXPOSE 8080/tcp
+EXPOSE 8443/tcp
 ENTRYPOINT ["dotnet", "BetterTravel.Api.dll"]
