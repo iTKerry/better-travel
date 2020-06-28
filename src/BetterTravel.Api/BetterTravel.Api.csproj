@@ -48,9 +48,5 @@
       <ProjectReference Include="..\BetterTravel.Queries\BetterTravel.Queries.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Requests\Telegram" />
-    </ItemGroup>
-
 
 </Project>

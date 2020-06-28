@@ -1,5 +1,3 @@
-using BetterTravel.DataAccess.Abstraction.Entities.Enums;
-
 namespace BetterTravel.Api.Requests.HotTours
 {
     public class GetHotToursDto
@@ -8,6 +6,6 @@ namespace BetterTravel.Api.Requests.HotTours
         public int Skip { get; set; }
         public int[] Countries { get; set; }
         public int[] Departures { get; set; }
-        public Stars Stars { get; set; } = Stars.All;
+        public int[] HotelCategories { get; set; }
     }
 }

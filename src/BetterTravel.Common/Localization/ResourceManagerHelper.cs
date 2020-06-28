@@ -7,7 +7,7 @@ namespace BetterTravel.Common.Localization
 {
     public static class ResourceManagerHelper
     {
-        public static string GetResourceName(this ResourceManager resourceManager, string value,
+        public static string? GetResourceName(this ResourceManager resourceManager, string value,
             CultureInfo cultureInfo, bool ignoreCase = false)
         {
             var comparisonType =
@@ -16,7 +16,7 @@ namespace BetterTravel.Common.Localization
                 .OfType<DictionaryEntry>()
                 .FirstOrDefault(de => 
                     de.Value != null && 
-                    de.Value.ToString().Equals(value, comparisonType));
+                    (de.Value.ToString()?.Equals(value, comparisonType) ?? false));
 
             return entry?.Key?.ToString();
         }

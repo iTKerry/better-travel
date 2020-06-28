@@ -4,5 +4,33 @@
         <name>BetterTravel.Api</name>
     </assembly>
     <members>
+        <member name="M:BetterTravel.Api.Controllers.HotToursController.GetTours(BetterTravel.Api.Requests.HotTours.GetHotToursDto)">
+            <summary>
+            Get actual hot-tours
+            </summary>
+            <param name="data">Request params</param>
+            <returns>Hot-tours</returns>
+        </member>
+        <member name="M:BetterTravel.Api.Controllers.HotToursController.GetAllCountries(BetterTravel.Api.Requests.HotTours.GetCountriesDto)">
+            <summary>
+            Get all countries
+            </summary>
+            <param name="data">Request params</param>
+            <returns>All countries</returns>
+        </member>
+        <member name="M:BetterTravel.Api.Controllers.HotToursController.GetAllHotelCategories(BetterTravel.Api.Requests.HotTours.GetHotelCategoriesDto)">
+            <summary>
+            Get all hotel categories
+            </summary>
+            <param name="data">Request params</param>
+            <returns>All hotel categories</returns>
+        </member>
+        <member name="M:BetterTravel.Api.Controllers.HotToursController.GetAllDepartures(BetterTravel.Api.Requests.HotTours.GetDeparturesDto)">
+            <summary>
+            Get all departure locations
+            </summary>
+            <param name="data">Request params</param>
+            <returns>All departures</returns>
+        </member>
     </members>
 </doc>

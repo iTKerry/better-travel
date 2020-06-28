@@ -51,7 +51,7 @@ namespace BetterTravel.Commands.HotTours.FetchHotTours
                         dbTours.All(db =>
                             db.Info.Name != t.Info.Name &&
                             db.Price.Amount != t.Price.Amount &&
-                            db.Info.Stars != t.Info.Stars))
+                            db.Category.Id != t.Category.Id))
                     .ToList();
             
             UnitOfWork.HotToursRepository.Save(uniqueTours);

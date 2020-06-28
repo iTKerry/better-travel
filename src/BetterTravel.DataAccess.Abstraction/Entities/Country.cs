@@ -6,7 +6,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
 {
     public class Country : Entity
     {
-        public static Country Unknown = new Country(9999, nameof(Unknown));
+        public static Country NoCountry = new Country(9999, nameof(NoCountry));
         public static Country Egypt = new Country(11, nameof(Egypt));
         public static Country Turkey = new Country(36, nameof(Turkey));
         public static Country Ukraine = new Country(37, nameof(Ukraine));
@@ -21,7 +21,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
 
         public static readonly Country[] AllCountries =
         {
-            Unknown, Egypt, Turkey, Ukraine, Spain, Bulgaria, Tunisia, Dominican, UAE, Greece, Georgia, Albania
+            NoCountry, Egypt, Turkey, Ukraine, Spain, Bulgaria, Tunisia, Dominican, UAE, Greece, Georgia, Albania
         };
 
         protected Country()
@@ -38,11 +38,11 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
 
         public static Country FromId(int id) =>
             AllCountries.SingleOrDefault(country => country.Id == id) 
-            ?? Unknown;
+            ?? NoCountry;
 
         public static Country FromName(string name) =>
             AllCountries.SingleOrDefault(country =>
                 string.Equals(country.Name, name, StringComparison.InvariantCultureIgnoreCase)) 
-            ?? Unknown;
+            ?? NoCountry;
     }
 }

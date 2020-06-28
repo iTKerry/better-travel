@@ -6,7 +6,7 @@ namespace BetterTravel.Queries.ViewModels
     public class GetHotToursViewModel
     {
         public string Name { get; set; }
-        public Stars StarsCount { get; set; }
+        public string HotelCategory { get; set; }
         public Uri ImageLink { get; set; }
         public Uri DetailsLink { get; set; }
         public int DurationCount { get; set; }

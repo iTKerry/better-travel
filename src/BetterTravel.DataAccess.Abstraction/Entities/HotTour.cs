@@ -11,6 +11,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
         
         public HotTour(
             HotTourInfo info,
+            HotelCategory category,
             Duration duration, 
             Price price, 
             Country country, 
@@ -18,6 +19,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
             DepartureLocation departureLocation)
         {
             Info = info;
+            Category = category;
             Duration = duration;
             Price = price;
             Country = country;
@@ -26,6 +28,7 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
         }
 
         public virtual HotTourInfo Info { get; }
+        public virtual HotelCategory Category { get; }
         public virtual DepartureLocation DepartureLocation { get; }
         public virtual Duration Duration { get; }
         public virtual Price Price { get; }

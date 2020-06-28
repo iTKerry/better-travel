@@ -3,6 +3,7 @@
     internal static class Tables
     {
         public const string HotTour = nameof(HotTour);
+        public const string HotelCategory = nameof(HotelCategory);
         public const string Chat = nameof(Chat);
         public const string ChatSettings = nameof(ChatSettings);
         public const string Country = nameof(Country);

@@ -55,10 +55,10 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
             new HotTour(
                 new HotTourInfo(
                     source.TourName,
-                    GetStars(source.StarsCount.Count),
                     GetDate(source.Date),
                     source.ImageUrl,
                     source.TourDetailsUrl),
+                GetCategory(source.StarsCount.Count),
                 new Duration(
                     source.DurationDay,
                     GetDurationType(source.NightsText)),
@@ -71,13 +71,13 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
 
         private static Country GetCountry(string source)
         {
-            var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
+            var name = L.GetName(source, Culture.Ru, true);
             return Country.FromName(name);
         }
 
         private static DepartureLocation GetDepartureLocation(string source)
         {
-            var name = Localization.ResourceManager.GetResourceName(source, new CultureInfo("ru-RU"), true);
+            var name = L.GetName(source, Culture.Ru, true);
             return DepartureLocation.FromName(name);
         }
 
@@ -102,15 +102,15 @@ namespace BetterTravel.Application.HotTours.Providers.Poehalisnami
                 _ => DurationType.Unknown
             };
 
-        private static Stars GetStars(int count) =>
+        private static HotelCategory GetCategory(int count) =>
             count switch
             {
-                1 => Stars.One,
-                2 => Stars.Two,
-                3 => Stars.Three,
-                4 => Stars.Four,
-                5 => Stars.Five,
-                _ => Stars.Unknown
+                1 => HotelCategory.HV_1,
+                2 => HotelCategory.TwoStars,
+                3 => HotelCategory.ThreeStars,
+                4 => HotelCategory.FourStars,
+                5 => HotelCategory.FiveStars,
+                _ => HotelCategory.NoCategory
             };
     }
 }
