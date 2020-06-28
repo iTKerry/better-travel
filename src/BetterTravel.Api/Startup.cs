@@ -42,7 +42,6 @@ namespace BetterTravel.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) =>
             app.UseExceptionHandler(env)
-                .UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseBetterTravelSwaggerUi()
                 .UseSerilogRequestLogging()

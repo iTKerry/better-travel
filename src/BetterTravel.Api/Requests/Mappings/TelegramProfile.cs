@@ -12,18 +12,24 @@ namespace BetterTravel.Api.Requests.Mappings
         public TelegramProfile()
         {
             CreateMap<Update, StartCommand>()
-                .ForMember(s => s.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(s => s.IsBot, exp => exp.MapFrom(f => f.Message.From.IsBot));
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.IsBot, exp => exp.MapFrom(f => f.Message.From.IsBot))
+                .ForMember(c => c.Type, exp => exp.MapFrom(f => f.Message.Chat.Type))
+                .ForMember(c => c.Title, exp => exp.MapFrom(f => f.Message.Chat.Title))
+                .ForMember(c => c.Description, exp => exp.MapFrom(f => f.Message.Chat.Description));
             
             CreateMap<Update, StatusCommand>()
-                .ForMember(s => s.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
             
             CreateMap<Update, SubscribeCommand>()
-                .ForMember(s => s.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(s => s.IsBot, exp => exp.MapFrom(f => f.Message.From.IsBot));
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.IsBot, exp => exp.MapFrom(f => f.Message.From.IsBot))
+                .ForMember(c => c.Type, exp => exp.MapFrom(f => f.Message.Chat.Type))
+                .ForMember(c => c.Title, exp => exp.MapFrom(f => f.Message.Chat.Title))
+                .ForMember(c => c.Description, exp => exp.MapFrom(f => f.Message.Chat.Description));
 
             CreateMap<Update, UnsubscribeCommand>()
-                .ForMember(s => s.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
         }
     }
 }

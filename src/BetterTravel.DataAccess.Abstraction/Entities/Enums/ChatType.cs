@@ -2,9 +2,9 @@
 {
     public enum ChatType
     {
-        Personal,
+        Private,
         Group,
-        SuperGroup,
-        Channel
+        Channel,
+        Supergroup
     }
 }
