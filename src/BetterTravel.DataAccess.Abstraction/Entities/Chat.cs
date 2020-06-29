@@ -22,33 +22,31 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
         public virtual ChatSettings Settings { get; private set; }
         public virtual ChatInfo Info { get; private set; }
 
-        public static Result<Chat> Create(long chatId, ChatInfo info, ChatSettings settings)
+        public static Result<Chat> Create(long chatId, Maybe<ChatInfo> maybeInfo, Maybe<ChatSettings> maybeSettings)
         {
-             if (info is null)
-                 Result.Failure<Chat>("Chat information not provided.");
-             if (settings is null)
-                 Result.Failure<Chat>("Settings information not provided.");
-             
-             var chat = new Chat(chatId, info, settings);
-             
-             return Result.Ok(chat);
+            var infoResult = maybeInfo.ToResult("Chat information not provided.");
+            var settingsResult = maybeSettings.ToResult("Settings information not provided.");
+            
+            return Result
+                .Combine(infoResult, settingsResult)
+                .Bind(() => Result.Ok(new Chat(chatId, infoResult.Value, settingsResult.Value)));
         }
 
         public Result Subscribe() =>
             Settings.Subscribe();
 
+        public Result SubscribeToCountry(Country country) =>
+            Settings.SubscribeToCountry(country);
+        
         public Result Unsubscribe() =>
             Settings.Unsubscribe();
 
-        public Result UpdateInfo(string title, string description, ChatType type)
-        {
-            var chatInfoResult = ChatInfo.Create(title, description, type);
-            if (chatInfoResult.IsFailure)
-                return Result.Failure(chatInfoResult.Error);
+        public Result UnsubscribeFromCountry(Country country) =>
+            Settings.UnsubscribeFromCountry(country);
 
-            Info = chatInfoResult.Value;
-
-            return Result.Success();
-        }
+        public Result UpdateInfo(string title, string description, ChatType type) =>
+            ChatInfo
+                .Create(title, description, type)
+                .Tap(chatInfo => Info = chatInfo);
     }
 }

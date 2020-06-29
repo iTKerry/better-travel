@@ -14,6 +14,11 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder.Property(p => p.Id).HasColumnName("ChatSettingsID");
 
             builder.Property(p => p.SettingsOfChatId).HasColumnName("SettingsOfChatID");
+
+            builder
+                .HasMany(p => p.SettingsCountries)
+                .WithOne(p => p.Settings)
+                .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
             
             builder
                 .HasOne(p => p.Chat)
