@@ -9,12 +9,9 @@ namespace BetterTravel.DataAccess.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-            builder
-                .ToTable(Tables.Chat, Schemas.Dbo)
-                .HasKey(p => p.Id);
+            builder.ToTable(Tables.Chat, Schemas.Dbo).HasKey(p => p.Id);
 
             builder.Property(p => p.Id).HasColumnName("ChatID");
-
             builder.Property(p => p.ChatId).HasColumnName("TelegramChatID");
             
             builder

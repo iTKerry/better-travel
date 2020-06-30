@@ -37,12 +37,18 @@ namespace BetterTravel.DataAccess.Abstraction.Entities
 
         public Result SubscribeToCountry(Country country) =>
             Settings.SubscribeToCountry(country);
+
+        public Result SubscribeToDeparture(DepartureLocation departure) =>
+            Settings.SubscribeToDeparture(departure);
         
         public Result Unsubscribe() =>
             Settings.Unsubscribe();
 
         public Result UnsubscribeFromCountry(Country country) =>
             Settings.UnsubscribeFromCountry(country);
+
+        public Result UnsubscribeFromDeparture(DepartureLocation departure) =>
+            Settings.UnsubscribeFromDeparture(departure);
 
         public Result UpdateInfo(string title, string description, ChatType type) =>
             ChatInfo

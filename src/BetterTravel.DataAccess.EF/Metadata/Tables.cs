@@ -8,6 +8,7 @@
         public const string ChatSettings = nameof(ChatSettings);
         public const string Country = nameof(Country);
         public const string DepartureLocation = nameof(DepartureLocation);
-        public const string SettingsCountry = nameof(SettingsCountry);
+        public const string ChatCountrySubscription = nameof(ChatCountrySubscription);
+        public const string ChatDepartureSubscription = nameof(ChatDepartureSubscription);
     }
 }

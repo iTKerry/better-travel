@@ -40,14 +40,14 @@ namespace BetterTravel.Commands.Telegram.Start
                     ? ValidationFailed(result.Error)
                     : Ok());
 
-        private static Result<Chat> CreateChat(StartCommand cmd)
+        private static Result<Chat> CreateChat(StartCommand request)
         {
-            var infoResult = ChatInfo.Create(cmd.Title, cmd.Description, cmd.Type);
+            var infoResult = ChatInfo.Create(request.Title, request.Description, request.Type);
             var settingsResult = ChatSettings.Create(false);
 
             return Result
                 .Combine(infoResult, settingsResult)
-                .Bind(() => Chat.Create(cmd.ChatId, infoResult.Value, settingsResult.Value));
+                .Bind(() => Chat.Create(request.ChatId, infoResult.Value, settingsResult.Value));
         }
 
         private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 

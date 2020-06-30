@@ -13,7 +13,6 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder.ToTable(Tables.HotTour, Schemas.Dbo).HasKey(p => p.Id);
 
             builder.Property(p => p.Id).HasColumnName("HotTourID");;
-
             builder.HasOne(p => p.Category).WithMany();
             builder.HasOne(p => p.DepartureLocation).WithMany();
             builder.HasOne(p => p.Country).WithMany();
