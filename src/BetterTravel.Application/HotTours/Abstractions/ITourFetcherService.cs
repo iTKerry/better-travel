@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Entities;
 
 namespace BetterTravel.Application.HotTours.Abstractions
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Repositories;
+using BetterTravel.DataAccess.Repositories;
 
 namespace BetterTravel.DataAccess.EF.Repositories
 {

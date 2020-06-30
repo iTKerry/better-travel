@@ -26,11 +26,11 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj" />
+      <Folder Include="Migrations" />
     </ItemGroup>
     
     <ItemGroup>
-      <Folder Include="Migrations" />
+      <ProjectReference Include="..\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>

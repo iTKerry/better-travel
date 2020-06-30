@@ -1,5 +1,5 @@
-﻿using BetterTravel.DataAccess.Abstraction.Entities;
-using BetterTravel.DataAccess.Abstraction.Specification;
+﻿using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Specification;
 
 namespace BetterTravel.Queries.HotTours.GetHotTours.Specification
 {

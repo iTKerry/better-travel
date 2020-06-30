@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities.Base;
-using BetterTravel.DataAccess.Abstraction.Repositories;
+using BetterTravel.DataAccess.Entities.Base;
+using BetterTravel.DataAccess.Repositories;
 using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 

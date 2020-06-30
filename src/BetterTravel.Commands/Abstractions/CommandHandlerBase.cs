@@ -1,4 +1,4 @@
-﻿using BetterTravel.DataAccess.Abstraction.Repositories;
+﻿using BetterTravel.DataAccess.Repositories;
 using BetterTravel.MediatR.Core;
 
 namespace BetterTravel.Commands.Abstractions

@@ -1,5 +1,5 @@
 using System;
-using BetterTravel.DataAccess.Abstraction.Entities.Enums;
+using BetterTravel.DataAccess.Entities.Enums;
 
 namespace BetterTravel.Queries.ViewModels
 {

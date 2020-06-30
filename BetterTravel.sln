@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{64F7C1F9-D352-41C8-A2A6-7BEBF39B65C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.DataAccess.Abstraction", "src\BetterTravel.DataAccess.Abstraction\BetterTravel.DataAccess.Abstraction.csproj", "{EDC49CAA-8C5E-47C8-A336-094DA58292F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.DataAccess", "src\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj", "{EDC49CAA-8C5E-47C8-A336-094DA58292F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.DataAccess.EF", "src\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj", "{DCD7E53E-7B6F-483E-A416-4B6CB1FC415C}"
 EndProject

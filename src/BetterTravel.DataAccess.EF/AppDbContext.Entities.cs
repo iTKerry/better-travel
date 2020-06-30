@@ -1,4 +1,4 @@
-﻿using BetterTravel.DataAccess.Abstraction.Entities;
+﻿using BetterTravel.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF

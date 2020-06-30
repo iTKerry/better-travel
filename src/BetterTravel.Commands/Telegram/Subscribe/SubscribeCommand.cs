@@ -1,5 +1,5 @@
 ﻿using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Abstraction.Entities.Enums;
+using BetterTravel.DataAccess.Entities.Enums;
 
 namespace BetterTravel.Commands.Telegram.Subscribe
 {

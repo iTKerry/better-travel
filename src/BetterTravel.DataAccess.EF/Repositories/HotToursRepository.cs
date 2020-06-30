@@ -1,5 +1,5 @@
-﻿using BetterTravel.DataAccess.Abstraction.Entities;
-using BetterTravel.DataAccess.Abstraction.Repositories;
+﻿using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Repositories;
 
 namespace BetterTravel.DataAccess.EF.Repositories
 {

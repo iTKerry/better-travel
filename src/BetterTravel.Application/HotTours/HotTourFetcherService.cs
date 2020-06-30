@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BetterTravel.Application.HotTours.Abstractions;
-using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Entities;
 
 namespace BetterTravel.Application.HotTours
 {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF

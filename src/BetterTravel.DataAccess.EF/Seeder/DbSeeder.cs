@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Abstraction.Entities;
+using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.EF.Seeder.Abstractions;
 using Microsoft.EntityFrameworkCore;
 

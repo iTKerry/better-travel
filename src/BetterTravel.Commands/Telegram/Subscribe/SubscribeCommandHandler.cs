@@ -1,14 +1,14 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Abstraction.Entities;
-using BetterTravel.DataAccess.Abstraction.Repositories;
-using BetterTravel.DataAccess.Abstraction.ValueObjects;
+using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Repositories;
+using BetterTravel.DataAccess.ValueObjects;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using CSharpFunctionalExtensions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Chat = BetterTravel.DataAccess.Abstraction.Entities.Chat;
+using Chat = BetterTravel.DataAccess.Entities.Chat;
 
 namespace BetterTravel.Commands.Telegram.Subscribe
 {
