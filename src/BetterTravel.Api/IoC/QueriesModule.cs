@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Autofac;
-using BetterTravel.DataAccess.Abstraction.Specification;
+using BetterTravel.DataAccess.Specification;
 using BetterTravel.Queries.Abstractions;
 using MediatR;
 

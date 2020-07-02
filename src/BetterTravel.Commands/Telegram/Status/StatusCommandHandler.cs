@@ -30,7 +30,6 @@ namespace BetterTravel.Commands.Telegram.Status
                     ? ValidationFailed(result.Error)
                     : Ok());
 
-
         private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 
             await _telegram.SendTextMessageAsync(chatId, message, cancellationToken: token);
     }

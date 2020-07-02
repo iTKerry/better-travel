@@ -2,7 +2,7 @@
 using System.Reflection;
 using Autofac;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Abstraction.Specification;
+using BetterTravel.DataAccess.Specification;
 using MediatR;
 
 namespace BetterTravel.Api.IoC

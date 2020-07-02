@@ -1,8 +1,8 @@
 ﻿using BetterTravel.Commands.Abstractions;
 
-namespace BetterTravel.Commands.Telegram.Unsubscribe
+namespace BetterTravel.Commands.Telegram.Settings
 {
-    public class UnsubscribeCommand : ICommand
+    public class SettingsCommand : ICommand
     {
         public long ChatId { get; set; }
     }
