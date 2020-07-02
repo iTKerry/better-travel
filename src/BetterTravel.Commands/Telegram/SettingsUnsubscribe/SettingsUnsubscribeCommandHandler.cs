@@ -1,7 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using BetterTravel.Application.Keyboards.Data;
+using BetterTravel.Application.Keyboards.Factories;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.Commands.Telegram.Settings;
 using BetterTravel.DataAccess.Repositories;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using CSharpFunctionalExtensions;
@@ -41,7 +42,7 @@ namespace BetterTravel.Commands.Telegram.SettingsUnsubscribe
             Result.Ok(new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed});
         
         private static Result<InlineKeyboardMarkup> GetMarkupResult(SettingsKeyboardData data) => 
-            Result.Ok(new SettingsKeyboard().ConcreteKeyboardMarkup(data));
+            Result.Ok(new SettingsKeyboardFactoryBaseKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 

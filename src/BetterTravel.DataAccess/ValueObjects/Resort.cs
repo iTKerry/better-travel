@@ -1,5 +1,4 @@
-﻿using System;
-using BetterTravel.DataAccess.ValueObjects.Base;
+﻿using BetterTravel.DataAccess.ValueObjects.Base;
 
 namespace BetterTravel.DataAccess.ValueObjects
 {

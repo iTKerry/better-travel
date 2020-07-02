@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BetterTravel.Application.Keyboards.Data;
+using BetterTravel.Application.Keyboards.Factories;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.Commands.Telegram.Settings;
 using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Repositories;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
@@ -47,7 +48,7 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartures
                 }).ToList());
 
         private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsDepartureKeyboardData> data) => 
-            Result.Ok(new SettingsDepartureKeyboard().ConcreteKeyboardMarkup(data));
+            Result.Ok(new SettingsDepartureKeyboardFactoryBaseKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 
