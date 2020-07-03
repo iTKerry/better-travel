@@ -5,8 +5,10 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace BetterTravel.Application.Keyboards.Factories
 {
-    public class SettingsDepartureKeyboardFactoryBaseKeyboard : KeyboardFactoryBase<List<SettingsDepartureKeyboardData>>
+    public class SettingsDepartureKeyboard : KeyboardFactoryBase<List<SettingsDepartureKeyboardData>>
     {
+        private const string KeyboardMessage = "Configure your subscription settings here";
+
         public override InlineKeyboardMarkup ConcreteKeyboardMarkup(List<SettingsDepartureKeyboardData> departuresData)
         {
             var lines = departuresData
@@ -27,10 +29,10 @@ namespace BetterTravel.Application.Keyboards.Factories
         private InlineKeyboardButton GetDepartureButton(SettingsDepartureKeyboardData data) =>
             Button(
                 data.IsSubscribed
-                    ? $"- {data.Name}"
-                    : $"+ {data.Name}",
+                    ? $"\U00002714 {data.Name}"
+                    : $"\U00002796 {data.Name}",
                 data.IsSubscribed
-                    ? $"SettingsCountryUnsubscribe:{data.Id}"
-                    : $"SettingsCountrySubscribe:{data.Id}");
+                    ? $"SettingsDeparturesUnsubscribe:{data.Id}"
+                    : $"SettingsDeparturesSubscribe:{data.Id}");
     }
 }

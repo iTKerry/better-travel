@@ -1,4 +1,6 @@
-﻿namespace BetterTravel.DataAccess.Entities.Base
+﻿using System;
+
+namespace BetterTravel.DataAccess.Entities.Base
 {
     public abstract class Entity
     {
@@ -22,7 +24,7 @@
             if (ReferenceEquals(other, this))
                 return true;
 
-            if (GetType() != other.GetType())
+            if (GetRealType() != other.GetRealType())
                 return false;
 
             if (Id == 0 || other.Id == 0)
@@ -50,6 +52,14 @@
         public override int GetHashCode()
         {
             return (GetType().ToString() + Id).GetHashCode();
+        }
+
+        private Type GetRealType()
+        {
+            var type = GetType();
+            return type.ToString().Contains("Castle.Proxies.") 
+                ? type.BaseType 
+                : type;
         }
     }
 }

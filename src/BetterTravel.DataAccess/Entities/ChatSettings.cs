@@ -32,30 +32,34 @@ namespace BetterTravel.DataAccess.Entities
 
         public Result SubscribeToCountry(Country country) =>
             Result
-                .FailureIf(_countrySubscriptions.Any(c => c == country), "Already subscribed to this country.")
+                .FailureIf(
+                    _countrySubscriptions.Any(s => s.Country == country), 
+                    "Already subscribed to this country.")
                 .Bind(() => ChatCountrySubscription.Create(this, country))
                 .Tap(sc => _countrySubscriptions.Add(sc));
         
         public Result UnsubscribeFromCountry(Country country) =>
             Result
-                .SuccessIf(_countrySubscriptions.Any(c => c == country), "You were not subscribed to this country.")
-                .Bind(() => Maybe<ChatCountrySubscription>
-                    .From(_countrySubscriptions.FirstOrDefault(c => c == country))
-                    .ToResult("Such country was not found in settings."))
+                .SuccessIf(
+                    _countrySubscriptions.Any(s => s.Country == country),
+                    _countrySubscriptions.FirstOrDefault(c => c.Country == country),
+                    "You were not subscribed to this country.")
                 .Tap(sc => _countrySubscriptions.Remove(sc));
 
         public Result SubscribeToDeparture(DepartureLocation departure) =>
             Result
-                .FailureIf(_departureSubscriptions.Any(c => c == departure), "Already subscribed to this departure.")
+                .FailureIf(
+                    _departureSubscriptions.Any(s => s.Departure == departure), 
+                    "Already subscribed to this departure.")
                 .Bind(() => ChatDepartureSubscription.Create(this, departure))
                 .Tap(sc => _departureSubscriptions.Add(sc));
         
         public Result UnsubscribeFromDeparture(DepartureLocation departure) =>
             Result
-                .SuccessIf(_departureSubscriptions.Any(c => c == departure), "You were not subscribed to this departure.")
-                .Bind(() => Maybe<ChatDepartureSubscription>
-                    .From(_departureSubscriptions.FirstOrDefault(c => c == departure))
-                    .ToResult("Such country was not found in settings."))
+                .SuccessIf(
+                    _departureSubscriptions.Any(s => s.Departure == departure),
+                    _departureSubscriptions.FirstOrDefault(s => s.Departure == departure),
+                    "You were not subscribed to this departure.")
                 .Tap(sc => _departureSubscriptions.Remove(sc));
         
         public Result Subscribe() =>

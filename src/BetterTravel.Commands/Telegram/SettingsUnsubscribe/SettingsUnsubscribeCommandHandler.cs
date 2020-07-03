@@ -42,7 +42,7 @@ namespace BetterTravel.Commands.Telegram.SettingsUnsubscribe
             Result.Ok(new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed});
         
         private static Result<InlineKeyboardMarkup> GetMarkupResult(SettingsKeyboardData data) => 
-            Result.Ok(new SettingsKeyboardFactoryBaseKeyboard().ConcreteKeyboardMarkup(data));
+            Result.Ok(new SettingsKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 

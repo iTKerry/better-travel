@@ -3,7 +3,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace BetterTravel.Application.Keyboards.Factories
 {
-    public class SettingsKeyboardFactoryBaseKeyboard : KeyboardFactoryBase<SettingsKeyboardData>
+    public class SettingsKeyboard : KeyboardFactoryBase<SettingsKeyboardData>
     {
         public override InlineKeyboardMarkup ConcreteKeyboardMarkup(SettingsKeyboardData departuresData)
         {

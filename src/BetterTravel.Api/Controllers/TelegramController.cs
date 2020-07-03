@@ -5,7 +5,11 @@ using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.Settings;
 using BetterTravel.Commands.Telegram.SettingsBack;
 using BetterTravel.Commands.Telegram.SettingsCountries;
+using BetterTravel.Commands.Telegram.SettingsCountriesSubscribe;
+using BetterTravel.Commands.Telegram.SettingsCountriesUnsubscribe;
 using BetterTravel.Commands.Telegram.SettingsDepartures;
+using BetterTravel.Commands.Telegram.SettingsDeparturesSubscribe;
+using BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe;
 using BetterTravel.Commands.Telegram.SettingsSubscribe;
 using BetterTravel.Commands.Telegram.SettingsUnsubscribe;
 using BetterTravel.Commands.Telegram.Start;
@@ -47,7 +51,7 @@ namespace BetterTravel.Api.Controllers
         private Maybe<ICommand> GetCommand(Update update) =>
             update.Type switch
             {
-                UpdateType.Message => CommandWithoutSignature(update.Message.Text) switch
+                UpdateType.Message => update.Message.Text.Replace("@BetterTravelBot", string.Empty) switch
                 {
                     "/start" => Mapper.Map<StartCommand>(update),
                     "/subscribe" => Mapper.Map<SettingsSubscribeCommand>(update),
@@ -63,13 +67,18 @@ namespace BetterTravel.Api.Controllers
                     "SettingsCountries" => Mapper.Map<SettingsCountriesCommand>(update),
                     "SettingsDepartures" => Mapper.Map<SettingsDeparturesCommand>(update),
                     "SettingsBack" => Mapper.Map<SettingsBackCommand>(update),
+                    var str when str?.Contains("SettingsCountrySubscribe") ?? false => 
+                        Mapper.Map<SettingsCountriesSubscribeCommand>(update),
+                    var str when str?.Contains("SettingsCountryUnsubscribe") ?? false => 
+                        Mapper.Map<SettingsCountriesUnsubscribeCommand>(update),
+                    var str when str?.Contains("SettingsDeparturesSubscribe") ?? false => 
+                        Mapper.Map<SettingsDeparturesSubscribeCommand>(update),
+                    var str when str?.Contains("SettingsDeparturesUnsubscribe") ?? false => 
+                        Mapper.Map<SettingsDeparturesUnsubscribeCommand>(update),
                     _ => throw new InvalidOperationException()
                 },
-                _ => throw new InvalidOperationException()
+                _ => null
             };
-
-        private static string CommandWithoutSignature(string updateMessageText) => 
-            updateMessageText.Replace("@BetterTravelBot", string.Empty);
 
         private async Task<Message> HandleResultAsync(IHandlerResult result, long chatId) =>
             result switch

@@ -15,6 +15,8 @@ namespace BetterTravel.Commands.Telegram.Settings
 {
     public class SettingsCommandHandler : CommandHandlerBase<SettingsCommand>
     {
+        private const string KeyboardMessage = "Configure your subscription settings here";
+        
         private readonly ITelegramBotClient _telegram;
         
         public SettingsCommandHandler(
@@ -30,7 +32,7 @@ namespace BetterTravel.Commands.Telegram.Settings
                 .ToResult("That chat wasn't found between our subscribers.")
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
-                .Tap(markup => SendMessageAsync(request.ChatId, "Settings message", markup, cancellationToken))
+                .Tap(markup => SendMessageAsync(request.ChatId, KeyboardMessage, markup, cancellationToken))
                 .Finally(result => result.IsFailure
                     ? ValidationFailed(result.Error)
                     : Ok());
@@ -39,7 +41,7 @@ namespace BetterTravel.Commands.Telegram.Settings
             Result.Ok(new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed});
         
         private static Result<InlineKeyboardMarkup> GetMarkupResult(SettingsKeyboardData data) => 
-            Result.Ok(new SettingsKeyboardFactoryBaseKeyboard().ConcreteKeyboardMarkup(data));
+            Result.Ok(new SettingsKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> SendMessageAsync(
             long chatId, string message, InlineKeyboardMarkup markup, CancellationToken token) => 

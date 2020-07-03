@@ -18,11 +18,13 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder
                 .HasMany(p => p.CountrySubscriptions)
                 .WithOne(p => p.Settings)
+                .OnDelete(DeleteBehavior.Cascade)
                 .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
             
             builder
                 .HasMany(p => p.DepartureSubscriptions)
                 .WithOne(p => p.Settings)
+                .OnDelete(DeleteBehavior.Cascade)
                 .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
             
             builder

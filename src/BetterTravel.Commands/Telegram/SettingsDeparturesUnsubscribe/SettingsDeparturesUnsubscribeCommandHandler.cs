@@ -14,28 +14,28 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
-namespace BetterTravel.Commands.Telegram.SettingsDepartures
+namespace BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe
 {
-    public class SettingsDeparturesCommandHandler : CommandHandlerBase<SettingsDeparturesCommand>
+    public class SettingsDeparturesUnsubscribeCommandHandler : CommandHandlerBase<SettingsDeparturesUnsubscribeCommand>
     {
-        private const string KeyboardMessage = "You can choose the departures from which you will receive updates";
-
         private readonly ITelegramBotClient _telegram;
         
-        public SettingsDeparturesCommandHandler(
+        public SettingsDeparturesUnsubscribeCommandHandler(
             IUnitOfWork unitOfWork, 
             ITelegramBotClient telegram) : base(unitOfWork) =>
             _telegram = telegram;
 
         public override async Task<IHandlerResult> Handle(
-            SettingsDeparturesCommand request, 
+            SettingsDeparturesUnsubscribeCommand request, 
             CancellationToken cancellationToken) =>
             await UnitOfWork.ChatRepository
                 .GetFirstAsync(c => c.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
+                .Tap(chat => chat.UnsubscribeFromDeparture(DepartureLocation.FromId(request.DepartureId)))
+                .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
+                .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
-                .Tap(() => EditMessageTextAsync(request.ChatId, request.MessageId, KeyboardMessage, cancellationToken))
                 .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, cancellationToken))
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
@@ -53,10 +53,6 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartures
         private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsDepartureKeyboardData> data) => 
             Result.Ok(new SettingsDepartureKeyboard().ConcreteKeyboardMarkup(data));
 
-        private async Task<Message> EditMessageTextAsync(
-            long chatId, int messageId, string message, CancellationToken token) => 
-            await _telegram.EditMessageTextAsync(chatId, messageId, message, cancellationToken: token);
-        
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 
             await _telegram.EditMessageReplyMarkupAsync(chatId, messageId, markup, token);

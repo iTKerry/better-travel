@@ -5,7 +5,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace BetterTravel.Application.Keyboards.Factories
 {
-    public class SettingsCountryKeyboardFactoryBaseKeyboard : KeyboardFactoryBase<List<SettingsCountryKeyboardData>>
+    public class SettingsCountryKeyboard : KeyboardFactoryBase<List<SettingsCountryKeyboardData>>
     {
         public override InlineKeyboardMarkup ConcreteKeyboardMarkup(List<SettingsCountryKeyboardData> departuresData)
         {
@@ -27,8 +27,8 @@ namespace BetterTravel.Application.Keyboards.Factories
         private InlineKeyboardButton GetCountryButton(SettingsCountryKeyboardData data) =>
             Button(
                 data.IsSubscribed
-                    ? $"- {data.Name}"
-                    : $"+ {data.Name}",
+                    ? $"\U00002714 {data.Name}"
+                    : $"\U00002796 {data.Name}",
                 data.IsSubscribed
                     ? $"SettingsCountryUnsubscribe:{data.Id}"
                     : $"SettingsCountrySubscribe:{data.Id}");

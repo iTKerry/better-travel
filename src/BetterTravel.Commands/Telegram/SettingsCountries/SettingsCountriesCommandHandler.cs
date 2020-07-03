@@ -18,6 +18,8 @@ namespace BetterTravel.Commands.Telegram.SettingsCountries
 {
     public class SettingsCountriesCommandHandler : CommandHandlerBase<SettingsCountriesCommand>
     {
+        private const string KeyboardMessage = "You can choose the countries from which you will receive updates";
+
         private readonly ITelegramBotClient _telegram;
         
         public SettingsCountriesCommandHandler(
@@ -33,6 +35,7 @@ namespace BetterTravel.Commands.Telegram.SettingsCountries
             .ToResult("That chat wasn't found between our subscribers.")
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
+                .Tap(() => EditMessageTextAsync(request.ChatId, request.MessageId, KeyboardMessage, cancellationToken))
                 .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, cancellationToken))
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
@@ -48,8 +51,12 @@ namespace BetterTravel.Commands.Telegram.SettingsCountries
                 }).ToList());
 
         private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsCountryKeyboardData> data) => 
-            Result.Ok(new SettingsCountryKeyboardFactoryBaseKeyboard().ConcreteKeyboardMarkup(data));
+            Result.Ok(new SettingsCountryKeyboard().ConcreteKeyboardMarkup(data));
 
+        private async Task<Message> EditMessageTextAsync(
+            long chatId, int messageId, string message, CancellationToken token) => 
+            await _telegram.EditMessageTextAsync(chatId, messageId, message, cancellationToken: token);
+        
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 
             await _telegram.EditMessageReplyMarkupAsync(chatId, messageId, markup, token);
