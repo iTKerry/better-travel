@@ -43,7 +43,7 @@ namespace BetterTravel.Api.Controllers
             
             var result = await Mediator.Send(maybeCommand.Value);
 
-            Maybe<long?> maybeChatId = update.Message?.Chat?.Id ?? update.CallbackQuery?.From?.Id;
+            Maybe<long?> maybeChatId = update.Message?.Chat?.Id ?? update.CallbackQuery?.Message.Chat?.Id;
             if (maybeChatId.HasValue)
                 await HandleResultAsync(result, maybeChatId.Value ?? 0);
         }
