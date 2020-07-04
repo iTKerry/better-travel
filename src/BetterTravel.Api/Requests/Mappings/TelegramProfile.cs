@@ -10,7 +10,6 @@ using BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe;
 using BetterTravel.Commands.Telegram.SettingsSubscribe;
 using BetterTravel.Commands.Telegram.SettingsUnsubscribe;
 using BetterTravel.Commands.Telegram.Start;
-using BetterTravel.Commands.Telegram.Status;
 using Telegram.Bot.Types;
 
 namespace BetterTravel.Api.Requests.Mappings
@@ -19,61 +18,58 @@ namespace BetterTravel.Api.Requests.Mappings
     {
         public TelegramProfile()
         {
-            CreateMap<Update, StartCommand>()
+            CreateMap<Message, StartCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Chat.Id))
+                .ForMember(c => c.IsBot, exp => exp.MapFrom(f => f.From.IsBot))
+                .ForMember(c => c.Type, exp => exp.MapFrom(f => f.Chat.Type))
+                .ForMember(c => c.Title, exp => exp.MapFrom(f => f.Chat.Title))
+                .ForMember(c => c.Description, exp => exp.MapFrom(f => f.Chat.Description));
+            
+            CreateMap<Message, SettingsCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Chat.Id));
+            
+            CreateMap<CallbackQuery, SettingsBackCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(c => c.IsBot, exp => exp.MapFrom(f => f.Message.From.IsBot))
-                .ForMember(c => c.Type, exp => exp.MapFrom(f => f.Message.Chat.Type))
-                .ForMember(c => c.Title, exp => exp.MapFrom(f => f.Message.Chat.Title))
-                .ForMember(c => c.Description, exp => exp.MapFrom(f => f.Message.Chat.Description));
-            
-            CreateMap<Update, StatusCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
-            
-            CreateMap<Update, SettingsBackCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId));
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
-            CreateMap<Update, SettingsDeparturesCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId));
+            CreateMap<CallbackQuery, SettingsDeparturesCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
-            CreateMap<Update, SettingsCountriesCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId));
+            CreateMap<CallbackQuery, SettingsCountriesCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
-            CreateMap<Update, SettingsCountriesSubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId))
-                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ResolveCallbackQueryId(f.CallbackQuery.Data)));
+            CreateMap<CallbackQuery, SettingsCountriesSubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
+                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
 
-            CreateMap<Update, SettingsCountriesUnsubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId))
-                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ResolveCallbackQueryId(f.CallbackQuery.Data)));
+            CreateMap<CallbackQuery, SettingsCountriesUnsubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
+                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
 
-            CreateMap<Update, SettingsDeparturesSubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId))
-                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ResolveCallbackQueryId(f.CallbackQuery.Data)));
+            CreateMap<CallbackQuery, SettingsDeparturesSubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
+                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
 
-            CreateMap<Update, SettingsDeparturesUnsubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId))
-                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ResolveCallbackQueryId(f.CallbackQuery.Data)));
+            CreateMap<CallbackQuery, SettingsDeparturesUnsubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
+                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
 
-            CreateMap<Update, SettingsSubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId));
+            CreateMap<CallbackQuery, SettingsSubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
-            CreateMap<Update, SettingsUnsubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.CallbackQuery.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.CallbackQuery.Message.MessageId));
-            
-            CreateMap<Update, SettingsCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id));
+            CreateMap<CallbackQuery, SettingsUnsubscribeCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
         }
 
-        private static int ResolveCallbackQueryId(string data)
+        private static int ExtractCallbackQueryId(string data)
         {
             var idStr = data.Split(':')[1];
             return int.Parse(idStr);
