@@ -11,7 +11,7 @@ namespace BetterTravel.Application.Keyboards.Factories
                 Line(
                     Button(
                         departuresData.IsSubscribed ? "Unsubscribe" : "Subscribe",
-                        departuresData.IsSubscribed ? "SettingsUnsubscribe" : "SettingsSubscribe")),
+                        "SettingsSubscriptionToggle")),
                 Line(
                     Button("Countries", "SettingsCountries"),
                     Button("Departures", "SettingsDepartures"))

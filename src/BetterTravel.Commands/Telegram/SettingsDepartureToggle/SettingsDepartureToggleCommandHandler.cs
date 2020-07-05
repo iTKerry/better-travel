@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,24 +14,24 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
-namespace BetterTravel.Commands.Telegram.SettingsCountriesUnsubscribe
+namespace BetterTravel.Commands.Telegram.SettingsDepartureToggle
 {
-    public class SettingsCountriesUnsubscribeCommandHandler : CommandHandlerBase<SettingsCountriesUnsubscribeCommand>
+    public class SettingsDepartureToggleCommandHandler : CommandHandlerBase<SettingsDepartureToggleCommand>
     {
         private readonly ITelegramBotClient _telegram;
         
-        public SettingsCountriesUnsubscribeCommandHandler(
+        public SettingsDepartureToggleCommandHandler(
             IUnitOfWork unitOfWork, 
             ITelegramBotClient telegram) : base(unitOfWork) =>
             _telegram = telegram;
 
         public override async Task<IHandlerResult> Handle(
-            SettingsCountriesUnsubscribeCommand request, 
+            SettingsDepartureToggleCommand request, 
             CancellationToken cancellationToken) =>
             await UnitOfWork.ChatRepository
                 .GetFirstAsync(c => c.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
-                .Tap(chat => chat.UnsubscribeFromCountry(Country.FromId(request.CountryId)))
+                .Tap(chat => chat.ToggleDepartureSubscription(request.Departure))
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
                 .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
@@ -41,17 +41,17 @@ namespace BetterTravel.Commands.Telegram.SettingsCountriesUnsubscribe
                     ? ValidationFailed(result.Error) 
                     : Ok());
 
-        private static Result<List<SettingsCountryKeyboardData>> GetKeyboardDataResult(Chat chat) =>
-            Result.Ok(Country.AllCountries
-                .Select(country => new SettingsCountryKeyboardData
+        private static Result<List<SettingsDepartureKeyboardData>> GetKeyboardDataResult(Chat chat) =>
+            Result.Ok(DepartureLocation.AllDepartures
+                .Select(departure => new SettingsDepartureKeyboardData
                 {
-                    Id = country.Id,
-                    Name = country.Name,
-                    IsSubscribed = chat.Settings.CountrySubscriptions.Any(cs => cs.Country == country)
+                    Id = departure.Id,
+                    Name = departure.Name,
+                    IsSubscribed = chat.Settings.DepartureSubscriptions.Any(ds => ds.Departure == departure)
                 }).ToList());
 
-        private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsCountryKeyboardData> data) => 
-            Result.Ok(new SettingsCountryKeyboard().ConcreteKeyboardMarkup(data));
+        private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsDepartureKeyboardData> data) => 
+            Result.Ok(new SettingsDepartureKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 

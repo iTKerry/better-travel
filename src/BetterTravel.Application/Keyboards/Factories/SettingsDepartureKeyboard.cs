@@ -31,8 +31,6 @@ namespace BetterTravel.Application.Keyboards.Factories
                 data.IsSubscribed
                     ? $"\U00002714 {data.Name}"
                     : $"\U00002796 {data.Name}",
-                data.IsSubscribed
-                    ? $"SettingsDeparturesUnsubscribe:{data.Id}"
-                    : $"SettingsDeparturesSubscribe:{data.Id}");
+                $"SettingsDepartureToggle:{data.Id}");
     }
 }

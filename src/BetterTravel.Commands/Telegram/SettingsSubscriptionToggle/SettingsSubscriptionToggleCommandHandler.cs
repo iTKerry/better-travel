@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Application.Keyboards.Data;
 using BetterTravel.Application.Keyboards.Factories;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Repositories;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using CSharpFunctionalExtensions;
@@ -14,24 +11,24 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
-namespace BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe
+namespace BetterTravel.Commands.Telegram.SettingsSubscriptionToggle
 {
-    public class SettingsDeparturesUnsubscribeCommandHandler : CommandHandlerBase<SettingsDeparturesUnsubscribeCommand>
+    public class SettingsSubscriptionToggleCommandHandler : CommandHandlerBase<SettingsSubscriptionToggleCommand>
     {
         private readonly ITelegramBotClient _telegram;
         
-        public SettingsDeparturesUnsubscribeCommandHandler(
+        public SettingsSubscriptionToggleCommandHandler(
             IUnitOfWork unitOfWork, 
             ITelegramBotClient telegram) : base(unitOfWork) =>
             _telegram = telegram;
 
         public override async Task<IHandlerResult> Handle(
-            SettingsDeparturesUnsubscribeCommand request, 
+            SettingsSubscriptionToggleCommand request, 
             CancellationToken cancellationToken) =>
             await UnitOfWork.ChatRepository
                 .GetFirstAsync(c => c.ChatId == request.ChatId)
-                .ToResult("That chat wasn't found between our subscribers.")
-                .Tap(chat => chat.UnsubscribeFromDeparture(DepartureLocation.FromId(request.DepartureId)))
+                .ToResult("Chat was not found.")
+                .Tap(chat => chat.ToggleSubscription())
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
                 .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
@@ -41,17 +38,11 @@ namespace BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe
                     ? ValidationFailed(result.Error) 
                     : Ok());
 
-        private static Result<List<SettingsDepartureKeyboardData>> GetKeyboardDataResult(Chat chat) =>
-            Result.Ok(DepartureLocation.AllDepartures
-                .Select(departure => new SettingsDepartureKeyboardData
-                {
-                    Id = departure.Id,
-                    Name = departure.Name,
-                    IsSubscribed = chat.Settings.DepartureSubscriptions.Any(ds => ds.Departure == departure)
-                }).ToList());
-
-        private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsDepartureKeyboardData> data) => 
-            Result.Ok(new SettingsDepartureKeyboard().ConcreteKeyboardMarkup(data));
+        private static Result<SettingsKeyboardData> GetKeyboardDataResult(Chat chat) => 
+            Result.Ok(new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed});
+        
+        private static Result<InlineKeyboardMarkup> GetMarkupResult(SettingsKeyboardData data) => 
+            Result.Ok(new SettingsKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> EditMessageReplyMarkupAsync(
             long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 

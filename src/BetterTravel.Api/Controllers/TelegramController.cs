@@ -6,13 +6,10 @@ using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.Settings;
 using BetterTravel.Commands.Telegram.SettingsBack;
 using BetterTravel.Commands.Telegram.SettingsCountries;
-using BetterTravel.Commands.Telegram.SettingsCountriesSubscribe;
-using BetterTravel.Commands.Telegram.SettingsCountriesUnsubscribe;
+using BetterTravel.Commands.Telegram.SettingsCountryToggle;
 using BetterTravel.Commands.Telegram.SettingsDepartures;
-using BetterTravel.Commands.Telegram.SettingsDeparturesSubscribe;
-using BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe;
-using BetterTravel.Commands.Telegram.SettingsSubscribe;
-using BetterTravel.Commands.Telegram.SettingsUnsubscribe;
+using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
+using BetterTravel.Commands.Telegram.SettingsSubscriptionToggle;
 using BetterTravel.Commands.Telegram.Start;
 using BetterTravel.MediatR.Core.HandlerResults;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
@@ -68,7 +65,7 @@ namespace BetterTravel.Api.Controllers
                 .Bind(command => Result.Ok(command.Value(callbackQuery)));
 
         private static bool IsMatchedCommand(string str, string command) =>
-            str.Equals(command) || 
+            str.Replace("@BetterTravelBot", string.Empty).Equals(command) || 
             str.Contains(':') && str.StartsWith(command);
         
         private static Maybe<long> GetChatId(Update update) =>
@@ -76,11 +73,11 @@ namespace BetterTravel.Api.Controllers
             ?? update.CallbackQuery?.Message.Chat?.Id 
             ?? Maybe<long>.None;
 
-        private async Task<Message> HandleResultAsync(IHandlerResult result, long chatId) =>
+        private async Task<Maybe<Message>> HandleResultAsync(IHandlerResult result, long chatId) =>
             result switch
             {
                 ValidationFailedHandlerResult vf => await _client.SendTextMessageAsync(chatId, vf.Message),
-                _ => null
+                _ => Maybe<Message>.None
             };
         
         private Dictionary<string, Func<Message, ICommand>> MessageCommands =>
@@ -93,15 +90,12 @@ namespace BetterTravel.Api.Controllers
         private Dictionary<string, Func<CallbackQuery, ICommand>> CallbackQueryCommands =>
             new Dictionary<string, Func<CallbackQuery, ICommand>>
             {
-                {"SettingsSubscribe", query => Mapper.Map<SettingsSubscribeCommand>(query)},
-                {"SettingsUnsubscribe", query => Mapper.Map<SettingsUnsubscribeCommand>(query)},
+                {"SettingsSubscriptionToggle", query => Mapper.Map<SettingsSubscriptionToggleCommand>(query)},
                 {"SettingsCountries", query => Mapper.Map<SettingsCountriesCommand>(query)},
+                {"SettingsCountryToggle", query => Mapper.Map<SettingsCountryToggleCommand>(query)},
                 {"SettingsDepartures", query => Mapper.Map<SettingsDeparturesCommand>(query)},
+                {"SettingsDepartureToggle", query => Mapper.Map<SettingsDepartureToggleCommand>(query)},
                 {"SettingsBack", query => Mapper.Map<SettingsBackCommand>(query)},
-                {"SettingsCountrySubscribe", query => Mapper.Map<SettingsCountriesSubscribeCommand>(query)},
-                {"SettingsCountryUnsubscribe", query => Mapper.Map<SettingsCountriesUnsubscribeCommand>(query)},
-                {"SettingsDeparturesSubscribe", query => Mapper.Map<SettingsDeparturesSubscribeCommand>(query)},
-                {"SettingsDeparturesUnsubscribe", query => Mapper.Map<SettingsDeparturesUnsubscribeCommand>(query)},
             };
     }
 }

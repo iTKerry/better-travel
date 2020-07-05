@@ -1,4 +1,5 @@
-﻿using BetterTravel.DataAccess.Entities.Base;
+﻿using System.Linq;
+using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enums;
 using BetterTravel.DataAccess.ValueObjects;
 using CSharpFunctionalExtensions;
@@ -32,27 +33,24 @@ namespace BetterTravel.DataAccess.Entities
                 .Bind(() => Result.Ok(new Chat(chatId, infoResult.Value, settingsResult.Value)));
         }
 
-        public Result Subscribe() =>
-            Settings.Subscribe();
-
-        public Result SubscribeToCountry(Country country) =>
-            Settings.SubscribeToCountry(country);
-
-        public Result SubscribeToDeparture(DepartureLocation departure) =>
-            Settings.SubscribeToDeparture(departure);
-        
-        public Result Unsubscribe() =>
-            Settings.Unsubscribe();
-
-        public Result UnsubscribeFromCountry(Country country) =>
-            Settings.UnsubscribeFromCountry(country);
-
-        public Result UnsubscribeFromDeparture(DepartureLocation departure) =>
-            Settings.UnsubscribeFromDeparture(departure);
+        public Result ToggleSubscription() =>
+            Settings.IsSubscribed
+                ? Settings.Unsubscribe()
+                : Settings.Subscribe();
 
         public Result UpdateInfo(string title, string description, ChatType type) =>
             ChatInfo
                 .Create(title, description, type)
                 .Tap(chatInfo => Info = chatInfo);
+
+        public Result ToggleCountrySubscription(Country country) =>
+            Settings.CountrySubscriptions.Any(cs => cs.Country == country)
+                ? Settings.UnsubscribeFromCountry(country)
+                : Settings.SubscribeToCountry(country);
+
+        public Result ToggleDepartureSubscription(DepartureLocation departure) =>
+            Settings.DepartureSubscriptions.Any(ds => ds.Departure == departure)
+                ? Settings.UnsubscribeFromDeparture(departure)
+                : Settings.SubscribeToDeparture(departure);
     }
 }

@@ -2,14 +2,12 @@
 using BetterTravel.Commands.Telegram.Settings;
 using BetterTravel.Commands.Telegram.SettingsBack;
 using BetterTravel.Commands.Telegram.SettingsCountries;
-using BetterTravel.Commands.Telegram.SettingsCountriesSubscribe;
-using BetterTravel.Commands.Telegram.SettingsCountriesUnsubscribe;
+using BetterTravel.Commands.Telegram.SettingsCountryToggle;
 using BetterTravel.Commands.Telegram.SettingsDepartures;
-using BetterTravel.Commands.Telegram.SettingsDeparturesSubscribe;
-using BetterTravel.Commands.Telegram.SettingsDeparturesUnsubscribe;
-using BetterTravel.Commands.Telegram.SettingsSubscribe;
-using BetterTravel.Commands.Telegram.SettingsUnsubscribe;
+using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
+using BetterTravel.Commands.Telegram.SettingsSubscriptionToggle;
 using BetterTravel.Commands.Telegram.Start;
+using BetterTravel.DataAccess.Entities;
 using Telegram.Bot.Types;
 
 namespace BetterTravel.Api.Requests.Mappings
@@ -28,6 +26,10 @@ namespace BetterTravel.Api.Requests.Mappings
             CreateMap<Message, SettingsCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Chat.Id));
             
+            CreateMap<CallbackQuery, SettingsSubscriptionToggleCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
+            
             CreateMap<CallbackQuery, SettingsBackCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
@@ -40,33 +42,27 @@ namespace BetterTravel.Api.Requests.Mappings
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
-            CreateMap<CallbackQuery, SettingsCountriesSubscribeCommand>()
+            CreateMap<CallbackQuery, SettingsCountryToggleCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
-                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
+                .AfterMap(CountryToggleAfterMap);
 
-            CreateMap<CallbackQuery, SettingsCountriesUnsubscribeCommand>()
+            CreateMap<CallbackQuery, SettingsDepartureToggleCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
-                .ForMember(c => c.CountryId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
+                .AfterMap(DepartureToggleAfterMap);
+        }
 
-            CreateMap<CallbackQuery, SettingsDeparturesSubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
-                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
+        private static void CountryToggleAfterMap(CallbackQuery callbackQuery, SettingsCountryToggleCommand command)
+        {
+            var countryId = ExtractCallbackQueryId(callbackQuery.Data);
+            command.Country = Country.FromId(countryId);
+        }
 
-            CreateMap<CallbackQuery, SettingsDeparturesUnsubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
-                .ForMember(c => c.DepartureId, exp => exp.MapFrom(f => ExtractCallbackQueryId(f.Data)));
-
-            CreateMap<CallbackQuery, SettingsSubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
-
-            CreateMap<CallbackQuery, SettingsUnsubscribeCommand>()
-                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
-                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
+        private static void DepartureToggleAfterMap(CallbackQuery callbackQuery, SettingsDepartureToggleCommand command)
+        {
+            var departureId = ExtractCallbackQueryId(callbackQuery.Data);
+            command.Departure = DepartureLocation.FromId(departureId);
         }
 
         private static int ExtractCallbackQueryId(string data)

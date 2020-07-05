@@ -32,7 +32,7 @@ namespace BetterTravel.Commands.Telegram.Start
                 .Tap(chat => chat.UpdateInfo(request.Title, request.Description, request.Type))
                 .OnFailure(() => SendMessageAsync(request.ChatId, "Welcome message.", cancellationToken))
                 .OnFailureCompensate(() => CreateChat(request))
-                .Tap(chat => chat.Subscribe())
+                .Tap(chat => chat.ToggleSubscription())
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
                 .Tap(() => UnitOfWork.CommitAsync())
                 .Tap(() => SendMessageAsync(request.ChatId, "You are now subscribed to updates.", cancellationToken))
