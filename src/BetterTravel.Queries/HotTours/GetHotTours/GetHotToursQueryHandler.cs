@@ -7,7 +7,6 @@ using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Repositories;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using BetterTravel.Queries.Abstractions;
-using BetterTravel.Queries.HotTours.GetHotTours.Specification;
 using BetterTravel.Queries.ViewModels;
 
 namespace BetterTravel.Queries.HotTours.GetHotTours
@@ -16,11 +15,11 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
         : QueryHandlerBase<GetHotToursQuery, List<GetHotToursViewModel>>
     {
         private readonly IHotToursRepository _repository;
-        private readonly IGetHotToursSpecification _specification;
+        private readonly GetHotToursSpecification _specification;
 
         public GetHotToursQueryHandler(
             IHotToursRepository repository, 
-            IGetHotToursSpecification specification)
+            GetHotToursSpecification specification)
         {
             _repository = repository;
             _specification = specification;

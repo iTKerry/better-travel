@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using BetterTravel.Common.Specification;
 using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Specification;
 
-namespace BetterTravel.Queries.HotTours.GetHotTours.Specification
+namespace BetterTravel.Queries.HotTours.GetHotTours
 {
-    public class GetHotToursSpecification : 
-        SpecificationBase<HotTour, GetHotToursQuery>,
-        IGetHotToursSpecification
+    public sealed class GetHotToursSpecification : Specification<HotTour, GetHotToursQuery>
     {
         public override Expression<Func<HotTour, bool>> ToExpression(GetHotToursQuery request) =>
             tour =>
