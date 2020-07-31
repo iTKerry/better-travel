@@ -27,7 +27,7 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartureToggle
 
         public override async Task<IHandlerResult> Handle(
             SettingsDepartureToggleCommand request, 
-            CancellationToken cancellationToken) =>
+            CancellationToken ctx) =>
             await UnitOfWork.ChatRepository
                 .GetFirstAsync(c => c.ChatId == request.ChatId)
                 .ToResult("That chat wasn't found between our subscribers.")
@@ -36,7 +36,7 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartureToggle
                 .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
-                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, cancellationToken))
+                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, ctx))
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
                     : Ok());

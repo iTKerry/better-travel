@@ -24,7 +24,7 @@ namespace BetterTravel.MediatR.Core
     public abstract class RequestHandlerBase<TRequest> : IRequestHandler<TRequest, IHandlerResult>
         where TRequest : IRequest<IHandlerResult>
     {
-        public abstract Task<IHandlerResult> Handle(TRequest request, CancellationToken cancellationToken);
+        public abstract Task<IHandlerResult> Handle(TRequest request, CancellationToken ctx);
 
         protected static IHandlerResult Ok() =>
             new OkHandlerResult();

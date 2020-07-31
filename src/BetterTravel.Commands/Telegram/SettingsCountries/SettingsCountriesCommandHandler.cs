@@ -29,14 +29,14 @@ namespace BetterTravel.Commands.Telegram.SettingsCountries
 
         public override async Task<IHandlerResult> Handle(
             SettingsCountriesCommand request, 
-            CancellationToken cancellationToken) =>
+            CancellationToken ctx) =>
             await UnitOfWork.ChatRepository
             .GetFirstAsync(c => c.ChatId == request.ChatId)
             .ToResult("That chat wasn't found between our subscribers.")
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
-                .Tap(() => EditMessageTextAsync(request.ChatId, request.MessageId, KeyboardMessage, cancellationToken))
-                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, cancellationToken))
+                .Tap(() => EditMessageTextAsync(request.ChatId, request.MessageId, KeyboardMessage, ctx))
+                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, ctx))
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
                     : Ok());

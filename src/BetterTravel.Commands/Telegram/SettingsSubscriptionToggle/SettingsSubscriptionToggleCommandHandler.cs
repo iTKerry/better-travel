@@ -24,7 +24,7 @@ namespace BetterTravel.Commands.Telegram.SettingsSubscriptionToggle
 
         public override async Task<IHandlerResult> Handle(
             SettingsSubscriptionToggleCommand request, 
-            CancellationToken cancellationToken) =>
+            CancellationToken ctx) =>
             await UnitOfWork.ChatRepository
                 .GetFirstAsync(c => c.ChatId == request.ChatId)
                 .ToResult("Chat was not found.")
@@ -33,7 +33,7 @@ namespace BetterTravel.Commands.Telegram.SettingsSubscriptionToggle
                 .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
-                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, cancellationToken))
+                .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, ctx))
                 .Finally(result => result.IsFailure 
                     ? ValidationFailed(result.Error) 
                     : Ok());

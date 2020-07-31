@@ -24,7 +24,7 @@ namespace BetterTravel.Commands.HotTours.FetchHotTours
 
         public override async Task<IHandlerResult> Handle(
             FetchHotToursCommand request, 
-            CancellationToken cancellationToken)
+            CancellationToken ctx)
         {
             var requestObject = new HotToursRequestObject
             {
