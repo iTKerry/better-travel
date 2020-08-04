@@ -55,10 +55,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
             };
             
             var tours = await _repository.GetAsync(queryObject);
-            var result = (request.Localize ? tours.Select(LocalizeMap) : tours)
-                .OrderBy(t => t.PriceAmount)
-                .ThenBy(t => t.CountryName)
-                .ToList();
+            var result = (request.Localize ? tours.Select(LocalizeMap) : tours).ToList();
             
             return Ok(result);
         }
