@@ -1,15 +1,16 @@
 ﻿using System;
+using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enums;
 
 namespace BetterTravel.DataAccess.Views
 {
-    public class HotTourView
+    public class HotTourView : View
     {
         public string Name { get; set; }
         public string ResortName { get; set; }
-        public string CountryName { get; set; }
-        public string DepartureName { get; set; }
-        public string HotelCategory { get; set; }
+        public Country Country { get; set; }
+        public DepartureLocation DepartureLocation { get; set; }
+        public HotelCategory HotelCategory { get; set; }
         public DateTime DepartureDate { get; set; }
         public Uri ImageLink { get; set; }
         public Uri DetailsLink { get; set; }

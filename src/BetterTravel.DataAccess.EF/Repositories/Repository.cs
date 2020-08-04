@@ -25,9 +25,6 @@ namespace BetterTravel.DataAccess.EF.Repositories
             if (queryObject.WherePredicate != null)
                 query = query.Where(queryObject.WherePredicate);
 
-            if (queryObject.OrderedProjection != null)
-                query = queryObject.OrderedProjection(query);
-            
             if (queryObject.Skip != 0)
                 query = query.Skip(queryObject.Skip);
 
@@ -46,9 +43,6 @@ namespace BetterTravel.DataAccess.EF.Repositories
 
             var projectedQuery = query.Select(queryObject.Projection);
             
-            if (queryObject.OrderedProjection != null)
-                projectedQuery = queryObject.OrderedProjection(projectedQuery);
-
             if (queryObject.Skip != 0)
                 projectedQuery = projectedQuery.Skip(queryObject.Skip);
 

@@ -7,18 +7,19 @@ using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Repositories
 {
-    public interface IRepository<T> where T : AggregateRoot
+    public interface IRepository<TRoot> 
+        where TRoot : AggregateRoot
     {
-        Task<List<T>> GetAsync(QueryObject<T> queryObject);
-        Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject);
+        Task<List<TRoot>> GetAsync(QueryObject<TRoot> queryObject);
+        Task<List<TResult>> GetAsync<TResult>(QueryObject<TRoot, TResult> queryObject);
 
-        Task<Maybe<T>> GetByIdAsync(int id);
-        Task<Maybe<T>> GetFirstAsync(Expression<Func<T, bool>> wherePredicate);
+        Task<Maybe<TRoot>> GetByIdAsync(int id);
+        Task<Maybe<TRoot>> GetFirstAsync(Expression<Func<TRoot, bool>> wherePredicate);
 
-        void Save(T chat);
-        void Save(List<T> chats);
+        void Save(TRoot chat);
+        void Save(List<TRoot> chats);
         
         Task DeleteByIdAsync(int id);
-        void Delete(T entity);
+        void Delete(TRoot entity);
     }
 }

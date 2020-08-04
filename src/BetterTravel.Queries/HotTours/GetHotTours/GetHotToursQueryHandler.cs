@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Repositories;
+using BetterTravel.DataAccess.Views;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using BetterTravel.Queries.Abstractions;
 using BetterTravel.Queries.ViewModels;
@@ -14,62 +16,68 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
     public class GetHotToursQueryHandler 
         : QueryHandlerBase<GetHotToursQuery, List<GetHotToursViewModel>>
     {
-        private readonly IHotToursRepository _repository;
-        private readonly GetHotToursSpecification _specification;
+        private readonly IReadOnlyRepository<HotTourView> _repository;
 
-        public GetHotToursQueryHandler(
-            IHotToursRepository repository, 
-            GetHotToursSpecification specification)
-        {
+        public GetHotToursQueryHandler(IReadOnlyRepository<HotTourView> repository) =>
             _repository = repository;
-            _specification = specification;
-        }
 
         public override async Task<IHandlerResult<List<GetHotToursViewModel>>> Handle(
             GetHotToursQuery request, 
             CancellationToken cancellationToken)
         {
-            var queryObject = new QueryObject<HotTour>
+            Expression<Func<HotTourView, bool>> wherePredicate = tour =>
+                (!request.Countries.Any() || request.Countries.Contains(tour.Country.Id)) &&
+                (!request.Departures.Any() || request.Departures.Contains(tour.DepartureLocation.Id)) &&
+                (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategory.Id));
+
+            Expression<Func<HotTourView, GetHotToursViewModel>> projection = tour => new GetHotToursViewModel
             {
-                WherePredicate = _specification.ToExpression(request),
-                OrderedProjection = OrderedProjection,
+                Name = tour.Name,
+                HotelCategory = tour.HotelCategory.Name,
+                DepartureDate = tour.DepartureDate,
+                DepartureLocationName = tour.DepartureLocation.Name,
+                DetailsLink = tour.DetailsLink,
+                DurationCount = tour.DurationCount,
+                DurationType = tour.DurationType,
+                ImageLink = tour.ImageLink,
+                PriceAmount = tour.PriceAmount,
+                PriceType = tour.PriceType,
+                CountryName = tour.Country.Name,
+                ResortName = tour.ResortName,
+            };
+
+            var queryObject = new QueryObject<HotTourView, GetHotToursViewModel>
+            {
+                WherePredicate = wherePredicate,
+                Projection = projection,
                 Skip = request.Skip,
                 Top = request.Take
             };
             
             var tours = await _repository.GetAsync(queryObject);
-            var result = tours.Select(tour => Projection(tour, request.Localize)).ToList();
+            var result = (request.Localize ? tours.Select(LocalizeMap) : tours)
+                .OrderBy(t => t.PriceAmount)
+                .ThenBy(t => t.CountryName)
+                .ToList();
+            
             return Ok(result);
         }
 
-        private static IOrderedQueryable<HotTour> OrderedProjection(
-            IQueryable<HotTour> queryableTour) =>
-            queryableTour
-                .OrderByDescending(tour => tour.Price.Amount)
-                .ThenBy(tour => tour.Country.Name)
-                .ThenBy(tour => tour.DepartureLocation);
-
-        private static GetHotToursViewModel Projection(HotTour tour, bool localize) =>
+        private static GetHotToursViewModel LocalizeMap(GetHotToursViewModel tour) =>
             new GetHotToursViewModel
             {
-                Name = tour.Info.Name,
-                HotelCategory = localize
-                    ? L.GetValue(tour.Category.Name, Culture.Ru)
-                    : tour.Category.Name,
-                DepartureDate = tour.Info.DepartureDate,
-                DepartureLocation = localize
-                    ? L.GetValue(tour.DepartureLocation.Name, Culture.Ru)
-                    : tour.DepartureLocation.Name,
-                DetailsLink = tour.Info.DetailsUri,
-                DurationCount = tour.Duration.Count,
-                DurationType = tour.Duration.Type,
-                ImageLink = tour.Info.ImageUri,
-                PriceAmount = tour.Price.Amount,
-                PriceType = tour.Price.Type,
-                CountryName = localize
-                    ? L.GetValue(tour.Country.Name, Culture.Ru)
-                    : tour.Country.Name,
-                ResortName = tour.Resort.Name,
+                Name = tour.Name,
+                HotelCategory = L.GetValue(tour.HotelCategory),
+                DepartureDate = tour.DepartureDate,
+                DepartureLocationName = L.GetValue(tour.DepartureLocationName, Culture.Ru),
+                DetailsLink = tour.DetailsLink,
+                DurationCount = tour.DurationCount,
+                DurationType = tour.DurationType,
+                ImageLink = tour.ImageLink,
+                PriceAmount = tour.PriceAmount,
+                PriceType = tour.PriceType,
+                CountryName = L.GetValue(tour.CountryName, Culture.Ru),
+                ResortName = tour.ResortName,
             };
     }
 }

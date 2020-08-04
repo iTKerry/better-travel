@@ -9,9 +9,14 @@ namespace BetterTravel.DataAccess.EF
 {
     public sealed partial class AppDbContext : DbContext
     {
-        private static readonly Type[] EnumerationTypes = { typeof(Country), typeof(DepartureLocation) };
+        private static readonly Type[] EnumerationTypes =
+        {
+            typeof(Country), 
+            typeof(DepartureLocation)
+        };
 
-        public AppDbContext(DbContextOptions options) : base(options)
+        public AppDbContext(DbContextOptions options) 
+            : base(options)
         {
         }
         

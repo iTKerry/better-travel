@@ -11,7 +11,7 @@ namespace BetterTravel.Queries.ViewModels
         public Uri DetailsLink { get; set; }
         public int DurationCount { get; set; }
         public DurationType DurationType { get; set; }
-        public string DepartureLocation { get; set; }
+        public string DepartureLocationName { get; set; }
         public DateTime DepartureDate { get; set; }
         public int PriceAmount { get; set; }
         public PriceType PriceType { get; set; }

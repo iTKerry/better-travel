@@ -32,11 +32,11 @@ namespace BetterTravel.DataAccess.Entities
 
         public string Name { get; }
 
-        public HotelCategory GetById(int id) =>
+        public static HotelCategory FromId(int id) =>
             AllCategories.SingleOrDefault(c => c.Id == id) 
             ?? NoCategory;
 
-        public HotelCategory GetByType(HotelCategoryType categoryType) =>
+        public static HotelCategory FromType(HotelCategoryType categoryType) =>
             AllCategories.SingleOrDefault(c => c.Id == (int) categoryType) 
             ?? NoCategory;
     }

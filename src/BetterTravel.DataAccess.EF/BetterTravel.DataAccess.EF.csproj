@@ -32,5 +32,14 @@
     <ItemGroup>
       <ProjectReference Include="..\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Update="AppDbContext.Entities.cs">
+        <DependentUpon>AppDbContext.cs</DependentUpon>
+      </Compile>
+      <Compile Update="AppDbContext.Views.cs">
+        <DependentUpon>AppDbContext.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
 
 </Project>

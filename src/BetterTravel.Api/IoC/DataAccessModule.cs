@@ -34,8 +34,9 @@ namespace BetterTravel.Api.IoC
                 .As<IChatRepository>();
 
             builder
-                .RegisterType<UnitOfWork>()
-                .As<IUnitOfWork>();
+                .RegisterGeneric(typeof(ReadOnlyRepository<>))
+                .As(typeof(IReadOnlyRepository<>))
+                .InstancePerDependency();
         }
     }
 }

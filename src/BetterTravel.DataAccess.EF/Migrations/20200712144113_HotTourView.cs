@@ -18,10 +18,10 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         DurationCount,
                         DurationType,
                         PriceAmount,
-                        PriceType,
-                        C.Name as CountryName,
-                        DL.Name as DepartureName,
-                        HC.Name as HotelCategory
+                        PriceType,    
+                        C.CountryID,
+                        DL.DepartureLocationID,
+                        HC.HotelCategoryID
                     FROM HotTour
                     JOIN Country C on C.CountryID = HotTour.CountryId
                     JOIN DepartureLocation DL on HotTour.DepartureLocationId = DL.DepartureLocationID
