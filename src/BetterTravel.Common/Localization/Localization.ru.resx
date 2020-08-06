@@ -134,6 +134,12 @@
   <data name="Bulgaria" xml:space="preserve">
     <value>Болгария</value>
   </data>
+  <data name="Hungary" xml:space="preserve">
+    <value>Венгрия</value>
+  </data>
+  <data name="Croatia" xml:space="preserve">
+    <value>Хорватия</value>
+  </data>
   <data name="Tunisia" xml:space="preserve">
     <value>Тунис</value>
   </data>
@@ -145,6 +151,9 @@
   </data>
   <data name="Greece" xml:space="preserve">
     <value>Греция</value>
+  </data>
+  <data name="Montenegro" xml:space="preserve">
+    <value>Черногория</value>
   </data>
   <data name="Georgia" xml:space="preserve">
     <value>Грузия</value>

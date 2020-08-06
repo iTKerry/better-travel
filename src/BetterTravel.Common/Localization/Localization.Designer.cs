@@ -75,6 +75,18 @@ namespace BetterTravel.Common.Localization {
             }
         }
         
+        public static string Hungary {
+            get {
+                return ResourceManager.GetString("Hungary", resourceCulture);
+            }
+        }
+        
+        public static string Croatia {
+            get {
+                return ResourceManager.GetString("Croatia", resourceCulture);
+            }
+        }
+        
         public static string Tunisia {
             get {
                 return ResourceManager.GetString("Tunisia", resourceCulture);
@@ -96,6 +108,12 @@ namespace BetterTravel.Common.Localization {
         public static string Greece {
             get {
                 return ResourceManager.GetString("Greece", resourceCulture);
+            }
+        }
+        
+        public static string Montenegro {
+            get {
+                return ResourceManager.GetString("Montenegro", resourceCulture);
             }
         }
         

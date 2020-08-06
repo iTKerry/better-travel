@@ -13,14 +13,14 @@ namespace BetterTravel.DataAccess.EF.Repositories
     public abstract class Repository<T> : IRepository<T>
         where T : AggregateRoot
     {
-        protected readonly AppDbContext DbContext;
+        protected readonly AppDbContext Ctx;
 
         protected Repository(AppDbContext dbContext) => 
-            DbContext = dbContext;
+            Ctx = dbContext;
 
         public virtual async Task<List<T>> GetAsync(QueryObject<T> queryObject)
         {
-            var query = DbContext.Set<T>().AsQueryable();
+            var query = Ctx.Set<T>().AsQueryable();
 
             if (queryObject.WherePredicate != null)
                 query = query.Where(queryObject.WherePredicate);
@@ -36,7 +36,7 @@ namespace BetterTravel.DataAccess.EF.Repositories
         
         public virtual async Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject)
         {
-            var query = DbContext.Set<T>().AsQueryable();
+            var query = Ctx.Set<T>().AsQueryable();
 
             if (queryObject.WherePredicate != null)
                 query = query.Where(queryObject.WherePredicate);
@@ -53,29 +53,29 @@ namespace BetterTravel.DataAccess.EF.Repositories
         }
 
         public virtual async Task<Maybe<T>> GetByIdAsync(int id) => 
-            await DbContext.Set<T>().FindAsync(id);
+            await Ctx.Set<T>().FindAsync(id);
 
         public virtual async Task<Maybe<T>> GetFirstAsync(Expression<Func<T, bool>> wherePredicate) => 
-            await DbContext.Set<T>().FirstOrDefaultAsync(wherePredicate);
+            await Ctx.Set<T>().FirstOrDefaultAsync(wherePredicate);
 
         public virtual void Save(T chat) => 
-            DbContext.Set<T>().Attach(chat);
+            Ctx.Set<T>().Attach(chat);
         
         public virtual void Save(List<T> chats) => 
-            DbContext.Set<T>().AttachRange(chats);
+            Ctx.Set<T>().AttachRange(chats);
 
         public virtual async Task DeleteByIdAsync(int id)
         {
-            var entity = await DbContext.Set<T>().FindAsync(id);
+            var entity = await Ctx.Set<T>().FindAsync(id);
             Delete(entity);
         }
 
         public virtual void Delete(T entity)
         {
-            if (DbContext.Entry(entity).State == EntityState.Detached) 
-                DbContext.Set<T>().Attach(entity);
+            if (Ctx.Entry(entity).State == EntityState.Detached) 
+                Ctx.Set<T>().Attach(entity);
 
-            DbContext.Set<T>().Remove(entity);
+            Ctx.Set<T>().Remove(entity);
         }
     }
 }

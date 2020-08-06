@@ -11,14 +11,14 @@ namespace BetterTravel.DataAccess.EF.Repositories
     public class ReadOnlyRepository<TView> : IReadOnlyRepository<TView> 
         where TView : View
     {
-        protected readonly AppDbContext DbContext;
+        protected readonly AppDbContext Ctx;
 
         public ReadOnlyRepository(AppDbContext db) => 
-            DbContext = db;
+            Ctx = db;
 
         public async Task<List<TView>> GetAsync(QueryObject<TView> queryObject)
         {
-            var query = DbContext.Set<TView>()
+            var query = Ctx.Set<TView>()
                 .AsQueryable()
                 .AsNoTracking();
 
@@ -36,7 +36,7 @@ namespace BetterTravel.DataAccess.EF.Repositories
 
         public async Task<List<TResult>> GetAsync<TResult>(QueryObject<TView, TResult> queryObject)
         {
-            var query = DbContext.Set<TView>()
+            var query = Ctx.Set<TView>()
                 .AsQueryable()
                 .AsNoTracking();
 

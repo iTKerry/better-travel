@@ -7,5 +7,6 @@ namespace BetterTravel.Api.Requests.HotTours
         public int[] Countries { get; set; }
         public int[] Departures { get; set; }
         public int[] HotelCategories { get; set; }
+        public bool Localize { get; set; }
     }
 }

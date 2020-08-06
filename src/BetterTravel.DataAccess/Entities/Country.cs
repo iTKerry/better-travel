@@ -12,16 +12,20 @@ namespace BetterTravel.DataAccess.Entities
         public static Country Ukraine = new Country(37, nameof(Ukraine));
         public static Country Spain = new Country(51, nameof(Spain));
         public static Country Bulgaria = new Country(54, nameof(Bulgaria));
+        public static Country Hungary = new Country(55, nameof(Hungary));
+        public static Country Croatia = new Country(57, nameof(Croatia));
         public static Country Tunisia = new Country(61, nameof(Tunisia));
         public static Country Dominican = new Country(62, nameof(Dominican));
         public static Country UAE = new Country(70, nameof(UAE));
         public static Country Greece = new Country(84, nameof(Greece));
+        public static Country Montenegro = new Country(155, nameof(Montenegro));
         public static Country Georgia = new Country(169, nameof(Georgia));
         public static Country Albania = new Country(591, nameof(Albania));
 
         public static readonly Country[] AllCountries =
         {
-            NoCountry, Egypt, Turkey, Ukraine, Spain, Bulgaria, Tunisia, Dominican, UAE, Greece, Georgia, Albania
+            NoCountry, Egypt, Turkey, Ukraine, Spain, Bulgaria, Hungary, Croatia, Tunisia, Dominican, UAE, Greece, 
+            Montenegro, Georgia, Albania
         };
 
         protected Country()

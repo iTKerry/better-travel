@@ -16,13 +16,13 @@ namespace BetterTravel.DataAccess.EF.Repositories
 
         public override async Task<Maybe<Chat>> GetByIdAsync(int id)
         {
-            var chat = await DbContext.Chats.FindAsync(id);
+            var chat = await Ctx.Chats.FindAsync(id);
             return await WithDependenciesAsync(chat);
         }
 
         public override async Task<Maybe<Chat>> GetFirstAsync(Expression<Func<Chat, bool>> wherePredicate)
         {
-            var chat = await DbContext.Chats.FirstOrDefaultAsync(wherePredicate);
+            var chat = await Ctx.Chats.FirstOrDefaultAsync(wherePredicate);
             return await WithDependenciesAsync(chat);
         }
 
@@ -31,8 +31,8 @@ namespace BetterTravel.DataAccess.EF.Repositories
             if (chat is null)
                 return null;
             
-            await DbContext.Entry(chat.Settings).Collection(c => c.CountrySubscriptions).LoadAsync();
-            await DbContext.Entry(chat.Settings).Collection(c => c.DepartureSubscriptions).LoadAsync();
+            await Ctx.Entry(chat.Settings).Collection(c => c.CountrySubscriptions).LoadAsync();
+            await Ctx.Entry(chat.Settings).Collection(c => c.DepartureSubscriptions).LoadAsync();
 
             return chat;
         }
