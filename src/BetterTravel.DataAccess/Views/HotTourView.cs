@@ -1,6 +1,7 @@
 ﻿using System;
 using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enums;
+using BetterTravel.DataAccess.Views.Base;
 
 namespace BetterTravel.DataAccess.Views
 {

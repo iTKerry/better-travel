@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BetterTravel.DataAccess.Repositories;
 using BetterTravel.DataAccess.Views;
+using BetterTravel.DataAccess.Views.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF.Repositories

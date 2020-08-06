@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BetterTravel.DataAccess.Views
+namespace BetterTravel.DataAccess.Views.Base
 {
     public abstract class View
     {

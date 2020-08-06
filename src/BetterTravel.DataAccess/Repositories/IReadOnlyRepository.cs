@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BetterTravel.DataAccess.Views;
+using BetterTravel.DataAccess.Views.Base;
 
 namespace BetterTravel.DataAccess.Repositories
 {
