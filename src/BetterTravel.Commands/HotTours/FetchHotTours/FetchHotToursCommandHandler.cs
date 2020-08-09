@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using BetterTravel.Application.HotTours;
 using BetterTravel.Application.HotTours.Abstractions;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Repositories;
+using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.EF.Repositories;
+using BetterTravel.Domain.Entities;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 
 namespace BetterTravel.Commands.HotTours.FetchHotTours

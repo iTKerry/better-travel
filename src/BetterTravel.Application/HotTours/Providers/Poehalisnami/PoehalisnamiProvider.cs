@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using BetterTravel.Application.HotTours.Abstractions;
 using BetterTravel.Application.HotTours.Providers.Poehalisnami.Responses;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Entities.Enums;
-using BetterTravel.DataAccess.ValueObjects;
+using BetterTravel.Domain.Entities;
+using BetterTravel.Domain.Entities.Enumerations;
+using BetterTravel.Domain.Enums;
+using BetterTravel.Domain.ValueObjects;
 using Refit;
 
 namespace BetterTravel.Application.HotTours.Providers.Poehalisnami

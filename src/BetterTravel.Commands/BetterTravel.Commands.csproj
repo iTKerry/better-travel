@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BetterTravel.Application\BetterTravel.Application.csproj" />
-      <ProjectReference Include="..\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj" />
+      <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
+      <ProjectReference Include="..\BetterTravel.Domain\BetterTravel.Domain.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
     </ItemGroup>
 

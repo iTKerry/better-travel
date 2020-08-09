@@ -1,5 +1,5 @@
 ﻿using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Entities.Enums;
+using BetterTravel.Domain.Enums;
 
 namespace BetterTravel.Commands.Telegram.Start
 {

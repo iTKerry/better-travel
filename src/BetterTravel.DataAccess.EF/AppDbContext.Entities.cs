@@ -1,4 +1,5 @@
-﻿using BetterTravel.DataAccess.Entities;
+﻿using BetterTravel.Domain.Entities;
+using BetterTravel.Domain.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF

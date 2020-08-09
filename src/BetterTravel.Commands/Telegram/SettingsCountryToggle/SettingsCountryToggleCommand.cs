@@ -1,5 +1,5 @@
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.DataAccess.Entities;
+using BetterTravel.Domain.Entities.Enumerations;
 
 namespace BetterTravel.Commands.Telegram.SettingsCountryToggle
 {

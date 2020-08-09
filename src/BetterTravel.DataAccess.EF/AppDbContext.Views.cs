@@ -1,4 +1,4 @@
-﻿using BetterTravel.DataAccess.Views;
+﻿using BetterTravel.Domain.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Repositories;
-using BetterTravel.DataAccess.Views;
-using BetterTravel.DataAccess.Views.Base;
+using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.Domain.Views.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF.Repositories

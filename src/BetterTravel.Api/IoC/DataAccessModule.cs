@@ -2,10 +2,10 @@
 using System.Reflection;
 using Autofac;
 using BetterTravel.DataAccess.EF;
+using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Repositories;
 using BetterTravel.DataAccess.EF.Seeder;
 using BetterTravel.DataAccess.EF.Seeder.Abstractions;
-using BetterTravel.DataAccess.Repositories;
 using Module = Autofac.Module;
 
 namespace BetterTravel.Api.IoC
@@ -24,6 +24,18 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterType<UnitOfWork>()
                 .As<IUnitOfWork>();
+            
+            builder
+                .RegisterType<EventDispatcher>()
+                .As<IEventDispatcher>();
+            
+            builder
+                .RegisterType<Bus>()
+                .As<IBus>();
+            
+            builder
+                .RegisterType<MessageBus>()
+                .AsSelf();
             
             builder
                 .RegisterType<HotToursRepository>()

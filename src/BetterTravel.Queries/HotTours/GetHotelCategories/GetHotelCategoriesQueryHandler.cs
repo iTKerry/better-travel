@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities;
+using BetterTravel.Domain.Entities;
 using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using BetterTravel.Queries.Abstractions;
 using BetterTravel.Queries.ViewModels;
