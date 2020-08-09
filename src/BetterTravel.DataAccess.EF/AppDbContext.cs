@@ -43,7 +43,7 @@ namespace BetterTravel.DataAccess.EF
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             ChangeTracker.Entries()
                 .Where(x => EnumerationTypes.Contains(x.Entity.GetType()))
