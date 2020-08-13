@@ -1,6 +1,17 @@
 version: '3.7'
 
 services:
+  poehalisnami:
+    image: bettertravel.poehalisnami
+    container_name: bettertravel.poehalisnami
+    networks:
+      - bettertravel
+    depends_on:
+      - db
+      - azurite
+    build:
+      context: .
+      dockerfile: src/BetterTravel.Poehalisnami.TimerFunction/Dockerfile
   api:
     image: bettertravel.api
     container_name: bettertravel.api
@@ -16,9 +27,22 @@ services:
     container_name: bettertravel.db
     networks:
       - bettertravel
-    environment:
-        SA_PASSWORD: "Your_password123"
-        ACCEPT_EULA: "Y"
+  mq:
+    image: rabbitmq:3.8.6-management-alpine
+    container_name: bettertravel.mq
+    volumes:
+      - mq_data:/data
+    networks:
+      - bettertravel
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: bettertravel.azurite
+    networks:
+      - bettertravel
+
+volumes:
+  mq_data:
+    
 networks:
   bettertravel:
     name: bettertravel.network

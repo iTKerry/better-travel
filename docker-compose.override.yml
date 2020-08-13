@@ -6,7 +6,25 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://*:8443
     ports:
-      - "8443:8443/tcp"
+      - 8443:8443/tcp
   db:
+    environment:
+      SA_PASSWORD: Your_password123
+      ACCEPT_EULA: Y
     ports:
-      - "1433:1433/tcp"
+      - 1433:1433/tcp
+  mq:
+    ports:
+      - 5672:5672/tcp
+      - 15672:15672/tcp
+  azurite:
+    ports:
+      - 10000:10000/tcp
+      - 10001:10001/tcp
+  poehalisnami:
+    environment:
+      BetterTravelDb: Server=db;Database=BetterTravel;User=sa;Password=Your_password123;
+      FUNCTIONS_WORKER_RUNTIME: dotnet
+      AzureWebJobsStorage: DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
+    ports:
+      - 7071:7071/tcp

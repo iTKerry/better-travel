@@ -40,7 +40,7 @@ namespace BetterTravel.Api.Controllers
                 .Bind(result =>
                     GetChatId(update)
                         .ToResult("There is no ChatID")
-                        .Bind(chatId => Result.Ok((Result: result, ChatId: chatId))))
+                        .Bind(chatId => Result.Success((Result: result, ChatId: chatId))))
                 .Tap(tuple => HandleResultAsync(tuple.Result, tuple.ChatId))
                 .OnFailure(message => _logger.Error(message));
 
@@ -56,13 +56,13 @@ namespace BetterTravel.Api.Controllers
             MessageCommands
                 .TryFirst(command => IsMatchedCommand(message.Text, command.Key))
                 .ToResult("There is no such Message command")
-                .Bind(command => Result.Ok(command.Value(message)));
+                .Bind(command => Result.Success(command.Value(message)));
 
         private Result<ICommand> FromCallbackQuery(CallbackQuery callbackQuery) =>
             CallbackQueryCommands
                 .TryFirst(command => IsMatchedCommand(callbackQuery.Data, command.Key))
                 .ToResult("There is no such CallbackQuery command")
-                .Bind(command => Result.Ok(command.Value(callbackQuery)));
+                .Bind(command => Result.Success(command.Value(callbackQuery)));
 
         private static bool IsMatchedCommand(string str, string command) =>
             str.Replace("@BetterTravelBot", string.Empty).Equals(command) || 

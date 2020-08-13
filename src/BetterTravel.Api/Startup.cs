@@ -34,8 +34,7 @@ namespace BetterTravel.Api
                 .AddRouteOptions()
                 .AddBetterTravelHealthChecks()
                 .AddBetterTravelSwagger()
-                .AddHostedService<TelegramHostedService>()
-                .AddHostedService<HotToursFetcherHostedService>();
+                .AddHostedService<TelegramHostedService>();
 
         public static void ConfigureContainer(ContainerBuilder builder) =>
             builder.RegisterAssemblyModules(typeof(Startup).Assembly);
