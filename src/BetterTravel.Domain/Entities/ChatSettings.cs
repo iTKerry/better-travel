@@ -28,7 +28,7 @@ namespace BetterTravel.Domain.Entities
         public static Result<ChatSettings> Create(bool isSubscribed)
         {
             var chatSettings = new ChatSettings(isSubscribed);
-            return Result.Ok(chatSettings);
+            return Result.Success(chatSettings);
         }
 
         public Result SubscribeToCountry(Country country) =>

@@ -3,10 +3,10 @@ version: '3.7'
 services:
   api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:8443
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://*:8080
     ports:
-      - 8443:8443/tcp
+      - 7070:8080/tcp
   db:
     environment:
       SA_PASSWORD: Your_password123
@@ -21,10 +21,21 @@ services:
     ports:
       - 10000:10000/tcp
       - 10001:10001/tcp
-  poehalisnami:
+  hottoursfetcher:
     environment:
-      BetterTravelDb: Server=db;Database=BetterTravel;User=sa;Password=Your_password123;
+      BetterTravelDb: Server=db;Database=BetterTravel;User=SA;Password=Your_password123;
       FUNCTIONS_WORKER_RUNTIME: dotnet
       AzureWebJobsStorage: DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
+  telegramupdate:
+    environment:
+      BetterTravelDb: Server=db;Database=BetterTravel;User=SA;Password=Your_password123;
+      FUNCTIONS_WORKER_RUNTIME: dotnet
+      AzureWebJobsStorage: DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;
+      ASPNETCORE_URLS: http://*:8443
+      BotToken: 1111604743:AAEptIUw2FZdAdszhC5QiXEtgLhvvSk6160
     ports:
-      - 7071:7071/tcp
+      - 8443:8443/tcp
+  currencyfetcher:
+    environment:
+      FUNCTIONS_WORKER_RUNTIME: dotnet
+      AzureWebJobsStorage: DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;

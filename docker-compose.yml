@@ -1,9 +1,19 @@
 version: '3.7'
 
 services:
-  poehalisnami:
-    image: bettertravel.poehalisnami
-    container_name: bettertravel.poehalisnami
+  currencyfetcher:
+    image: bettertravel.currencyfetcher
+    container_name: bettertravel.currencyfetcher
+    networks:
+      - bettertravel
+    depends_on:
+      - azurite
+    build:
+      context: .
+      dockerfile: src/BetterTravel.CurrencyFetcher.Function/Dockerfile
+  hottoursfetcher:
+    image: bettertravel.hottoursfetcher
+    container_name: bettertravel.hottoursfetcher
     networks:
       - bettertravel
     depends_on:
@@ -11,7 +21,18 @@ services:
       - azurite
     build:
       context: .
-      dockerfile: src/BetterTravel.Poehalisnami.TimerFunction/Dockerfile
+      dockerfile: src/BetterTravel.HotToursFetcher.Function/Dockerfile
+  telegramupdate:
+    image: bettertravel.telegramupdate
+    container_name: bettertravel.telegramupdate
+    networks:
+      - bettertravel
+    depends_on:
+      - api
+      - azurite
+    build:
+      context: .
+      dockerfile: src/BetterTravel.TelegramUpdate.Function/Dockerfile
   api:
     image: bettertravel.api
     container_name: bettertravel.api

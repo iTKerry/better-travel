@@ -23,7 +23,7 @@ namespace BetterTravel.Domain.ValueObjects
         public static Result<ChatInfo> Create(string title, string description, ChatType type)
         {
             var chat = new ChatInfo(title, description, type);
-            return Result.Ok(chat);
+            return Result.Success(chat);
         }
 
         protected override bool EqualsCore(ChatInfo other) => 

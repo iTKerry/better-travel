@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using BetterTravel.Api.Queries.HotTours.GetCountries;
+using BetterTravel.Api.Queries.HotTours.GetDepartures;
+using BetterTravel.Api.Queries.HotTours.GetHotelCategories;
+using BetterTravel.Api.Queries.HotTours.GetHotTours;
+using BetterTravel.Api.Queries.ViewModels;
 using BetterTravel.Api.Requests.HotTours;
-using BetterTravel.Queries.HotTours.GetCountries;
-using BetterTravel.Queries.HotTours.GetDepartures;
-using BetterTravel.Queries.HotTours.GetHotelCategories;
-using BetterTravel.Queries.HotTours.GetHotTours;
-using BetterTravel.Queries.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

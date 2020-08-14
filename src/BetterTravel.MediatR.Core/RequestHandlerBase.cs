@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
-using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using MediatR;
 
 namespace BetterTravel.MediatR.Core

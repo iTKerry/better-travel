@@ -1,4 +1,4 @@
-﻿using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
+﻿using BetterTravel.MediatR.Core.Abstractions;
 
 namespace BetterTravel.MediatR.Core.HandlerResults
 {

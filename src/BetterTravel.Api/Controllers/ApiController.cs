@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Mime;
 using AutoMapper;
+using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
-using BetterTravel.MediatR.Core.HandlerResults.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
