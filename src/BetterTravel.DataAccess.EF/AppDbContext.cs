@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
+using BetterTravel.Domain.Entities;
 using BetterTravel.Domain.Entities.Base;
 using BetterTravel.Domain.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,8 @@ namespace BetterTravel.DataAccess.EF
         private static readonly Type[] EnumerationTypes =
         {
             typeof(Country), 
-            typeof(DepartureLocation)
+            typeof(DepartureLocation),
+            typeof(Currency)
         };
 
         private readonly IEventDispatcher _eventDispatcher;

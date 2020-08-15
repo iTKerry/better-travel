@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterTravel.DataAccess.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200630144338_DepartureSubscription")]
-    partial class DepartureSubscription
+    [Migration("20200815152023_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -87,27 +87,37 @@ namespace BetterTravel.DataAccess.EF.Migrations
             modelBuilder.Entity("BetterTravel.Domain.Entities.ChatSettings", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("ChatSettingsID")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CurrencyId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsSubscribed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("SettingsOfChatId")
-                        .HasColumnName("SettingsOfChatID")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SettingsOfChatId")
-                        .IsUnique();
+                    b.HasIndex("CurrencyId");
 
                     b.ToTable("ChatSettings");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Country", b =>
+            modelBuilder.Entity("BetterTravel.Domain.Entities.Currency", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("CurrencyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Currency","dbo");
+                });
+
+            modelBuilder.Entity("BetterTravel.Domain.Entities.Enumerations.Country", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("CountryID")
@@ -121,7 +131,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("Country","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.DepartureLocation", b =>
+            modelBuilder.Entity("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("DepartureLocationID")
@@ -209,31 +219,37 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
             modelBuilder.Entity("BetterTravel.Domain.Entities.ChatCountrySubscription", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.Country", "Country")
+                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
 
                     b.HasOne("BetterTravel.Domain.Entities.ChatSettings", "Settings")
                         .WithMany("CountrySubscriptions")
-                        .HasForeignKey("SettingsId");
+                        .HasForeignKey("SettingsId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BetterTravel.Domain.Entities.ChatDepartureSubscription", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.DepartureLocation", "Departure")
+                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", "Departure")
                         .WithMany()
                         .HasForeignKey("DepartureId");
 
                     b.HasOne("BetterTravel.Domain.Entities.ChatSettings", "Settings")
                         .WithMany("DepartureSubscriptions")
-                        .HasForeignKey("SettingsId");
+                        .HasForeignKey("SettingsId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BetterTravel.Domain.Entities.ChatSettings", b =>
                 {
+                    b.HasOne("BetterTravel.Domain.Entities.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId");
+
                     b.HasOne("BetterTravel.Domain.Entities.Chat", "Chat")
                         .WithOne("Settings")
-                        .HasForeignKey("BetterTravel.Domain.Entities.ChatSettings", "SettingsOfChatId")
+                        .HasForeignKey("BetterTravel.Domain.Entities.ChatSettings", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -244,11 +260,11 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.Country", "Country")
+                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.DepartureLocation", "DepartureLocation")
+                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", "DepartureLocation")
                         .WithMany()
                         .HasForeignKey("DepartureLocationId");
 

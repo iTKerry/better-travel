@@ -25,7 +25,4 @@
       <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Commands" />
-    </ItemGroup>
 </Project>

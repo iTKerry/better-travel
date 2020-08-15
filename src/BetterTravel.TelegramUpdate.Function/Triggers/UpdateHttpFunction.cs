@@ -9,6 +9,8 @@ using BetterTravel.TelegramUpdate.Function.Commands.Settings;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsBack;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsCountries;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsCountryToggle;
+using BetterTravel.TelegramUpdate.Function.Commands.SettingsCurrency;
+using BetterTravel.TelegramUpdate.Function.Commands.SettingsCurrencySwitch;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsDepartures;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsDepartureToggle;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsSubscriptionToggle;
@@ -46,8 +48,6 @@ namespace BetterTravel.TelegramUpdate.Function.Triggers
         {
             try
             {
-                log.LogInformation($"INFO: {nameof(UpdateHttpFunction)} has been executed!");
-            
                 var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var update = JsonConvert.DeserializeObject<Update>(requestBody);
             
@@ -59,8 +59,6 @@ namespace BetterTravel.TelegramUpdate.Function.Triggers
                             .Bind(chatId => Result.Success((Result: result, ChatId: chatId))))
                     .Tap(tuple => HandleResultAsync(tuple.Result, tuple.ChatId))
                     .OnFailure(message => log.LogError(message));
-            
-                log.LogInformation($"INFO: {nameof(UpdateHttpFunction)} has been finished!");
             }
             catch (Exception e)
             {
@@ -115,12 +113,38 @@ namespace BetterTravel.TelegramUpdate.Function.Triggers
         private Dictionary<string, Func<CallbackQuery, ICommand>> CallbackQueryCommands =>
             new Dictionary<string, Func<CallbackQuery, ICommand>>
             {
-                {"SettingsSubscriptionToggle", query => _mapper.Map<SettingsSubscriptionToggleCommand>(query)},
-                {"SettingsCountries", query => _mapper.Map<SettingsCountriesCommand>(query)},
-                {"SettingsCountryToggle", query => _mapper.Map<SettingsCountryToggleCommand>(query)},
-                {"SettingsDepartures", query => _mapper.Map<SettingsDeparturesCommand>(query)},
-                {"SettingsDepartureToggle", query => _mapper.Map<SettingsDepartureToggleCommand>(query)},
-                {"SettingsBack", query => _mapper.Map<SettingsBackCommand>(query)},
+                {
+                    nameof(SettingsSubscriptionToggleCommand), 
+                    query => _mapper.Map<SettingsSubscriptionToggleCommand>(query)
+                },
+                {
+                    nameof(SettingsCountriesCommand), 
+                    query => _mapper.Map<SettingsCountriesCommand>(query)
+                },
+                {
+                    nameof(SettingsCountryToggleCommand), 
+                    query => _mapper.Map<SettingsCountryToggleCommand>(query)
+                },
+                {
+                    nameof(SettingsDeparturesCommand), 
+                    query => _mapper.Map<SettingsDeparturesCommand>(query)
+                },
+                {
+                    nameof(SettingsDepartureToggleCommand), 
+                    query => _mapper.Map<SettingsDepartureToggleCommand>(query)
+                },
+                {
+                    nameof(SettingsCurrencyCommand),
+                    query => _mapper.Map<SettingsCurrencyCommand>(query)
+                },
+                {
+                    nameof(SettingsCurrencySwitchCommand),
+                    query => _mapper.Map<SettingsCurrencySwitchCommand>(query)
+                },
+                {
+                    nameof(SettingsBackCommand), 
+                    query => _mapper.Map<SettingsBackCommand>(query)
+                },
             };
     }
 }

@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using BetterTravel.Domain.Entities;
 using BetterTravel.Domain.Entities.Enumerations;
 using BetterTravel.TelegramUpdate.Function.Commands.Settings;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsBack;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsCountries;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsCountryToggle;
+using BetterTravel.TelegramUpdate.Function.Commands.SettingsCurrency;
+using BetterTravel.TelegramUpdate.Function.Commands.SettingsCurrencySwitch;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsDepartures;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsDepartureToggle;
 using BetterTravel.TelegramUpdate.Function.Commands.SettingsSubscriptionToggle;
@@ -42,6 +45,15 @@ namespace BetterTravel.TelegramUpdate.Function.Mapper
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
 
+            CreateMap<CallbackQuery, SettingsCurrencyCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId));
+            
+            CreateMap<CallbackQuery, SettingsCurrencySwitchCommand>()
+                .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
+                .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
+                .AfterMap(CurrencySwitchAfterMap);
+            
             CreateMap<CallbackQuery, SettingsCountryToggleCommand>()
                 .ForMember(c => c.ChatId, exp => exp.MapFrom(f => f.Message.Chat.Id))
                 .ForMember(c => c.MessageId, exp => exp.MapFrom(f => f.Message.MessageId))
@@ -63,6 +75,12 @@ namespace BetterTravel.TelegramUpdate.Function.Mapper
         {
             var departureId = ExtractCallbackQueryId(callbackQuery.Data);
             command.Departure = DepartureLocation.FromId(departureId);
+        }
+
+        private static void CurrencySwitchAfterMap(CallbackQuery callbackQuery, SettingsCurrencySwitchCommand command)
+        {
+            var currencyId = ExtractCallbackQueryId(callbackQuery.Data);
+            command.Currency = Currency.FromId(currencyId);
         }
 
         private static int ExtractCallbackQueryId(string data)

@@ -53,5 +53,8 @@ namespace BetterTravel.Domain.Entities
             Settings.DepartureSubscriptions.Any(ds => ds.Departure == departure)
                 ? Settings.UnsubscribeFromDeparture(departure)
                 : Settings.SubscribeToDeparture(departure);
+
+        public Result ChangeCurrency(Currency currency) =>
+            Settings.ChangeCurrency(currency);
     }
 }

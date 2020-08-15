@@ -13,8 +13,8 @@ namespace BetterTravel.DataAccess.EF.Configurations
 
             builder.Property(p => p.Id).HasColumnName("ChatSettingsID");
 
-            builder.Property(p => p.SettingsOfChatId).HasColumnName("SettingsOfChatID");
-
+            builder.HasOne(p => p.Currency);
+            
             builder
                 .HasMany(p => p.CountrySubscriptions)
                 .WithOne(p => p.Settings)
@@ -30,7 +30,7 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder
                 .HasOne(p => p.Chat)
                 .WithOne(p => p.Settings)
-                .HasForeignKey<ChatSettings>(p => p.SettingsOfChatId);
+                .HasForeignKey<ChatSettings>(p => p.Id);
         }
     }
 }

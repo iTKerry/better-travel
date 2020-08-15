@@ -10,5 +10,6 @@
         public const string DepartureLocation = nameof(DepartureLocation);
         public const string ChatCountrySubscription = nameof(ChatCountrySubscription);
         public const string ChatDepartureSubscription = nameof(ChatDepartureSubscription);
+        public const string Currency = nameof(Currency);
     }
 }

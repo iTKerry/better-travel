@@ -34,14 +34,17 @@ namespace BetterTravel.TelegramUpdate.Function.Commands.Settings
                     ? ValidationFailed(result.Error)
                     : Ok());
 
-        private static Result<SettingsKeyboardData> GetKeyboardDataResult(Chat chat) => 
-            Result.Success(new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed});
-        
+        private static Result<SettingsKeyboardData> GetKeyboardDataResult(Chat chat) =>
+            Result.Success(GetSettingsKeyboardData(chat));
+
         private static Result<InlineKeyboardMarkup> GetMarkupResult(SettingsKeyboardData data) => 
             Result.Success(new SettingsKeyboard().ConcreteKeyboardMarkup(data));
 
         private async Task<Message> SendMessageAsync(
             long chatId, string message, InlineKeyboardMarkup markup, CancellationToken token) => 
             await Client.SendTextMessageAsync(chatId, message, replyMarkup: markup, cancellationToken: token);
+
+        private static SettingsKeyboardData GetSettingsKeyboardData(Chat chat) =>
+            new SettingsKeyboardData {IsSubscribed = chat.Settings.IsSubscribed};
     }
 }

@@ -27,6 +27,7 @@ namespace BetterTravel.DataAccess.EF.Seeder
             await _dbContext.HotelCategories.AddRangeAsync(HotelCategory.AllCategories, cancellationToken);
             await _dbContext.Countries.AddRangeAsync(Country.AllCountries, cancellationToken);
             await _dbContext.DepartureLocations.AddRangeAsync(DepartureLocation.AllDepartures, cancellationToken);
+            await _dbContext.Currencies.AddRangeAsync(Currency.AllCurrencies, cancellationToken);
             
             await _dbContext.SaveChangesAsync(true, cancellationToken);
         }

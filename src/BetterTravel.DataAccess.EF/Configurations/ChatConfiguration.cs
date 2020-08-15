@@ -17,7 +17,7 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder
                 .HasOne(p => p.Settings)
                 .WithOne(p => p.Chat)
-                .HasForeignKey<ChatSettings>(p => p.SettingsOfChatId)
+                .HasForeignKey<ChatSettings>(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);
             
             builder.OwnsOne(p => p.Info, p =>

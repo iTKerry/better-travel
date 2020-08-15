@@ -4,7 +4,7 @@ namespace BetterTravel.TelegramUpdate.Function.Keyboards.Factories
 {
     public abstract class KeyboardFactoryBase<T> where T : class
     {
-        public abstract InlineKeyboardMarkup ConcreteKeyboardMarkup(T departuresData);
+        public abstract InlineKeyboardMarkup ConcreteKeyboardMarkup(T data);
 
         protected InlineKeyboardButton[][] Markup(params InlineKeyboardButton[][] lines) =>
             lines;

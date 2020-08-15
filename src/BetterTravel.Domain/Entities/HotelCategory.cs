@@ -41,7 +41,7 @@ namespace BetterTravel.Domain.Entities
             ?? NoCategory;
     }
 
-    public enum HotelCategoryType
+    public enum HotelCategoryType : int
     {
         NoCategory = 1,
         TwoStars = 2,

@@ -10,14 +10,13 @@ namespace BetterTravel.Domain.Entities
     {
         protected ChatSettings()
         {
+            IsSubscribed = true;
+            Currency = Currency.USD;
         }
-        
-        private ChatSettings(bool isSubscribed) => 
-            IsSubscribed = isSubscribed;
 
         public bool IsSubscribed { get; private set; }
-        public int SettingsOfChatId { get; private set; }
         public virtual Chat Chat { get; private set; }
+        public virtual Currency Currency { get; private set; }
         
         private readonly List<ChatCountrySubscription> _countrySubscriptions = new List<ChatCountrySubscription>();
         public virtual IReadOnlyList<ChatCountrySubscription> CountrySubscriptions => _countrySubscriptions.ToList();
@@ -25,12 +24,20 @@ namespace BetterTravel.Domain.Entities
         private readonly List<ChatDepartureSubscription> _departureSubscriptions = new List<ChatDepartureSubscription>();
         public virtual IReadOnlyList<ChatDepartureSubscription> DepartureSubscriptions => _departureSubscriptions.ToList();
         
-        public static Result<ChatSettings> Create(bool isSubscribed)
-        {
-            var chatSettings = new ChatSettings(isSubscribed);
-            return Result.Success(chatSettings);
-        }
+        public static Result<ChatSettings> Create() => 
+            Result.Success(new ChatSettings());
 
+        public Result ChangeCurrency(Currency currency) =>
+            Result
+                .FailureIf(
+                    Currency.Id == currency.Id,
+                    "This currency has been set already.")
+                .Bind(() =>
+                {
+                    Currency = currency;
+                    return Result.Success();
+                });
+        
         public Result SubscribeToCountry(Country country) =>
             Result
                 .FailureIf(

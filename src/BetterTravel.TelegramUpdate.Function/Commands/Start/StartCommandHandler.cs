@@ -39,7 +39,7 @@ namespace BetterTravel.TelegramUpdate.Function.Commands.Start
         private static Result<Chat> CreateChat(StartCommand request)
         {
             var infoResult = ChatInfo.Create(request.Title, request.Description, request.Type);
-            var settingsResult = ChatSettings.Create(false);
+            var settingsResult = ChatSettings.Create();
 
             return Result
                 .Combine(infoResult, settingsResult)

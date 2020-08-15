@@ -15,6 +15,8 @@ namespace BetterTravel.CurrencyFetcher.Function
         private const string ServiceUrl = 
             "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
 
+        private static readonly string[] SupportedCurrencyCodes = { "USD", "EUR" };
+
         [FunctionName("CurrencyFetcherFunction")]
         public static async Task RunAsync(
             [TimerTrigger("0 */5 * * * *", RunOnStartup = true)] 
@@ -22,9 +24,10 @@ namespace BetterTravel.CurrencyFetcher.Function
         {
             var json = await new HttpClient().GetStringAsync(ServiceUrl);
             var settings = new JsonSerializerSettings {DateFormatString = DateFormatString};
-            var currencies = JsonConvert.DeserializeObject<List<Currency>>(json, settings);
+            var currencies = JsonConvert.DeserializeObject<List<CurrencyResponse>>(json, settings);
             
-            var result = currencies?
+            var result = currencies?.Where(c => SupportedCurrencyCodes.Contains(c.CurrencyCode));
+            var logResult = result?
                 .Select(c => $"Code: {c.CurrencyCode}\t| Rate: {c.Rate:F}")
                 .Aggregate(
                     new StringBuilder(),
@@ -33,7 +36,7 @@ namespace BetterTravel.CurrencyFetcher.Function
                         : left.Append(right),
                     builder => builder.ToString());
         
-            log.LogInformation(result);
+            log.LogInformation(logResult);
         }
     }
 }
