@@ -6,7 +6,7 @@ namespace BetterTravel.CurrencyFetcher.Function
     public class CurrencyResponse
     {
         [JsonProperty("r030")]
-        public long CurrencyNumber { get; set; }
+        public int CurrencyNumber { get; set; }
         
         [JsonProperty("txt")]
         public string CurrencyName { get; set; }

@@ -1,5 +1,6 @@
 using System.Linq;
 using BetterTravel.Domain.Entities.Base;
+using BetterTravel.Domain.Enums;
 
 namespace BetterTravel.Domain.Entities
 {
@@ -32,13 +33,5 @@ namespace BetterTravel.Domain.Entities
         public static Currency FromType(CurrencyType type) =>
             AllCurrencies.SingleOrDefault(c => c.Id == (int) type) 
             ?? Unknown;
-    }
-
-    public enum CurrencyType : int
-    {
-        Other = 1,
-        UAH = 980,
-        USD = 840,
-        EUR = 978
     }
 }

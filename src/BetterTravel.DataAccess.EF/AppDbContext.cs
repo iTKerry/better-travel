@@ -59,12 +59,15 @@ namespace BetterTravel.DataAccess.EF
                 .ToList();
 
             var result = await base.SaveChangesAsync(cancellationToken);
-            
-            changedEntries.ForEach(entry =>
-            {
-                _eventDispatcher.Dispatch(entry.Id, entry.DomainEvents);
-                entry.ClearDomainEvents();
-            });
+
+            changedEntries
+                .OfType<AggregateRoot>()
+                .ToList()
+                .ForEach(entry =>
+                {
+                    _eventDispatcher.Dispatch(entry.Id, entry.DomainEvents);
+                    entry.ClearDomainEvents();
+                });
 
             return result;
         }

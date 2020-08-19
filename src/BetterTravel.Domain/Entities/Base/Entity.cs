@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using BetterTravel.Domain.Events.Base;
 
 namespace BetterTravel.Domain.Entities.Base
 {
     public abstract class Entity
     {
-        private readonly List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
-        public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents;
-
         protected Entity()
         {
         }
@@ -57,16 +52,6 @@ namespace BetterTravel.Domain.Entities.Base
         public override int GetHashCode()
         {
             return (GetType().ToString() + Id).GetHashCode();
-        }
-        
-        protected void RaiseDomainEvent(IDomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
         }
         
         private Type GetRealType()
