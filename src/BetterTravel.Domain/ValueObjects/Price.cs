@@ -1,5 +1,7 @@
-﻿using BetterTravel.Domain.Enums;
+﻿using BetterTravel.Domain.Entities;
+using BetterTravel.Domain.Enums;
 using BetterTravel.Domain.ValueObjects.Base;
+using static BetterTravel.Domain.Entities.Currency;
 
 namespace BetterTravel.Domain.ValueObjects
 {
@@ -13,10 +15,12 @@ namespace BetterTravel.Domain.ValueObjects
         {
             Amount = amount;
             Type = type;
+            Currency = UAH;
         }
 
         public int Amount { get; }
         public PriceType Type { get; }
+        public virtual Currency Currency { get; }
         
         protected override int GetHashCodeCore() => 
             Amount.GetHashCode() + Type.GetHashCode();

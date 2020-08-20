@@ -44,6 +44,7 @@ namespace BetterTravel.DataAccess.EF.Configurations
             {
                 p.Property(pp => pp.Amount).HasColumnName("PriceAmount");
                 p.Property(pp => pp.Type).HasColumnName("PriceType");
+                p.HasOne(pp => pp.Currency);
             });
         }
     }

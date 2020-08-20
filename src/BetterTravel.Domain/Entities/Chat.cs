@@ -31,7 +31,7 @@ namespace BetterTravel.Domain.Entities
             
             return Result
                 .Combine(infoResult, settingsResult)
-                .Bind(() => Result.Success(new Chat(chatId, infoResult.Value, settingsResult.Value)));
+                .Map(() => new Chat(chatId, infoResult.Value, settingsResult.Value));
         }
 
         public Result ToggleSubscription() =>
