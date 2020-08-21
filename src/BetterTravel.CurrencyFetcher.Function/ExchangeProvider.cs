@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Redis;
+using BetterTravel.DataAccess.Redis.Base;
 using BetterTravel.Domain.Cache;
 using BetterTravel.Domain.Enums;
 using CSharpFunctionalExtensions;
 using Newtonsoft.Json;
+using static System.Net.SecurityProtocolType;
+using static System.Net.ServicePointManager;
 
 namespace BetterTravel.CurrencyFetcher.Function
 {
@@ -40,7 +42,9 @@ namespace BetterTravel.CurrencyFetcher.Function
                     
                 Console.WriteLine(err);
             }
-                
+            
+            SecurityProtocol = Tls | Tls11 | Tls12;
+            
             var json = await new HttpClient().GetStringAsync(ServiceUrl);
             var settings = new JsonSerializerSettings {DateFormatString = DateFormatString};
             var currencies = JsonConvert.DeserializeObject<List<CurrencyResponse>>(json, settings)?
@@ -57,7 +61,7 @@ namespace BetterTravel.CurrencyFetcher.Function
                 await _cacheProvider.SetValueAsync(ExchangeKey, currencies, TimeSpan.FromMinutes(1));
 
             return Result
-                .FailureIf(setResult.IsFailure, setResult.Error)
+                .Combine(setResult)
                 .Map(() => currencies);
         }
     }

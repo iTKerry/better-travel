@@ -21,6 +21,11 @@ services:
     ports:
       - 10000:10000/tcp
       - 10001:10001/tcp
+  redis:
+    ports:
+    - 6379:6379
+    environment:
+      REDIS_REPLICATION_MODE: master
   hottoursfetcher:
     environment:
       BetterTravelDb: Server=db;Database=BetterTravel;User=SA;Password=Your_password123;

@@ -20,6 +20,7 @@ namespace BetterTravel.CurrencyFetcher.Function.Triggers
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "exchange")]
             HttpRequest req, ILogger log) =>
             await _exchangeProvider.GetExchangeAsync(true)
+                .OnFailure(error => log.LogCritical(error))
                 .Finally(res => res.IsSuccess
                     ? (IActionResult) new OkObjectResult(res.Value)
                     : (IActionResult) new BadRequestObjectResult(res.Error));

@@ -27,6 +27,7 @@ namespace BetterTravel.CurrencyFetcher.Function.Triggers
                             ? left.Append("\n").Append(right)
                             : left.Append(right),
                         builder => builder.ToString()))
-                .OnFailure(error => log.LogError(error));
+                .Tap(currencies => log.LogInformation(currencies))
+                .OnFailure(error => log.LogCritical(error));
     }
 }

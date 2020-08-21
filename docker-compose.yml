@@ -60,6 +60,12 @@ services:
     container_name: bettertravel.azurite
     networks:
       - bettertravel
+  redis:
+    image: redis:alpine
+    command: redis-server
+    container_name: bettertravel.redis
+    networks:
+      - bettertravel
 
 volumes:
   mq_data:
