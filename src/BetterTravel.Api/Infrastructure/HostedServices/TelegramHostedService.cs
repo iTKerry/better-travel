@@ -27,8 +27,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
             await _client.DeleteWebhookAsync(cancellationToken);
             _logger.Information($"Setting web-hook with {_configuration.WebhookUrl} {_configuration.BotToken}");
             
-            await _client.SetWebhookAsync($"{_configuration.WebhookUrl}/{_configuration.BotToken}",
-                cancellationToken: cancellationToken);
+            await _client.SetWebhookAsync(_configuration.ToString(), cancellationToken: cancellationToken);
             _logger.Information("End setting web-hook");
         }
 

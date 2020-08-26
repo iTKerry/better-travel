@@ -1,11 +1,10 @@
 ﻿using System;
-using BetterTravel.HotToursFetcher.Function.Providers;
 
-namespace BetterTravel.HotToursFetcher.Function.Requests
+namespace BetterTravel.Application.HotToursFetcher.Requests
 {
-    public class PoehalisnamiRequest
+    public class HotToursRequest
     {
-        public PoehalisnamiRequest(PoehalisnamiQuery query)
+        public HotToursRequest(HotToursQuery query)
         {
             CountryIds = string.Empty;
             ResortIds = string.Empty;

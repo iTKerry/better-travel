@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 namespace BetterTravel.Common.Configurations
 {
-    public class DbConnectionString
+    public class CacheConnectionString
     {
-        public DbConnectionString(string value)
+        public CacheConnectionString(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Invalid connection string!", nameof(value));
@@ -12,7 +12,7 @@ namespace BetterTravel.Common.Configurations
             Value = value;
         }
 
-        public string Value { get; }
+        public string Value { get; set; }
 
         public override string ToString() => Value;
     }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using BetterTravel.DataAccess.Cache;
 using CSharpFunctionalExtensions;
 
-namespace BetterTravel.Application.Abstractions
+namespace BetterTravel.Application.Exchange.Abstractions
 {
     public interface IExchangeProvider
     {

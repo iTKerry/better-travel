@@ -1,6 +1,6 @@
-﻿namespace BetterTravel.HotToursFetcher.Function.Providers
+﻿namespace BetterTravel.Application.HotToursFetcher
 {
-    public class PoehalisnamiQuery
+    public class HotToursQuery
     {
         public int DurationFrom { get; set; }
         public int DurationTo { get; set; }

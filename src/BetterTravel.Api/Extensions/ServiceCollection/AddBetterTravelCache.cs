@@ -1,15 +1,14 @@
-using BetterTravel.Common.Constants;
-using Microsoft.Extensions.Configuration;
+using BetterTravel.Common.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BetterTravel.Api.Extensions.ServiceCollection
 {
     public static partial class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddBetterTravelCache(this IServiceCollection services, IConfiguration cfg)
+        public static IServiceCollection AddBetterTravelCache(this IServiceCollection services)
         {
-            var connectionString = cfg.GetConnectionString(ConnectionStrings.BetterTravelCache);
-            return services.AddStackExchangeRedisCache(opt => opt.Configuration = connectionString);
+            var connectionString = services.BuildServiceProvider().GetService<CacheConnectionString>();
+            return services.AddStackExchangeRedisCache(opt => opt.Configuration = connectionString.ToString());
         }
     }
 }

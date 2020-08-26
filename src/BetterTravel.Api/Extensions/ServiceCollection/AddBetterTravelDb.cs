@@ -1,20 +1,16 @@
 ﻿using BetterTravel.Common.Configurations;
-using BetterTravel.Common.Constants;
 using BetterTravel.DataAccess.EF;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BetterTravel.Api.Extensions.ServiceCollection
 {
     public static partial class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddBetterTravelDb(this IServiceCollection services, 
-            IConfiguration cfg)
+        public static IServiceCollection AddBetterTravelDb(this IServiceCollection services)
         {
-            var dbConnectionString = new DbConnectionString(cfg.GetConnectionString(ConnectionStrings.BetterTravelDb));
-            
+            var connectionString = services.BuildServiceProvider().GetService<DbConnectionString>();
             return services
-                .AddTransient(sp => dbConnectionString)
+                .AddTransient(sp => connectionString)
                 .AddDbContext<AppDbContext>();
         }
     }

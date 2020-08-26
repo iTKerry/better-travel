@@ -2,12 +2,12 @@
 using Autofac;
 using BetterTravel.Api.ExceptionHandling;
 using BetterTravel.Api.ExceptionHandling.Abstractions;
-using BetterTravel.Api.Extensions.Configuration;
-using BetterTravel.Application.Abstractions;
 using BetterTravel.Application.Exchange;
+using BetterTravel.Application.Exchange.Abstractions;
+using BetterTravel.Application.HotToursFetcher;
+using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.Common.Configurations;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Telegram.Bot;
 
 namespace BetterTravel.Api.IoC
@@ -19,22 +19,14 @@ namespace BetterTravel.Api.IoC
         {
             builder
                 .RegisterType<ExchangeProvider>()
-                .As<IExchangeProvider>();
-            
-            RegisterTelegram(builder);
-            RegisterExceptionHandling(builder);
-            RegisterMediator(builder);
-        }
+                .As<IExchangeProvider>()
+                .InstancePerDependency();
 
-        private static void RegisterTelegram(ContainerBuilder builder)
-        {
             builder
-                .Register<BotConfiguration>(context =>
-                {
-                    var c = context.Resolve<IConfiguration>();
-                    return c.GetOptions<BotConfiguration>(nameof(BotConfiguration));
-                }).SingleInstance();
-
+                .RegisterType<HotToursProvider>()
+                .As<IHotToursProvider>()
+                .InstancePerDependency();
+            
             builder
                 .Register(context =>
                 {
@@ -42,6 +34,9 @@ namespace BetterTravel.Api.IoC
                     return new TelegramBotClient(config.BotToken);
                 }).As<ITelegramBotClient>()
                 .SingleInstance();
+            
+            RegisterExceptionHandling(builder);
+            RegisterMediator(builder);
         }
 
         private void RegisterExceptionHandling(ContainerBuilder builder)

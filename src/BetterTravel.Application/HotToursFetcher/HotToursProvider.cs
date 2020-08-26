@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using BetterTravel.Application.HotToursFetcher.Abstractions;
+using BetterTravel.Application.HotToursFetcher.Requests;
+using BetterTravel.Application.HotToursFetcher.Responses;
+using BetterTravel.Common.Configurations;
 using BetterTravel.Common.Localization;
 using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.ValueObjects;
-using BetterTravel.HotToursFetcher.Function.Abstractions;
-using BetterTravel.HotToursFetcher.Function.Requests;
-using BetterTravel.HotToursFetcher.Function.Responses;
 using Refit;
 
-namespace BetterTravel.HotToursFetcher.Function.Providers
+namespace BetterTravel.Application.HotToursFetcher
 {
-    public class PoehalisnamiProvider : IPoehalisnamiProvider
+    public class HotToursProvider : IHotToursProvider
     {
-        private readonly IPoehalisnamiApi _api;
+        private readonly IHotToursProviderApi _api;
 
-        public PoehalisnamiProvider() => 
-            _api = RestService.For<IPoehalisnamiApi>("https://www.poehalisnami.ua");
+        public HotToursProvider(HotToursProviderUri hotToursProviderUri) =>
+            _api = RestService.For<IHotToursProviderApi>(hotToursProviderUri.ToString());
 
-        public async Task<List<HotTour>> GetHotToursAsync(PoehalisnamiQuery query)
+        public async Task<List<HotTour>> GetHotToursAsync(HotToursQuery query)
         {
-            var request = new PoehalisnamiRequest(query);
+            var request = new HotToursRequest(query);
             var response = await _api.HotTours(request);
 
             return response.TourListItems

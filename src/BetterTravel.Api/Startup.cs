@@ -24,19 +24,21 @@ namespace BetterTravel.Api
 
         public void ConfigureServices(IServiceCollection services) =>
             services.AddOptions()
-                .AddBetterTravelCache(_cfg)
+                .AddBetterTravelConfigurations(_cfg)
+                .AddBetterTravelCache()
                 .AddAutoMapper(typeof(Startup).Assembly)
                 .AddBetterTravelCompression()
                 .AddBetterTravelMvc()
                 .AddBetterTravelProfiler()
-                .AddBetterTravelDb(_cfg)
+                .AddBetterTravelDb()
                 .AddMemoryCache()
                 .AddBetterTravelCors()
                 .AddRouteOptions()
                 .AddBetterTravelHealthChecks()
                 .AddBetterTravelSwagger()
                 .AddHostedService<TelegramHostedService>()
-                .AddHostedService<ExchangeHostedService>();
+                .AddHostedService<ExchangeHostedService>()
+                .AddHostedService<HotToursFetcherHostedService>();
 
         public static void ConfigureContainer(ContainerBuilder builder) =>
             builder.RegisterAssemblyModules(typeof(Startup).Assembly);

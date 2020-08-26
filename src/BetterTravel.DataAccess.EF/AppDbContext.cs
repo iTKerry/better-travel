@@ -35,7 +35,7 @@ namespace BetterTravel.DataAccess.EF
         {
             optionsBuilder
                 .UseSqlServer(
-                    _dbConnectionString.Value,
+                    _dbConnectionString.ToString(),
                     x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName))
                 .UseLazyLoadingProxies();
         }

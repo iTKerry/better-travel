@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BetterTravel.HotToursFetcher.Function.Responses
+namespace BetterTravel.Application.HotToursFetcher.Responses
 {
     public class LinksResponse
     {

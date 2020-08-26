@@ -2,7 +2,9 @@
 {
     public class BotConfiguration
     {
-        public string? WebhookUrl { get; set; }
-        public string? BotToken { get; set; }
+        public string WebhookUrl { get; set; }
+        public string BotToken { get; set; }
+
+        public override string ToString() => $"{WebhookUrl}/{BotToken}";
     }
 }

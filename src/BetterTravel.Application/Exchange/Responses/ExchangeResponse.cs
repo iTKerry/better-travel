@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace BetterTravel.Application.Exchange
+namespace BetterTravel.Application.Exchange.Responses
 {
     public class ExchangeResponse
     {

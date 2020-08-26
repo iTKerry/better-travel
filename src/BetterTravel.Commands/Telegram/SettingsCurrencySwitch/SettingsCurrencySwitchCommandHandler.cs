@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BetterTravel.Application.Abstractions;
+using BetterTravel.Application.Exchange.Abstractions;
 using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.SettingsCurrency.Keyboard;
 using BetterTravel.DataAccess.EF.Abstractions;
