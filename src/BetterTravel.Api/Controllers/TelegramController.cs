@@ -25,6 +25,7 @@ using Telegram.Bot.Types.Enums;
 namespace BetterTravel.Api.Controllers
 {
     [Route("api/update")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class TelegramController : ApiController
     {
         private readonly ITelegramBotClient _client;

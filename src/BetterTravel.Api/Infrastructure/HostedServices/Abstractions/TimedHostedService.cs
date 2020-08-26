@@ -13,8 +13,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices.Abstractions
         protected ILogger<T> Logger;
         
         protected virtual TimeSpan DueTime => TimeSpan.Zero;
-        protected virtual TimeSpan Period =>
-            throw new NotImplementedException("Please, set period for TimedHostedService");
+        protected abstract TimeSpan Period { get; }
 
         protected TimedHostedService(ILogger<T> logger) => 
             Logger = logger;

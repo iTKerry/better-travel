@@ -6,7 +6,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://*:8080
     ports:
-      - 8080:8443/tcp
+      - 8443:8080/tcp
   db:
     environment:
       SA_PASSWORD: Your_password123

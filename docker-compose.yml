@@ -8,6 +8,7 @@ services:
       - bettertravel
     depends_on:
       - db
+      - cache
     build:
       context: .
       dockerfile: src/BetterTravel.Api/Dockerfile
@@ -18,7 +19,6 @@ services:
       - bettertravel
   cache:
     image: redis:alpine
-    #command: ["redis-server", "--bind", "redis", "--port", "6379"]
     command: redis-server
     container_name: bettertravel.redis
     networks:
