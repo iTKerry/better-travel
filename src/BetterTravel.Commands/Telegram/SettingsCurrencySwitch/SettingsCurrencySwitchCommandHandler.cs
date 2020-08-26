@@ -11,7 +11,6 @@ using BetterTravel.DataAccess.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 using CSharpFunctionalExtensions;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
@@ -56,9 +55,5 @@ namespace BetterTravel.Commands.Telegram.SettingsCurrencySwitch
 
         private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsCurrencyKeyboardData> data) => 
             Result.Success(new SettingsCurrencyKeyboard().ConcreteKeyboardMarkup(data));
-
-        private async Task<Message> EditReplyMarkupAsync(
-            long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 
-            await Client.EditMessageReplyMarkupAsync(chatId, messageId, markup, token);
     }
 }

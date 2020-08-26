@@ -9,7 +9,6 @@ using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 using CSharpFunctionalExtensions;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
@@ -49,13 +48,5 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartures
 
         private static Result<InlineKeyboardMarkup> GetMarkupResult(List<SettingsDepartureKeyboardData> data) => 
             Result.Success(new SettingsDepartureKeyboard().ConcreteKeyboardMarkup(data));
-
-        private async Task<Message> EditMessageTextAsync(
-            long chatId, int messageId, string message, CancellationToken token) => 
-            await Client.EditMessageTextAsync(chatId, messageId, message, cancellationToken: token);
-        
-        private async Task<Message> EditMessageReplyMarkupAsync(
-            long chatId, int messageId, InlineKeyboardMarkup markup, CancellationToken token) => 
-            await Client.EditMessageReplyMarkupAsync(chatId, messageId, markup, token);
     }
 }

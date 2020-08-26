@@ -7,7 +7,6 @@ using BetterTravel.DataAccess.ValueObjects;
 using BetterTravel.MediatR.Core.Abstractions;
 using CSharpFunctionalExtensions;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Chat = BetterTravel.DataAccess.Entities.Chat;
 
 namespace BetterTravel.Commands.Telegram.Start
@@ -45,8 +44,5 @@ namespace BetterTravel.Commands.Telegram.Start
                 .Combine(infoResult, settingsResult)
                 .Bind(() => Chat.Create(request.ChatId, infoResult.Value, settingsResult.Value));
         }
-
-        private async Task<Message> SendMessageAsync(long chatId, string message, CancellationToken token) => 
-            await Client.SendTextMessageAsync(chatId, message, cancellationToken: token);
     }
 }
