@@ -1,6 +1,6 @@
 using System;
 using BetterTravel.DataAccess.EF.Metadata;
-using BetterTravel.Domain.Entities;
+using BetterTravel.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

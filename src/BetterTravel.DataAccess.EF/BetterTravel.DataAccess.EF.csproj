@@ -43,7 +43,7 @@
     
     <ItemGroup>
       <ProjectReference Include="..\BetterTravel.Common\BetterTravel.Common.csproj" />
-      <ProjectReference Include="..\BetterTravel.Domain\BetterTravel.Domain.csproj" />
+      <ProjectReference Include="..\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>

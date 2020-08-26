@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.Domain.Entities;
+using BetterTravel.DataAccess.Entities;
 
 namespace BetterTravel.DataAccess.EF.Repositories
 {

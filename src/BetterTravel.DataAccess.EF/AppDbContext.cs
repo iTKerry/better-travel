@@ -3,9 +3,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
-using BetterTravel.Domain.Entities;
-using BetterTravel.Domain.Entities.Base;
-using BetterTravel.Domain.Entities.Enumerations;
+using BetterTravel.DataAccess.EF.Common;
+using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Entities.Base;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF

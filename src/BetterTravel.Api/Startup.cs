@@ -17,24 +17,26 @@ namespace BetterTravel.Api
 {
     public class Startup
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _cfg;
 
         public Startup(IConfiguration configuration) => 
-            _configuration = configuration;
+            _cfg = configuration;
 
         public void ConfigureServices(IServiceCollection services) =>
             services.AddOptions()
+                .AddBetterTravelCache(_cfg)
                 .AddAutoMapper(typeof(Startup).Assembly)
                 .AddBetterTravelCompression()
                 .AddBetterTravelMvc()
                 .AddBetterTravelProfiler()
-                .AddBetterTravelDb(_configuration)
+                .AddBetterTravelDb(_cfg)
                 .AddMemoryCache()
                 .AddBetterTravelCors()
                 .AddRouteOptions()
                 .AddBetterTravelHealthChecks()
                 .AddBetterTravelSwagger()
-                .AddHostedService<TelegramHostedService>();
+                .AddHostedService<TelegramHostedService>()
+                .AddHostedService<ExchangeHostedService>();
 
         public static void ConfigureContainer(ContainerBuilder builder) =>
             builder.RegisterAssemblyModules(typeof(Startup).Assembly);

@@ -1,38 +1,6 @@
 version: '3.7'
 
 services:
-  currencyfetcher:
-    image: bettertravel.currencyfetcher
-    container_name: bettertravel.currencyfetcher
-    networks:
-      - bettertravel
-    depends_on:
-      - azurite
-    build:
-      context: .
-      dockerfile: src/BetterTravel.CurrencyFetcher.Function/Dockerfile
-  hottoursfetcher:
-    image: bettertravel.hottoursfetcher
-    container_name: bettertravel.hottoursfetcher
-    networks:
-      - bettertravel
-    depends_on:
-      - db
-      - azurite
-    build:
-      context: .
-      dockerfile: src/BetterTravel.HotToursFetcher.Function/Dockerfile
-  telegramupdate:
-    image: bettertravel.telegramupdate
-    container_name: bettertravel.telegramupdate
-    networks:
-      - bettertravel
-    depends_on:
-      - api
-      - azurite
-    build:
-      context: .
-      dockerfile: src/BetterTravel.TelegramUpdate.Function/Dockerfile
   api:
     image: bettertravel.api
     container_name: bettertravel.api
@@ -48,28 +16,14 @@ services:
     container_name: bettertravel.db
     networks:
       - bettertravel
-  mq:
-    image: rabbitmq:3.8.6-management-alpine
-    container_name: bettertravel.mq
-    volumes:
-      - mq_data:/data
-    networks:
-      - bettertravel
-  azurite:
-    image: mcr.microsoft.com/azure-storage/azurite
-    container_name: bettertravel.azurite
-    networks:
-      - bettertravel
-  redis:
+  cache:
     image: redis:alpine
+    #command: ["redis-server", "--bind", "redis", "--port", "6379"]
     command: redis-server
     container_name: bettertravel.redis
     networks:
       - bettertravel
 
-volumes:
-  mq_data:
-    
 networks:
   bettertravel:
     name: bettertravel.network

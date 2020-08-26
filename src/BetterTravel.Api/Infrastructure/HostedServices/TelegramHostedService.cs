@@ -25,9 +25,10 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             await _client.DeleteWebhookAsync(cancellationToken);
-            _logger.Information("Setting web-hook with {url} {token}", _configuration.WebhookUrl, _configuration.BotToken);
+            _logger.Information($"Setting web-hook with {_configuration.WebhookUrl} {_configuration.BotToken}");
             
-            await _client.SetWebhookAsync($"{_configuration.WebhookUrl}", cancellationToken: cancellationToken);
+            await _client.SetWebhookAsync($"{_configuration.WebhookUrl}/{_configuration.BotToken}",
+                cancellationToken: cancellationToken);
             _logger.Information("End setting web-hook");
         }
 

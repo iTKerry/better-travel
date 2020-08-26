@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.EF.Repositories;
-using BetterTravel.Domain.Entities;
+using BetterTravel.DataAccess.EF.Common;
+using BetterTravel.DataAccess.Entities;
 using BetterTravel.HotToursFetcher.Function.Abstractions;
 using BetterTravel.HotToursFetcher.Function.Providers;
 using Microsoft.Azure.WebJobs;

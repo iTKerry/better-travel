@@ -41,10 +41,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BetterTravel.Api.Queries\BetterTravel.Api.Queries.csproj" />
+      <ProjectReference Include="..\BetterTravel.Commands\BetterTravel.Commands.csproj" />
       <ProjectReference Include="..\BetterTravel.Common\BetterTravel.Common.csproj" />
       <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
+      <ProjectReference Include="..\BetterTravel.DataAccess.Redis\BetterTravel.DataAccess.Redis.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
+      <ProjectReference Include="..\BetterTravel.Queries\BetterTravel.Queries.csproj" />
     </ItemGroup>
 
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.EF.Repositories;
-using BetterTravel.Domain.Views.Base;
+using BetterTravel.DataAccess.EF.Common;
+using BetterTravel.DataAccess.Views.Base;
 
 namespace BetterTravel.DataAccess.EF.Abstractions
 {

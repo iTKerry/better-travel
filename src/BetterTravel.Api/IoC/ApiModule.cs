@@ -3,6 +3,8 @@ using Autofac;
 using BetterTravel.Api.ExceptionHandling;
 using BetterTravel.Api.ExceptionHandling.Abstractions;
 using BetterTravel.Api.Extensions.Configuration;
+using BetterTravel.Application.Abstractions;
+using BetterTravel.Application.Exchange;
 using BetterTravel.Common.Configurations;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,10 @@ namespace BetterTravel.Api.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder
+                .RegisterType<ExchangeProvider>()
+                .As<IExchangeProvider>();
+            
             RegisterTelegram(builder);
             RegisterExceptionHandling(builder);
             RegisterMediator(builder);

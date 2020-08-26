@@ -3,6 +3,7 @@ using BetterTravel.Common.Configurations;
 using BetterTravel.Common.Constants;
 using BetterTravel.DataAccess.EF;
 using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.EF.Repositories;
 using BetterTravel.HotToursFetcher.Function;
 using BetterTravel.HotToursFetcher.Function.Abstractions;

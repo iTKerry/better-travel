@@ -1,4 +1,5 @@
 ﻿using BetterTravel.Common.Configurations;
+using BetterTravel.DataAccess.EF.Common;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace BetterTravel.DataAccess.EF

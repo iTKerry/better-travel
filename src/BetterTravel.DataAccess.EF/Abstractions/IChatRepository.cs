@@ -1,4 +1,4 @@
-﻿using BetterTravel.Domain.Entities;
+﻿using BetterTravel.DataAccess.Entities;
 
 namespace BetterTravel.DataAccess.EF.Abstractions
 {

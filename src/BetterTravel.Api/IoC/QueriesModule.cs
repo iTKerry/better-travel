@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Autofac;
-using BetterTravel.Api.Queries.Abstractions;
+using BetterTravel.Queries.Abstractions;
 using MediatR;
 
 namespace BetterTravel.Api.IoC

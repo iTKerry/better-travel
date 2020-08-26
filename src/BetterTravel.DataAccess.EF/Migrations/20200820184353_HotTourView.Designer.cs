@@ -21,7 +21,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Chat", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Chat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("Chat","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatCountrySubscription", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatCountrySubscription", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("ChatCountrySubscription","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatDepartureSubscription", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatDepartureSubscription", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("ChatDepartureSubscription","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatSettings", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatSettings", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("ChatSettingsID")
@@ -103,7 +103,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("ChatSettings");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Currency", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Currency", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("CurrencyId")
@@ -117,7 +117,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("Currency","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Enumerations.Country", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Enumerations.Country", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("CountryID")
@@ -131,7 +131,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("Country","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Enumerations.DepartureLocation", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("DepartureLocationID")
@@ -145,7 +145,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("DepartureLocation","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.HotTour", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.HotTour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,7 +173,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("HotTour","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.HotelCategory", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.HotelCategory", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("HotelCategoryID")
@@ -187,9 +187,9 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("HotelCategory","dbo");
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.Chat", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Chat", b =>
                 {
-                    b.OwnsOne("BetterTravel.Domain.ValueObjects.ChatInfo", "Info", b1 =>
+                    b.OwnsOne("BetterTravel.DataAccess.ValueObjects.ChatInfo", "Info", b1 =>
                         {
                             b1.Property<int>("ChatId")
                                 .ValueGeneratedOnAdd()
@@ -217,58 +217,58 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatCountrySubscription", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatCountrySubscription", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.Country", "Country")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.ChatSettings", "Settings")
+                    b.HasOne("BetterTravel.DataAccess.Entities.ChatSettings", "Settings")
                         .WithMany("CountrySubscriptions")
                         .HasForeignKey("SettingsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatDepartureSubscription", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatDepartureSubscription", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", "Departure")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.DepartureLocation", "Departure")
                         .WithMany()
                         .HasForeignKey("DepartureId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.ChatSettings", "Settings")
+                    b.HasOne("BetterTravel.DataAccess.Entities.ChatSettings", "Settings")
                         .WithMany("DepartureSubscriptions")
                         .HasForeignKey("SettingsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.ChatSettings", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatSettings", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.Currency", "Currency")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Currency", "Currency")
                         .WithMany()
                         .HasForeignKey("CurrencyId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.Chat", "Chat")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Chat", "Chat")
                         .WithOne("Settings")
-                        .HasForeignKey("BetterTravel.Domain.Entities.ChatSettings", "Id")
+                        .HasForeignKey("BetterTravel.DataAccess.Entities.ChatSettings", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BetterTravel.Domain.Entities.HotTour", b =>
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.HotTour", b =>
                 {
-                    b.HasOne("BetterTravel.Domain.Entities.HotelCategory", "Category")
+                    b.HasOne("BetterTravel.DataAccess.Entities.HotelCategory", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.Country", "Country")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
 
-                    b.HasOne("BetterTravel.Domain.Entities.Enumerations.DepartureLocation", "DepartureLocation")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.DepartureLocation", "DepartureLocation")
                         .WithMany()
                         .HasForeignKey("DepartureLocationId");
 
-                    b.OwnsOne("BetterTravel.Domain.ValueObjects.Duration", "Duration", b1 =>
+                    b.OwnsOne("BetterTravel.DataAccess.ValueObjects.Duration", "Duration", b1 =>
                         {
                             b1.Property<int>("HotTourId")
                                 .ValueGeneratedOnAdd()
@@ -291,7 +291,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .HasForeignKey("HotTourId");
                         });
 
-                    b.OwnsOne("BetterTravel.Domain.ValueObjects.HotTourInfo", "Info", b1 =>
+                    b.OwnsOne("BetterTravel.DataAccess.ValueObjects.HotTourInfo", "Info", b1 =>
                         {
                             b1.Property<int>("HotTourId")
                                 .ValueGeneratedOnAdd()
@@ -322,7 +322,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .HasForeignKey("HotTourId");
                         });
 
-                    b.OwnsOne("BetterTravel.Domain.ValueObjects.Price", "Price", b1 =>
+                    b.OwnsOne("BetterTravel.DataAccess.ValueObjects.Price", "Price", b1 =>
                         {
                             b1.Property<int>("HotTourId")
                                 .ValueGeneratedOnAdd()
@@ -346,7 +346,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
                             b1.ToTable("HotTour");
 
-                            b1.HasOne("BetterTravel.Domain.Entities.Currency", "Currency")
+                            b1.HasOne("BetterTravel.DataAccess.Entities.Currency", "Currency")
                                 .WithMany()
                                 .HasForeignKey("CurrencyId");
 
@@ -354,7 +354,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .HasForeignKey("HotTourId");
                         });
 
-                    b.OwnsOne("BetterTravel.Domain.ValueObjects.Resort", "Resort", b1 =>
+                    b.OwnsOne("BetterTravel.DataAccess.ValueObjects.Resort", "Resort", b1 =>
                         {
                             b1.Property<int>("HotTourId")
                                 .ValueGeneratedOnAdd()
