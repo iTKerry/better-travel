@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BetterTravel.Commands.Telegram.Keyboards.Data;
+using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.SettingsBack;
 using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace BetterTravel.Commands.Telegram.Keyboards.Factories
+namespace BetterTravel.Commands.Telegram.SettingsDepartures.Keyboard
 {
     public class SettingsDepartureKeyboard : KeyboardFactoryBase<List<SettingsDepartureKeyboardData>>
     {

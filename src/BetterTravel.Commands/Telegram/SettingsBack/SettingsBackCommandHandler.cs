@@ -1,8 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Commands.Abstractions;
-using BetterTravel.Commands.Telegram.Keyboards.Data;
-using BetterTravel.Commands.Telegram.Keyboards.Factories;
+using BetterTravel.Commands.Telegram.Settings.Keyboard;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.MediatR.Core.Abstractions;
 using CSharpFunctionalExtensions;

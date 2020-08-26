@@ -1,6 +1,6 @@
-﻿namespace BetterTravel.Commands.Telegram.Keyboards.Data
+namespace BetterTravel.Commands.Telegram.SettingsCurrency.Keyboard
 {
-    public class SettingsDepartureKeyboardData
+    public class SettingsCurrencyKeyboardData
     {
         public int Id { get; set; }
         public string Name { get; set; }

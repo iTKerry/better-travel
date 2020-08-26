@@ -1,4 +1,4 @@
-﻿namespace BetterTravel.Commands.Telegram.Keyboards.Data
+﻿namespace BetterTravel.Commands.Telegram.Settings.Keyboard
 {
     public class SettingsKeyboardData
     {

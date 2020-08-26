@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 
-namespace BetterTravel.Commands.Telegram.Keyboards.Factories
+namespace BetterTravel.Commands.Abstractions
 {
     public abstract class KeyboardFactoryBase<T> where T : class
     {
