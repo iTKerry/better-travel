@@ -8,6 +8,7 @@ using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace BetterTravel.DataAccess.EF
 {
@@ -21,21 +22,21 @@ namespace BetterTravel.DataAccess.EF
         };
 
         private readonly IEventDispatcher _eventDispatcher;
-        private readonly DbConnectionString _dbConnectionString;
-        
+        private readonly string _dbConnectionString;
+
         public AppDbContext(
-            IEventDispatcher eventDispatcher, 
-            DbConnectionString dbConnectionString)
+            IEventDispatcher eventDispatcher,
+            IOptions<ConnectionStrings> connectionStringsOptions)
         {
             _eventDispatcher = eventDispatcher;
-            _dbConnectionString = dbConnectionString;
+            _dbConnectionString = connectionStringsOptions.Value.BetterTravelDb;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseSqlServer(
-                    _dbConnectionString.ToString(),
+                    _dbConnectionString,
                     x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName))
                 .UseLazyLoadingProxies();
         }

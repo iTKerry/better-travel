@@ -12,6 +12,7 @@ using BetterTravel.Commands.Telegram.SettingsDepartures;
 using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
 using BetterTravel.Commands.Telegram.SettingsSubscriptionToggle;
 using BetterTravel.Commands.Telegram.Start;
+using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
 using CSharpFunctionalExtensions;
@@ -33,9 +34,9 @@ namespace BetterTravel.Api.Controllers
         
         public TelegramController(
             IMediator mediator, IMapper mapper, 
-            ITelegramBotClient client, 
+            ITelegramBotClient client, IUnitOfWork unitOfWork,
             ILogger<TelegramController> log) 
-            : base(mapper, mediator) => 
+            : base(mapper, mediator, unitOfWork) => 
             (_client, _log) = (client, log);
 
         [HttpPost("{token}")]

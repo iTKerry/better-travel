@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Net.Mime;
+using System.Threading.Tasks;
 using AutoMapper;
+using BetterTravel.Common.Utils;
+using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
 using MediatR;
@@ -13,28 +16,54 @@ namespace BetterTravel.Api.Controllers
     {
         protected IMapper Mapper { get; }
         protected IMediator Mediator { get; }
+        protected IUnitOfWork UnitOfWork { get; }
 
-        protected ApiController(IMapper mapper, IMediator mediator) =>
+        protected ApiController(IMapper mapper, IMediator mediator, IUnitOfWork unitOfWork)
+        {
+            UnitOfWork = unitOfWork;
             (Mapper, Mediator) = (mapper, mediator);
+        }
 
-        protected IActionResult FromResult<T>(IHandlerResult<T> result) where T : class =>
+        protected async Task<IActionResult> FromResult<T>(IHandlerResult<T> result) =>
             result switch
             {
-                OkHandlerResult<T> ok => Ok(ok.Data) as IActionResult,
-                NotFoundHandlerResult<T> _ => NotFound() as IActionResult,
-                ValidationFailedHandlerResult<T> vf => BadRequest(vf.Message) as IActionResult, 
-                
+                OkHandlerResult<T> ok => await Ok(ok.Data),
+                NotFoundHandlerResult<T> _ => NotFound(),
+                ValidationFailedHandlerResult<T> failed => Error(failed.Message),
+
                 _ => throw new InvalidOperationException(),
             };
         
-        protected IActionResult FromResult(IHandlerResult result) =>
+        protected async Task<IActionResult> FromResult(IHandlerResult result) =>
             result switch
             {
-                OkHandlerResult _ => Ok() as IActionResult,
-                NotFoundHandlerResult _ => NotFound() as IActionResult,
-                ValidationFailedHandlerResult vf => BadRequest(vf.Message) as IActionResult,
+                OkHandlerResult _ => await Ok(),
+                NotFoundHandlerResult _ => NotFound(),
+                ValidationFailedHandlerResult vfResult => Error(vfResult.Message),
                 
                 _ => throw new InvalidOperationException(),
             };
+
+        protected new async Task<IActionResult> Ok()
+        {
+            await UnitOfWork.CommitAsync();
+            return base.Ok(Envelope.Ok());
+        }
+        
+        protected async Task<IActionResult> Ok<T>(T value)
+        {
+            await UnitOfWork.CommitAsync();
+            return base.Ok(Envelope.Ok(value));
+        }
+
+        protected new IActionResult NotFound()
+        {
+            return base.NotFound(Envelope.Ok());
+        }
+
+        protected IActionResult Error(string errorMessage)
+        {
+            return BadRequest(Envelope.Error(errorMessage));
+        }
     }
 }

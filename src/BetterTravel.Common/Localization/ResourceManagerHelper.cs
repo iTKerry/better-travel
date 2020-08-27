@@ -7,7 +7,7 @@ namespace BetterTravel.Common.Localization
 {
     public static class ResourceManagerHelper
     {
-        public static string? GetResourceName(this ResourceManager resourceManager, string value,
+        public static string GetResourceName(this ResourceManager resourceManager, string value,
             CultureInfo cultureInfo, bool ignoreCase = false)
         {
             var comparisonType =

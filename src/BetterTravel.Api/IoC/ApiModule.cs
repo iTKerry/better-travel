@@ -8,6 +8,7 @@ using BetterTravel.Application.HotToursFetcher;
 using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.Common.Configurations;
 using MediatR;
+using Microsoft.Extensions.Options;
 using Telegram.Bot;
 
 namespace BetterTravel.Api.IoC
@@ -30,8 +31,8 @@ namespace BetterTravel.Api.IoC
             builder
                 .Register(context =>
                 {
-                    var config = context.Resolve<BotConfiguration>();
-                    return new TelegramBotClient(config.BotToken);
+                    var config = context.Resolve<IOptions<BotConfiguration>>();
+                    return new TelegramBotClient(config.Value.BotToken);
                 }).As<ITelegramBotClient>()
                 .SingleInstance();
             

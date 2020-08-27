@@ -12,6 +12,7 @@ using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.ValueObjects;
+using Microsoft.Extensions.Options;
 using Refit;
 
 namespace BetterTravel.Application.HotToursFetcher
@@ -20,8 +21,8 @@ namespace BetterTravel.Application.HotToursFetcher
     {
         private readonly IHotToursProviderApi _api;
 
-        public HotToursProvider(HotToursProviderUri hotToursProviderUri) =>
-            _api = RestService.For<IHotToursProviderApi>(hotToursProviderUri.ToString());
+        public HotToursProvider(IOptions<ThirdPartyServices> thirdPartyOptions) =>
+            _api = RestService.For<IHotToursProviderApi>(thirdPartyOptions.Value.HotToursProviderUrl);
 
         public async Task<List<HotTour>> GetHotToursAsync(HotToursQuery query)
         {

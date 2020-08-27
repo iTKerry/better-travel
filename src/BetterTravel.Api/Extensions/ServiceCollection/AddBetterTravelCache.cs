@@ -1,5 +1,7 @@
 using BetterTravel.Common.Configurations;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace BetterTravel.Api.Extensions.ServiceCollection
 {
@@ -7,8 +9,12 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
     {
         public static IServiceCollection AddBetterTravelCache(this IServiceCollection services)
         {
-            var connectionString = services.BuildServiceProvider().GetService<CacheConnectionString>();
-            return services.AddStackExchangeRedisCache(opt => opt.Configuration = connectionString.ToString());
+            services
+                .AddOptions<RedisCacheOptions>()
+                .Configure<IOptions<ConnectionStrings>>((redis, opt) =>
+                    redis.Configuration = opt.Value.BetterTravelCache);
+            
+            return services.AddStackExchangeRedisCache(opt => {});
         }
     }
 }

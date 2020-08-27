@@ -2,6 +2,8 @@
 {
     public class BotConfiguration
     {
+        public const string Key = nameof(BotConfiguration);
+        
         public string WebhookUrl { get; set; }
         public string BotToken { get; set; }
 

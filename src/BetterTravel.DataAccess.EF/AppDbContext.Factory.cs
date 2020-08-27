@@ -1,6 +1,7 @@
 ﻿using BetterTravel.Common.Configurations;
 using BetterTravel.DataAccess.EF.Common;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Options;
 
 namespace BetterTravel.DataAccess.EF
 {
@@ -11,10 +12,10 @@ namespace BetterTravel.DataAccess.EF
         
         public AppDbContext CreateDbContext(string[] args)
         {
-            var connectionString = new DbConnectionString(ConnectionString);
+            var connectionStrings = new ConnectionStrings {BetterTravelDb = ConnectionString};
             var eventDispatcher = new EventDispatcher(new MessageBus(new Bus()));
 
-            return new AppDbContext(eventDispatcher, connectionString);
+            return new AppDbContext(eventDispatcher, new OptionsWrapper<ConnectionStrings>(connectionStrings));
         }
     }
 }

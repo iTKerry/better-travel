@@ -22,31 +22,27 @@ namespace BetterTravel.Api.IoC
         {
             builder
                 .RegisterType<DbSeeder>()
-                .As<IDbSeeder>();
+                .As<IDbSeeder>()
+                .InstancePerDependency();
             
             builder
                 .RegisterType<UnitOfWork>()
-                .As<IUnitOfWork>();
+                .As<IUnitOfWork>()
+                .InstancePerLifetimeScope();
             
             builder
                 .RegisterType<EventDispatcher>()
                 .As<IEventDispatcher>();
             
             builder
-                .RegisterType<Bus>()
-                .As<IBus>();
-            
-            builder
-                .RegisterType<MessageBus>()
-                .AsSelf();
-            
-            builder
                 .RegisterType<HotToursRepository>()
-                .As<IHotToursRepository>();
+                .As<IHotToursRepository>()
+                .InstancePerDependency();
 
             builder
                 .RegisterType<ChatRepository>()
-                .As<IChatRepository>();
+                .As<IChatRepository>()
+                .InstancePerDependency();
 
             builder
                 .RegisterGeneric(typeof(ReadOnlyRepository<>))
@@ -55,7 +51,16 @@ namespace BetterTravel.Api.IoC
 
             builder
                 .RegisterType<CurrencyRateRepository>()
-                .As<ICurrencyRateRepository>();
+                .As<ICurrencyRateRepository>()
+                .InstancePerDependency();
+            
+            builder
+                .RegisterType<Bus>()
+                .As<IBus>();
+            
+            builder
+                .RegisterType<MessageBus>()
+                .AsSelf();
         }
     }
 }

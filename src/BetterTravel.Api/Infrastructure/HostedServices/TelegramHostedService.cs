@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Serilog;
 using Telegram.Bot;
 
@@ -15,10 +16,10 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
 
         public TelegramHostedService(
             ITelegramBotClient client,
-            BotConfiguration configuration)
+            IOptions<BotConfiguration> botConfigurationOptions)
         {
             _client = client;
-            _configuration = configuration;
+            _configuration = botConfigurationOptions.Value;
             _logger = Log.ForContext<TelegramHostedService>();
         }
         

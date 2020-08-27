@@ -7,25 +7,25 @@ using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.Entities;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace BetterTravel.Api.Infrastructure.HostedServices
 {
     public class HotToursFetcherHostedService : TimedHostedService<HotToursFetcherHostedService>
     {
-        private readonly IHotToursProvider _provider;
-        private readonly IUnitOfWork _unitOfWork;
-
         protected override TimeSpan Period => TimeSpan.FromMinutes(5);
 
         public HotToursFetcherHostedService(
-            IHotToursProvider provider, IUnitOfWork unitOfWork, 
+            IServiceProvider services, 
             ILogger<HotToursFetcherHostedService> logger) 
-            : base(logger) =>
-            (_provider, _unitOfWork) = (provider, unitOfWork);
+            : base(services, logger) { }
 
-        protected override async Task JobAsync()
+        protected override async Task JobAsync(IServiceScope scope)
         {
+            var provider = scope.ServiceProvider.GetRequiredService<IHotToursProvider>();
+            var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+            
             var query = new HotToursQuery
             {
                 DurationFrom = 1,
@@ -35,7 +35,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                 Count = 1000
             };
             
-            var newTours = await _provider.GetHotToursAsync(query);
+            var newTours = await provider.GetHotToursAsync(query);
             
             var newToursNames = newTours
                 .Select(q => q.Info.Name)
@@ -47,7 +47,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                     newToursNames.Any(t => t == cachedTour.Info.Name)
             };
             
-            var existingTours = await _unitOfWork.HotToursRepository.GetAsync(queryObject);
+            var existingTours = await unitOfWork.HotToursRepository.GetAsync(queryObject);
             
             var uniqueTours = newTours
                 .Where(newTour =>
@@ -57,9 +57,9 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                         existingTour.Category.Id != newTour.Category.Id))
                 .ToList();
         
-            _unitOfWork.HotToursRepository.Save(uniqueTours);
+            unitOfWork.HotToursRepository.Save(uniqueTours);
             
-            await _unitOfWork.CommitAsync();
+            await unitOfWork.CommitAsync();
         
             Logger.LogInformation($"Fetched {newTours.Count} and stored {uniqueTours.Count} tours.");
         }

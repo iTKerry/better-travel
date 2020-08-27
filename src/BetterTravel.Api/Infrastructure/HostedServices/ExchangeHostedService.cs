@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BetterTravel.Api.Infrastructure.HostedServices.Abstractions;
 using BetterTravel.Application.Exchange.Abstractions;
 using CSharpFunctionalExtensions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace BetterTravel.Api.Infrastructure.HostedServices
@@ -17,12 +18,13 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
         protected override TimeSpan Period => TimeSpan.FromHours(1);
 
         public ExchangeHostedService(
-            ILogger<ExchangeHostedService> logger, 
-            IExchangeProvider exchangeProvider) 
-            : base(logger) =>
-            (_logger,_exchangeProvider) = (logger,exchangeProvider);
+            ILogger<ExchangeHostedService> logger,
+            IExchangeProvider exchangeProvider,
+            IServiceProvider services)
+            : base(services, logger) =>
+            (_logger, _exchangeProvider) = (logger, exchangeProvider);
 
-        protected override async Task JobAsync() =>
+        protected override async Task JobAsync(IServiceScope serviceScope) =>
             await _exchangeProvider.GetExchangeAsync(false)
                 .Map(currencies => currencies
                     .Select(c => $"Code: {c.Type}\t| Rate: {c.Rate:F}")

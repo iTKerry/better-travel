@@ -23,13 +23,19 @@ namespace BetterTravel.Common.Utils
         {
         }
 
-        public static Envelope<T> Success<T>(T result) => 
-            new Envelope<T>(result, null);
+        public static Envelope<T> Ok<T>(T result)
+        {
+            return new Envelope<T>(result, null);
+        }
 
-        public static Envelope Success() => 
-            new Envelope(null);
+        public static Envelope Ok()
+        {
+            return new Envelope(null);
+        }
 
-        public static Envelope Error(string errorMessage) => 
-            new Envelope(errorMessage);
+        public static Envelope Error(string errorMessage)
+        {
+            return new Envelope(errorMessage);
+        }
     }
 }
