@@ -34,6 +34,10 @@ namespace BetterTravel.DataAccess.Entities
             AllCurrencies.SingleOrDefault(c => c.Id == (int) type) 
             ?? throw new ArgumentException($"There is no such currency for type: {type}");
         
+        public static Currency FromName(string name) =>
+            AllCurrencies.SingleOrDefault(c => c.Name == name) 
+            ?? throw new ArgumentException($"There is no such currency for type: {name}");
+
         public bool IsType(CurrencyType type) =>
             Id == (int) type;
     }

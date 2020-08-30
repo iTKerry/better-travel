@@ -1,3 +1,5 @@
+using BetterTravel.DataAccess.Enums;
+
 namespace BetterTravel.Api.Requests.HotTours
 {
     public class GetHotToursDto
@@ -8,5 +10,6 @@ namespace BetterTravel.Api.Requests.HotTours
         public int[] Departures { get; set; }
         public int[] HotelCategories { get; set; }
         public bool Localize { get; set; }
+        public CurrencyType Currency { get; set; } = CurrencyType.UAH;
     }
 }

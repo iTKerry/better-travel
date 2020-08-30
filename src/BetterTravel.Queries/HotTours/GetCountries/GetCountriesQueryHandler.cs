@@ -11,7 +11,7 @@ using BetterTravel.Queries.ViewModels;
 namespace BetterTravel.Queries.HotTours.GetCountries
 {
     public class GetCountriesQueryHandler 
-        : ApiQueryHandler<GetCountriesQuery, List<GetCountriesViewModel>>
+        : QueryHandlerBase<GetCountriesQuery, List<GetCountriesViewModel>>
     {
         public override Task<IHandlerResult<List<GetCountriesViewModel>>> Handle(
             GetCountriesQuery request, 

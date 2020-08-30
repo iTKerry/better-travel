@@ -9,7 +9,7 @@ namespace BetterTravel.Api.IoC
     [ExcludeFromCodeCoverage]
     public class QueriesModule : Autofac.Module
     {
-        protected override Assembly ThisAssembly => typeof(ApiQueryHandler<,>).Assembly;
+        protected override Assembly ThisAssembly => typeof(QueryHandlerBase<,>).Assembly;
 
         protected override void Load(ContainerBuilder builder)
         {

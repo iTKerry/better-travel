@@ -43,6 +43,11 @@ namespace BetterTravel.DataAccess.EF.Configurations
                 .Property(p => p.DepartureLocation)
                 .HasColumnName("DepartureLocationID")
                 .HasConversion(p => p.Id, id => DepartureLocation.FromId(id));
+
+            builder
+                .Property(p => p.Currency)
+                .HasColumnName("CurrencyId")
+                .HasConversion(p => p.Id, id => Currency.FromId(id));
         }
     }
 }

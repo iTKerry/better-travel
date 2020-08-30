@@ -40,24 +40,15 @@ namespace BetterTravel.Api.Controllers
             (_client, _log) = (client, log);
 
         [HttpPost("{token}")]
-        public async Task Update([FromRoute] string token, [FromBody] Update update)
-        {
-            try
-            {
-                await GetCommand(update)
-                    .MapWithTransactionScope(cmd => Mediator.Send(cmd))
-                    .Bind(result =>
-                        GetChatId(update)
-                            .ToResult("There is no ChatID")
-                            .Bind(chatId => Result.Success((Result: result, ChatId: chatId))))
-                    .Tap(tuple => HandleResultAsync(tuple.Result, tuple.ChatId))
-                    .OnFailure(message => _log.LogError(message));
-            }
-            catch (Exception e)
-            {
-                _log.LogError(e, e.Message);
-            }
-        }
+        public async Task Update([FromRoute] string token, [FromBody] Update update) =>
+            await GetCommand(update)
+                .MapWithTransactionScope(cmd => Mediator.Send(cmd))
+                .Bind(result =>
+                    GetChatId(update)
+                        .ToResult("There is no ChatID")
+                        .Bind(chatId => Result.Success((Result: result, ChatId: chatId))))
+                .Tap(tuple => HandleResultAsync(tuple.Result, tuple.ChatId))
+                .OnFailure(message => _log.LogError(message));
 
         private Result<ICommand> GetCommand(Update update) =>
             update.Type switch

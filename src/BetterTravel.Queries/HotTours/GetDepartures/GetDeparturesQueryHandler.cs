@@ -11,7 +11,7 @@ using BetterTravel.Queries.ViewModels;
 namespace BetterTravel.Queries.HotTours.GetDepartures
 {
     public class GetDeparturesQueryHandler 
-        : ApiQueryHandler<GetDeparturesQuery, List<GetDeparturesViewModel>>
+        : QueryHandlerBase<GetDeparturesQuery, List<GetDeparturesViewModel>>
     {
         public override Task<IHandlerResult<List<GetDeparturesViewModel>>> Handle(
             GetDeparturesQuery request, 

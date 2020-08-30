@@ -11,7 +11,7 @@ using BetterTravel.Queries.ViewModels;
 namespace BetterTravel.Queries.HotTours.GetHotelCategories
 {
     public class GetHotelCategoriesQueryHandler 
-        : ApiQueryHandler<GetHotelCategoriesQuery, List<GetHotelCategoriesViewModel>>
+        : QueryHandlerBase<GetHotelCategoriesQuery, List<GetHotelCategoriesViewModel>>
     {
         public override Task<IHandlerResult<List<GetHotelCategoriesViewModel>>> Handle(
             GetHotelCategoriesQuery request, 

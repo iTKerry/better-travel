@@ -13,8 +13,9 @@ namespace BetterTravel.Queries.ViewModels
         public DurationType DurationType { get; set; }
         public string DepartureLocationName { get; set; }
         public DateTime DepartureDate { get; set; }
-        public int PriceAmount { get; set; }
+        public double PriceAmount { get; set; }
         public PriceType PriceType { get; set; }
+        public string PriceCurrency { get; set; }
         public string CountryName { get; set; }
         public string ResortName { get; set; }
     }

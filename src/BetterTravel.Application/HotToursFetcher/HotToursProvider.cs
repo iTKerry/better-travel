@@ -45,7 +45,7 @@ namespace BetterTravel.Application.HotToursFetcher
                 new Duration(
                     source.DurationDay,
                     GetDurationType(source.NightsText)),
-                new Price(
+                Price.FromUah(
                     source.PriceFrom, 
                     GetPriceType(source.PriceDescription)),
                 GetCountry(source.CountryLinks.Links.FirstOrDefault()?.Text),

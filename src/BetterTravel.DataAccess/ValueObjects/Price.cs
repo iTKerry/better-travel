@@ -11,16 +11,22 @@ namespace BetterTravel.DataAccess.ValueObjects
         {
         }
         
-        public Price(int amount, PriceType type)
+        protected Price(int amount, PriceType type, Currency currency)
         {
             Amount = amount;
             Type = type;
-            Currency = UAH;
+            Currency = currency;
         }
 
         public int Amount { get; }
         public PriceType Type { get; }
         public virtual Currency Currency { get; }
+        
+        public static Price Create(int amount, PriceType type, Currency currency) =>
+            new Price(amount, type, currency);
+        
+        public static Price FromUah(int amount, PriceType type) =>
+            new Price(amount, type, UAH);
         
         protected override int GetHashCodeCore() => 
             Amount.GetHashCode() + Type.GetHashCode();

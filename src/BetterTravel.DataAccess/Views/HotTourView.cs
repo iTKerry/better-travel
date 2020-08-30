@@ -20,5 +20,6 @@ namespace BetterTravel.DataAccess.Views
         public DurationType DurationType { get; set; }
         public int PriceAmount { get; set; }
         public PriceType PriceType { get; set; }
+        public Currency Currency { get; set; }
     }
 }
