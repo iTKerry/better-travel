@@ -1,6 +1,4 @@
 ﻿using System;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.Views.Base;
 
@@ -10,9 +8,9 @@ namespace BetterTravel.DataAccess.Views
     {
         public string Name { get; set; }
         public string ResortName { get; set; }
-        public Country Country { get; set; }
-        public DepartureLocation DepartureLocation { get; set; }
-        public HotelCategory HotelCategory { get; set; }
+        public int CountryId { get; set; }
+        public int DepartureLocationId { get; set; }
+        public int HotelCategoryId { get; set; }
         public DateTime DepartureDate { get; set; }
         public Uri ImageLink { get; set; }
         public Uri DetailsLink { get; set; }
@@ -20,6 +18,6 @@ namespace BetterTravel.DataAccess.Views
         public DurationType DurationType { get; set; }
         public int PriceAmount { get; set; }
         public PriceType PriceType { get; set; }
-        public Currency Currency { get; set; }
+        public int CurrencyId { get; set; }
     }
 }

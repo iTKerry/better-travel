@@ -10,6 +10,7 @@ using BetterTravel.DataAccess.Cache;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.Views;
 using BetterTravel.MediatR.Core.Abstractions;
@@ -36,28 +37,28 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
             CancellationToken cancellationToken)
         {
             Expression<Func<HotTourView, bool>> wherePredicate = tour =>
-                (!request.Countries.Any() || request.Countries.Contains(tour.Country.Id)) &&
-                (!request.Departures.Any() || request.Departures.Contains(tour.DepartureLocation.Id)) &&
-                (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategory.Id));
+                (!request.Countries.Any() || request.Countries.Contains(tour.CountryId)) &&
+                (!request.Departures.Any() || request.Departures.Contains(tour.DepartureLocationId)) &&
+                (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategoryId));
 
-            Expression<Func<HotTourView, GetHotToursViewModel>> projection = tour => new GetHotToursViewModel
+            Expression<Func<HotTourView, GetHotToursViewDto>> projection = tour => new GetHotToursViewDto
             {
                 Name = tour.Name,
-                HotelCategory = tour.HotelCategory.Name,
+                HotelCategoryId = tour.HotelCategoryId,
                 DepartureDate = tour.DepartureDate,
-                DepartureLocationName = tour.DepartureLocation.Name,
+                DepartureLocationId = tour.DepartureLocationId,
                 DetailsLink = tour.DetailsLink,
                 DurationCount = tour.DurationCount,
                 DurationType = tour.DurationType,
                 ImageLink = tour.ImageLink,
                 PriceAmount = tour.PriceAmount,
                 PriceType = tour.PriceType,
-                PriceCurrency = tour.Currency.Name,
-                CountryName = tour.Country.Name,
+                PriceCurrencyId = tour.CurrencyId,
+                CountryId = tour.CountryId,
                 ResortName = tour.ResortName,
             };
 
-            var queryObject = new QueryObject<HotTourView, GetHotToursViewModel>
+            var queryObject = new QueryObject<HotTourView, GetHotToursViewDto>
             {
                 WherePredicate = wherePredicate,
                 Projection = projection,
@@ -70,7 +71,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
                 .Map(maybeExchange => GetCurrencyRate(request.Currency, maybeExchange))
                 .Map(async currencyRate =>
                     (await _repository.GetAsync(queryObject))
-                    .Select(tour => Map(tour, request.Localize, currencyRate))
+                    .Select(tour => MapDtoToViewModel(tour, request.Localize, currencyRate))
                     .ToList())
                 .Finally(result => result.IsSuccess
                     ? Ok(result.Value)
@@ -91,36 +92,36 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
                 _ => throw new InvalidOperationException()
             };
 
-        private static GetHotToursViewModel Map(GetHotToursViewModel tour, bool localize,
-            (Currency, double) currencyRate) =>
+        private static GetHotToursViewModel MapDtoToViewModel(
+            GetHotToursViewDto dto, bool localize, (Currency, double) currencyRate) =>
             new GetHotToursViewModel
             {
-                Name = tour.Name,
+                Name = dto.Name,
                 HotelCategory = localize
-                    ? L.GetValue(tour.HotelCategory)
-                    : tour.HotelCategory,
-                DepartureDate = tour.DepartureDate,
+                    ? L.GetValue(HotelCategory.FromId(dto.HotelCategoryId).Name)
+                    : HotelCategory.FromId(dto.HotelCategoryId).Name,
+                DepartureDate = dto.DepartureDate,
                 DepartureLocationName = localize
-                    ? L.GetValue(tour.DepartureLocationName, Culture.Ru)
-                    : tour.DepartureLocationName,
-                DetailsLink = tour.DetailsLink,
-                DurationCount = tour.DurationCount,
-                DurationType = tour.DurationType,
-                ImageLink = tour.ImageLink,
-                PriceAmount = GetPriceAmount(tour, currencyRate),
-                PriceType = tour.PriceType,
+                    ? L.GetValue(DepartureLocation.FromId(dto.DepartureLocationId).Name, Culture.Ru)
+                    : DepartureLocation.FromId(dto.DepartureLocationId).Name,
+                DetailsLink = dto.DetailsLink,
+                DurationCount = dto.DurationCount,
+                DurationType = dto.DurationType,
+                ImageLink = dto.ImageLink,
+                PriceAmount = GetPriceAmount(dto, currencyRate),
+                PriceType = dto.PriceType,
                 PriceCurrency = currencyRate.Item1.Name,
                 CountryName = localize
-                    ? L.GetValue(tour.CountryName, Culture.Ru)
-                    : tour.CountryName,
-                ResortName = tour.ResortName,
+                    ? L.GetValue(Country.FromId(dto.CountryId).Name, Culture.Ru)
+                    : Country.FromId(dto.CountryId).Name,
+                ResortName = dto.ResortName
             };
 
-        private static double GetPriceAmount(GetHotToursViewModel tour, (Currency, double) currencyRate) =>
-            Currency.FromName(tour.PriceCurrency) switch
+        private static double GetPriceAmount(GetHotToursViewDto dto, (Currency, double) currencyRate) =>
+            Currency.FromId(dto.PriceCurrencyId) switch
             {
-                var tc when tc == currencyRate.Item1 => tour.PriceAmount,
-                var tc when tc == Currency.UAH => Math.Round(tour.PriceAmount / currencyRate.Item2, 2),
+                var tc when tc == currencyRate.Item1 => dto.PriceAmount,
+                var tc when tc == Currency.UAH => Math.Round(dto.PriceAmount / currencyRate.Item2, 2),
                 _ => throw new InvalidOperationException()
             };
     }

@@ -1,7 +1,5 @@
 ﻿using System;
 using BetterTravel.DataAccess.EF.Metadata;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -30,24 +28,20 @@ namespace BetterTravel.DataAccess.EF.Configurations
                 .HasConversion(p => p.ToString(), str => new Uri(str));
 
             builder
-                .Property(p => p.HotelCategory)
-                .HasColumnName("HotelCategoryID")
-                .HasConversion(p => p.Id, id => HotelCategory.FromId(id));
-            
-            builder
-                .Property(p => p.Country)
-                .HasColumnName("CountryID")
-                .HasConversion(p => p.Id, id => Country.FromId(id));
-            
-            builder
-                .Property(p => p.DepartureLocation)
-                .HasColumnName("DepartureLocationID")
-                .HasConversion(p => p.Id, id => DepartureLocation.FromId(id));
+                .Property(p => p.HotelCategoryId)
+                .HasColumnName("HotelCategoryID");
 
             builder
-                .Property(p => p.Currency)
-                .HasColumnName("CurrencyId")
-                .HasConversion(p => p.Id, id => Currency.FromId(id));
+                .Property(p => p.CountryId)
+                .HasColumnName("CountryID");
+
+            builder
+                .Property(p => p.DepartureLocationId)
+                .HasColumnName("DepartureLocationID");
+
+            builder
+                .Property(p => p.CurrencyId)
+                .HasColumnName("CurrencyId");
         }
     }
 }
