@@ -22,8 +22,7 @@ namespace BetterTravel.Api.IoC
         {
             builder
                 .RegisterType<DbSeeder>()
-                .As<IDbSeeder>()
-                .InstancePerDependency();
+                .As<IDbSeeder>();
             
             builder
                 .RegisterType<UnitOfWork>()
@@ -33,7 +32,7 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterType<EventDispatcher>()
                 .As<IEventDispatcher>();
-            
+
             builder
                 .RegisterType<HotToursRepository>()
                 .As<IHotToursRepository>()
@@ -46,13 +45,11 @@ namespace BetterTravel.Api.IoC
 
             builder
                 .RegisterGeneric(typeof(ReadOnlyRepository<>))
-                .As(typeof(IReadOnlyRepository<>))
-                .InstancePerDependency();
+                .As(typeof(IReadOnlyRepository<>));
 
             builder
                 .RegisterType<CurrencyRateRepository>()
-                .As<ICurrencyRateRepository>()
-                .InstancePerDependency();
+                .As<ICurrencyRateRepository>();
             
             builder
                 .RegisterType<Bus>()

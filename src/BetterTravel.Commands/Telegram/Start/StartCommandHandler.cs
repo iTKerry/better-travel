@@ -29,7 +29,6 @@ namespace BetterTravel.Commands.Telegram.Start
                     .OnFailureCompensate(() => CreateChat(request)
                         .Tap(chat => chat.ToggleSubscription())
                         .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
-                        .Tap(() => UnitOfWork.CommitAsync())
                         .Tap(() => SendMessageAsync(request.ChatId, "You are now subscribed to updates.", ctx)))
                     .Finally(result => result.IsFailure
                         ? ValidationFailed(result.Error)

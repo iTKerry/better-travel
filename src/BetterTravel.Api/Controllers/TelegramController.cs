@@ -42,7 +42,7 @@ namespace BetterTravel.Api.Controllers
         [HttpPost("{token}")]
         public async Task Update([FromRoute] string token, [FromBody] Update update) =>
             await GetCommand(update)
-                .MapWithTransactionScope(cmd => Mediator.Send(cmd))
+                .Map(cmd => Mediator.Send(cmd))
                 .Bind(result =>
                     GetChatId(update)
                         .ToResult("There is no ChatID")
@@ -79,12 +79,21 @@ namespace BetterTravel.Api.Controllers
             ?? update.CallbackQuery?.Message.Chat?.Id 
             ?? Maybe<long>.None;
         
-        private async Task<Maybe<Message>> HandleResultAsync(IHandlerResult result, long chatId) =>
-            result switch
+        private async Task HandleResultAsync(IHandlerResult result, long chatId)
+        {
+            switch(result) 
             {
-                ValidationFailedHandlerResult vf => await _client.SendTextMessageAsync(chatId, vf.Message),
-                _ => Maybe<Message>.None
+                case OkHandlerResult _:
+                    await UnitOfWork.CommitAsync();
+                    return;
+                case ValidationFailedHandlerResult failed:
+                    await _client.SendTextMessageAsync(chatId, failed.Message);
+                    return;
+                default:
+                    await _client.SendTextMessageAsync(chatId, "Unknown result.");
+                    return;
             };
+        }
 
         private Dictionary<string, Func<Message, ICommand>> MessageCommands =>
             new Dictionary<string, Func<Message, ICommand>>

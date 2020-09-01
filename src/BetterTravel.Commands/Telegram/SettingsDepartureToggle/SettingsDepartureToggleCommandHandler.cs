@@ -28,7 +28,6 @@ namespace BetterTravel.Commands.Telegram.SettingsDepartureToggle
                 .ToResult("That chat wasn't found between our subscribers.")
                 .Tap(chat => chat.ToggleDepartureSubscription(request.Departure))
                 .Tap(chat => UnitOfWork.ChatRepository.Save(chat))
-                .Tap(() => UnitOfWork.CommitAsync())
                 .Bind(GetKeyboardDataResult)
                 .Bind(GetMarkupResult)
                 .Tap(markup => EditMessageReplyMarkupAsync(request.ChatId, request.MessageId, markup, ctx))
