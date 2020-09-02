@@ -4,6 +4,12 @@
         <name>BetterTravel.Api</name>
     </assembly>
     <members>
+        <member name="M:BetterTravel.Api.Controllers.ExchangeController.GetExchange">
+            <summary>
+            Get exchange rates for all supported currencies
+            </summary>
+            <returns>Exchange rates</returns>
+        </member>
         <member name="M:BetterTravel.Api.Controllers.HotToursController.GetTours(BetterTravel.Api.Requests.HotTours.GetHotToursDto)">
             <summary>
             Get actual hot-tours
