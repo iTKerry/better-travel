@@ -13,7 +13,7 @@ namespace BetterTravel.DataAccess.EF
         public AppDbContext CreateDbContext(string[] args)
         {
             var connectionStrings = new ConnectionStrings {BetterTravelDb = ConnectionString};
-            var eventDispatcher = new EventDispatcher(new MessageBus(new Bus()));
+            var eventDispatcher = new EventDispatcher();
 
             return new AppDbContext(eventDispatcher, new OptionsWrapper<ConnectionStrings>(connectionStrings));
         }

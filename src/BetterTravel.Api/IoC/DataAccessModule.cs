@@ -50,14 +50,6 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterType<CurrencyRateRepository>()
                 .As<ICurrencyRateRepository>();
-            
-            builder
-                .RegisterType<Bus>()
-                .As<IBus>();
-            
-            builder
-                .RegisterType<MessageBus>()
-                .AsSelf();
         }
     }
 }
