@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BetterTravel.Api.Infrastructure.HostedServices.Abstractions;
+using BetterExtensions.AspNet.HostedServices;
 using BetterTravel.Application.HotToursFetcher;
 using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.DataAccess.EF.Abstractions;
@@ -61,7 +61,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
             
             await unitOfWork.CommitAsync();
         
-            Logger.LogInformation($"Fetched {newTours.Count} and stored {uniqueTours.Count} tours.");
+            _logger.LogInformation($"Fetched {newTours.Count} and stored {uniqueTours.Count} tours.");
         }
     }
 }

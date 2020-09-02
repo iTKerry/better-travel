@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BetterTravel.Api.Infrastructure.HostedServices.Abstractions;
+using BetterExtensions.AspNet.HostedServices;
 using BetterTravel.Application.Exchange.Abstractions;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +12,6 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
 {
     public class ExchangeHostedService : TimedHostedService<ExchangeHostedService>
     {
-        private readonly ILogger<ExchangeHostedService> _logger;
         private readonly IExchangeProvider _exchangeProvider;
 
         protected override TimeSpan Period => TimeSpan.FromHours(1);
@@ -22,7 +21,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
             IExchangeProvider exchangeProvider,
             IServiceProvider services)
             : base(services, logger) =>
-            (_logger, _exchangeProvider) = (logger, exchangeProvider);
+            _exchangeProvider = exchangeProvider;
 
         protected override async Task JobAsync(IServiceScope serviceScope) =>
             await _exchangeProvider.GetExchangeAsync(false)
