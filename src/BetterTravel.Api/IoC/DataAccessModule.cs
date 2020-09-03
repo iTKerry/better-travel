@@ -50,6 +50,10 @@ namespace BetterTravel.Api.IoC
             builder
                 .RegisterType<CurrencyRateRepository>()
                 .As<ICurrencyRateRepository>();
+
+            builder
+                .RegisterType<HotTourFoundRepository>()
+                .As<IHotTourFoundRepository>();
         }
     }
 }

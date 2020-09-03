@@ -15,7 +15,8 @@ namespace BetterTravel.DataAccess.Redis.Abstractions
     {
         protected readonly IDistributedCache Cache;
 
-        public virtual string Key => nameof(T);
+        public abstract string Key { get; }
+        protected abstract DistributedCacheEntryOptions Options { get; }
 
         protected CacheRepository(IDistributedCache cache) => 
             Cache = cache;
@@ -47,7 +48,7 @@ namespace BetterTravel.DataAccess.Redis.Abstractions
             {
                 var json = JsonSerializer.Serialize(data);
                 var bytes = Encoding.UTF8.GetBytes(json);
-                await Cache.SetAsync(Key, bytes);
+                await Cache.SetAsync(Key, bytes, Options);
                 return Result.Success();
             }
             catch (Exception e)

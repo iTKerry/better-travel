@@ -7,6 +7,7 @@ using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Redis.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -25,6 +26,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
         {
             var provider = scope.ServiceProvider.GetRequiredService<IHotToursProvider>();
             var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+            var cache = scope.ServiceProvider.GetRequiredService<IHotTourFoundRepository>();
             
             var query = new HotToursQuery
             {
@@ -34,6 +36,10 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                 PriceTo = 200000,
                 Count = 1000
             };
+
+            var deleteResult = await cache.DeleteAsync();
+            if (deleteResult.IsFailure)
+                _logger.LogCritical(deleteResult.Error);
             
             var newTours = await provider.GetHotToursAsync(query);
             

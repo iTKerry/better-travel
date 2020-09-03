@@ -1,9 +1,10 @@
 using System;
+using BetterTravel.DataAccess.Cache.Base;
 using BetterTravel.DataAccess.Enums;
 
 namespace BetterTravel.DataAccess.Cache
 {
-    public class CurrencyRate : Base.CachedObject
+    public class CurrencyRate : CachedObject
     {
         public CurrencyType Type { get; set; }
         public double Rate { get; set; }

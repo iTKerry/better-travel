@@ -66,9 +66,9 @@ namespace BetterTravel.DataAccess.EF
             changedEntries
                 .OfType<AggregateRoot>()
                 .ToList()
-                .ForEach(entry =>
+                .ForEach(async entry =>
                 {
-                    _eventDispatcher.Dispatch(entry.Id, entry.DomainEvents);
+                    await _eventDispatcher.DispatchAsync(entry.Id, entry.DomainEvents);
                     entry.ClearDomainEvents();
                 });
 
