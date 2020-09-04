@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using BetterTravel.DataAccess.EF.Abstractions;
@@ -13,6 +14,12 @@ namespace BetterTravel.DataAccess.EF.Repositories
         public ChatRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
+
+        public async Task<List<Chat>> GetAllAsync() =>
+            await Ctx.Chats
+                .Include(c => c.Settings.CountrySubscriptions)
+                .ThenInclude(c => c.Settings.DepartureSubscriptions)
+                .ToListAsync();
 
         public override async Task<Maybe<Chat>> GetByIdAsync(int id)
         {

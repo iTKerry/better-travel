@@ -34,6 +34,12 @@ namespace BetterTravel.DataAccess.Entities
                 .Map(() => new Chat(chatId, infoResult.Value, settingsResult.Value));
         }
 
+        public bool IsSubscribedToCountry(Country country) =>
+            Settings.CountrySubscriptions.Any(c => c.Country == country);
+
+        public bool IsSubscribedToDeparture(DepartureLocation departure) =>
+            Settings.DepartureSubscriptions.Any(d => d.Departure == departure);
+        
         public Result ToggleSubscription() =>
             Settings.IsSubscribed
                 ? Settings.Unsubscribe()

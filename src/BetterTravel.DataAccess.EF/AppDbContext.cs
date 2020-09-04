@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enumerations;
