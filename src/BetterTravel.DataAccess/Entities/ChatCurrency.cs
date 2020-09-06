@@ -1,4 +1,5 @@
 using BetterTravel.DataAccess.Entities.Base;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Entities

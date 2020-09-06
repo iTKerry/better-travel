@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterTravel.DataAccess.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200820183556_PriceCurrency")]
-    partial class PriceCurrency
+    [Migration("20200906145535_HotTourView")]
+    partial class HotTourView
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,20 +103,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.ToTable("ChatSettings");
                 });
 
-            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Currency", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnName("CurrencyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Currency","dbo");
-                });
-
             modelBuilder.Entity("BetterTravel.DataAccess.Entities.Enumerations.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -129,6 +115,20 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Country","dbo");
+                });
+
+            modelBuilder.Entity("BetterTravel.DataAccess.Entities.Enumerations.Currency", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("CurrencyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Currency","dbo");
                 });
 
             modelBuilder.Entity("BetterTravel.DataAccess.Entities.Enumerations.DepartureLocation", b =>
@@ -153,38 +153,27 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CountryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DepartureDate")
+                        .HasColumnName("DepartureDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("DepartureLocationId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<short>("HotelCategory")
+                        .HasColumnName("HotelCategory")
+                        .HasColumnType("smallint");
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CountryId");
 
                     b.HasIndex("DepartureLocationId");
 
                     b.ToTable("HotTour","dbo");
-                });
-
-            modelBuilder.Entity("BetterTravel.DataAccess.Entities.HotelCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnName("HotelCategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HotelCategory","dbo");
                 });
 
             modelBuilder.Entity("BetterTravel.DataAccess.Entities.Chat", b =>
@@ -204,9 +193,9 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .HasColumnName("Title")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<int>("Type")
+                            b1.Property<short>("Type")
                                 .HasColumnName("Type")
-                                .HasColumnType("int");
+                                .HasColumnType("smallint");
 
                             b1.HasKey("ChatId");
 
@@ -243,7 +232,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
             modelBuilder.Entity("BetterTravel.DataAccess.Entities.ChatSettings", b =>
                 {
-                    b.HasOne("BetterTravel.DataAccess.Entities.Currency", "Currency")
+                    b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.Currency", "Currency")
                         .WithMany()
                         .HasForeignKey("CurrencyId");
 
@@ -256,10 +245,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
             modelBuilder.Entity("BetterTravel.DataAccess.Entities.HotTour", b =>
                 {
-                    b.HasOne("BetterTravel.DataAccess.Entities.HotelCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("BetterTravel.DataAccess.Entities.Enumerations.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
@@ -279,9 +264,9 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .HasColumnName("DurationCount")
                                 .HasColumnType("int");
 
-                            b1.Property<int>("Type")
+                            b1.Property<short>("Type")
                                 .HasColumnName("DurationType")
-                                .HasColumnType("int");
+                                .HasColumnType("smallint");
 
                             b1.HasKey("HotTourId");
 
@@ -297,10 +282,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<DateTime>("DepartureDate")
-                                .HasColumnName("DepartureDate")
-                                .HasColumnType("datetime2");
 
                             b1.Property<string>("DetailsUri")
                                 .HasColumnName("DetailsLink")
@@ -336,9 +317,9 @@ namespace BetterTravel.DataAccess.EF.Migrations
                             b1.Property<int?>("CurrencyId")
                                 .HasColumnType("int");
 
-                            b1.Property<int>("Type")
+                            b1.Property<short>("Type")
                                 .HasColumnName("PriceType")
-                                .HasColumnType("int");
+                                .HasColumnType("smallint");
 
                             b1.HasKey("HotTourId");
 
@@ -346,7 +327,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
                             b1.ToTable("HotTour");
 
-                            b1.HasOne("BetterTravel.DataAccess.Entities.Currency", "Currency")
+                            b1.HasOne("BetterTravel.DataAccess.Entities.Enumerations.Currency", "Currency")
                                 .WithMany()
                                 .HasForeignKey("CurrencyId");
 

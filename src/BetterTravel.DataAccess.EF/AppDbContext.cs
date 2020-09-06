@@ -3,11 +3,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
+using BetterTravel.Common.Utils;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace BetterTravel.DataAccess.EF
@@ -22,29 +25,40 @@ namespace BetterTravel.DataAccess.EF
         };
 
         private readonly IEventDispatcher _eventDispatcher;
+        private readonly IHostEnvironment _environment;
+        private readonly ILoggerFactory _loggerFactory;
         private readonly string _dbConnectionString;
 
         public AppDbContext(
             IEventDispatcher eventDispatcher,
-            IOptions<ConnectionStrings> connectionStringsOptions)
+            IOptions<ConnectionStrings> connectionStringsOptions,
+            IHostEnvironment environment,
+            ILoggerFactory loggerFactory)
         {
             _eventDispatcher = eventDispatcher;
+            _environment = environment;
+            _loggerFactory = loggerFactory;
             _dbConnectionString = connectionStringsOptions.Value.BetterTravelDb;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            optionsBuilder
+            if (_environment != null && (_environment.IsDevelopment() || _environment.IsStaging()))
+                builder
+                    .UseLoggerFactory(_loggerFactory)
+                    .EnableSensitiveDataLogging();
+            
+            builder
                 .UseSqlServer(
                     _dbConnectionString,
                     x => x.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName))
                 .UseLazyLoadingProxies();
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -62,16 +76,18 @@ namespace BetterTravel.DataAccess.EF
 
             var result = await base.SaveChangesAsync(cancellationToken);
 
-            changedEntries
+            await changedEntries
                 .OfType<AggregateRoot>()
-                .ToList()
-                .ForEach(async entry =>
-                {
-                    await _eventDispatcher.DispatchAsync(entry.Id, entry.DomainEvents);
-                    entry.ClearDomainEvents();
-                });
+                .Select(ProcessDomainEvents)
+                .WhenAll();
 
             return result;
+        }
+
+        private async Task ProcessDomainEvents(AggregateRoot root)
+        {
+            await _eventDispatcher.DispatchAsync(root.Id, root.DomainEvents);
+            root.ClearDomainEvents();
         }
     }
 }

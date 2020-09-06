@@ -38,19 +38,19 @@ namespace BetterTravel.Application.HotToursFetcher
             new HotTour(
                 new HotTourInfo(
                     source.TourName,
-                    GetDate(source.Date),
                     source.ImageUrl,
                     source.TourDetailsUrl),
-                GetCategory(source.StarsCount.Count),
+                GetCategory((short) source.StarsCount.Count),
                 new Duration(
                     source.DurationDay,
                     GetDurationType(source.NightsText)),
                 Price.FromUah(
-                    source.PriceFrom, 
+                    source.PriceFrom,
                     GetPriceType(source.PriceDescription)),
                 GetCountry(source.CountryLinks.Links.FirstOrDefault()?.Text),
                 new Resort(source.ResortLinks.Links.FirstOrDefault()?.Text),
-                GetDepartureLocation(source.DeparturePointNameGenitive));
+                GetDepartureLocation(source.DeparturePointNameGenitive),
+                GetDate(source.Date));
 
         private static Country GetCountry(string source)
         {
@@ -85,15 +85,9 @@ namespace BetterTravel.Application.HotToursFetcher
                 _ => DurationType.Unknown
             };
 
-        private static HotelCategory GetCategory(int count) =>
-            count switch
-            {
-                1 => HotelCategory.HV_1,
-                2 => HotelCategory.TwoStars,
-                3 => HotelCategory.ThreeStars,
-                4 => HotelCategory.FourStars,
-                5 => HotelCategory.FiveStars,
-                _ => HotelCategory.NoCategory
-            };
+        private static HotelCategoryType GetCategory(short starsCount) =>
+            Enum.IsDefined(typeof(HotelCategoryType), starsCount)
+                ? (HotelCategoryType) starsCount
+                : HotelCategoryType.NoCategory;
     }
 }

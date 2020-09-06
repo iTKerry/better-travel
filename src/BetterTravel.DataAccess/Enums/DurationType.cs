@@ -1,6 +1,6 @@
 ﻿namespace BetterTravel.DataAccess.Enums
 {
-    public enum DurationType
+    public enum DurationType : short
     {
         Unknown,
         Nights,

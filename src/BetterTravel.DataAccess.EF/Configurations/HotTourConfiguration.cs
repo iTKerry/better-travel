@@ -12,15 +12,16 @@ namespace BetterTravel.DataAccess.EF.Configurations
         {
             builder.ToTable(Tables.HotTour, Schemas.Dbo).HasKey(p => p.Id);
 
-            builder.Property(p => p.Id).HasColumnName("HotTourID");;
-            builder.HasOne(p => p.Category).WithMany();
+            builder.Property(p => p.Id).HasColumnName("HotTourID");
+            builder.Property(p => p.HotelCategory).HasColumnName("HotelCategory");
+            builder.Property(p => p.DepartureDate).HasColumnName("DepartureDate");
+
             builder.HasOne(p => p.DepartureLocation).WithMany();
             builder.HasOne(p => p.Country).WithMany();
 
             builder.OwnsOne(p => p.Info, p =>
             {
                 p.Property(pp => pp.Name).HasColumnName("Name");
-                p.Property(pp => pp.DepartureDate).HasColumnName("DepartureDate");
                 p.Property(pp => pp.DetailsUri)
                     .HasConversion(pp => pp.ToString(), str => new Uri(str))
                     .HasColumnName("DetailsLink");

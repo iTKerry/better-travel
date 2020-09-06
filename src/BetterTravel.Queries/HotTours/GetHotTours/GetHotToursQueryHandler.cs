@@ -39,12 +39,12 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
             Expression<Func<HotTourView, bool>> wherePredicate = tour =>
                 (!request.Countries.Any() || request.Countries.Contains(tour.CountryId)) &&
                 (!request.Departures.Any() || request.Departures.Contains(tour.DepartureLocationId)) &&
-                (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategoryId));
+                (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategory));
 
             Expression<Func<HotTourView, GetHotToursViewDto>> projection = tour => new GetHotToursViewDto
             {
                 Name = tour.Name,
-                HotelCategoryId = tour.HotelCategoryId,
+                HotelCategory = tour.HotelCategory,
                 DepartureDate = tour.DepartureDate,
                 DepartureLocationId = tour.DepartureLocationId,
                 DetailsLink = tour.DetailsLink,
@@ -98,8 +98,8 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
             {
                 Name = dto.Name,
                 HotelCategory = localize
-                    ? L.GetValue(HotelCategory.FromId(dto.HotelCategoryId).Name)
-                    : HotelCategory.FromId(dto.HotelCategoryId).Name,
+                    ? L.GetValue(dto.HotelCategory.ToString())
+                    : dto.HotelCategory.ToString(),
                 DepartureDate = dto.DepartureDate,
                 DepartureLocationName = localize
                     ? L.GetValue(DepartureLocation.FromId(dto.DepartureLocationId).Name, Culture.Ru)

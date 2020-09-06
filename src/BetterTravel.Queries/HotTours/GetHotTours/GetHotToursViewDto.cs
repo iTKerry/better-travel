@@ -6,7 +6,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
     public class GetHotToursViewDto
     {
         public string Name { get; set; }
-        public int HotelCategoryId { get; set; }
+        public HotelCategoryType HotelCategory { get; set; }
         public Uri ImageLink { get; set; }
         public Uri DetailsLink { get; set; }
         public int DurationCount { get; set; }

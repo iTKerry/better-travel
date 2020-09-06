@@ -19,6 +19,10 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder.Property(p => p.DurationType).HasColumnName("DurationType");
             builder.Property(p => p.PriceAmount).HasColumnName("PriceAmount");
             builder.Property(p => p.PriceType).HasColumnName("PriceType");
+            builder.Property(p => p.HotelCategory).HasColumnName("HotelCategory");
+            builder.Property(p => p.CountryId).HasColumnName("CountryID");
+            builder.Property(p => p.DepartureLocationId).HasColumnName("DepartureLocationID");
+            builder.Property(p => p.CurrencyId).HasColumnName("CurrencyId");
 
             builder
                 .Property(p => p.ImageLink)
@@ -26,22 +30,6 @@ namespace BetterTravel.DataAccess.EF.Configurations
             builder
                 .Property(p => p.DetailsLink)
                 .HasConversion(p => p.ToString(), str => new Uri(str));
-
-            builder
-                .Property(p => p.HotelCategoryId)
-                .HasColumnName("HotelCategoryID");
-
-            builder
-                .Property(p => p.CountryId)
-                .HasColumnName("CountryID");
-
-            builder
-                .Property(p => p.DepartureLocationId)
-                .HasColumnName("DepartureLocationID");
-
-            builder
-                .Property(p => p.CurrencyId)
-                .HasColumnName("CurrencyId");
         }
     }
 }

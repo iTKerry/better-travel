@@ -7,6 +7,7 @@ using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.SettingsCurrency.Keyboard;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 using CSharpFunctionalExtensions;

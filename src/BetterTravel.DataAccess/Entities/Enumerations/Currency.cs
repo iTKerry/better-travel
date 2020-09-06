@@ -3,7 +3,7 @@ using System.Linq;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Enums;
 
-namespace BetterTravel.DataAccess.Entities
+namespace BetterTravel.DataAccess.Entities.Enumerations
 {
     public class Currency : Entity
     {

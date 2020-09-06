@@ -10,7 +10,7 @@ namespace BetterTravel.DataAccess.Views
         public string ResortName { get; set; }
         public int CountryId { get; set; }
         public int DepartureLocationId { get; set; }
-        public int HotelCategoryId { get; set; }
+        public HotelCategoryType HotelCategory { get; set; }
         public DateTime DepartureDate { get; set; }
         public Uri ImageLink { get; set; }
         public Uri DetailsLink { get; set; }

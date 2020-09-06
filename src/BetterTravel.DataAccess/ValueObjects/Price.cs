@@ -1,7 +1,8 @@
 ﻿using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.ValueObjects.Base;
-using static BetterTravel.DataAccess.Entities.Currency;
+using static BetterTravel.DataAccess.Entities.Enumerations.Currency;
 
 namespace BetterTravel.DataAccess.ValueObjects
 {

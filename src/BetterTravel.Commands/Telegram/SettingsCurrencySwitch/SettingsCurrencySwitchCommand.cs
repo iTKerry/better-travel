@@ -1,4 +1,5 @@
 using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 
 namespace BetterTravel.Commands.Telegram.SettingsCurrencySwitch

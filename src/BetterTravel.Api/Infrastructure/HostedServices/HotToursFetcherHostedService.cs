@@ -60,7 +60,7 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                     existingTours.All(existingTour =>
                         existingTour.Info.Name != newTour.Info.Name &&
                         existingTour.Price.Amount != newTour.Price.Amount &&
-                        existingTour.Category.Id != newTour.Category.Id))
+                        existingTour.HotelCategory != newTour.HotelCategory))
                 .ToList();
         
             unitOfWork.HotToursRepository.Save(uniqueTours);

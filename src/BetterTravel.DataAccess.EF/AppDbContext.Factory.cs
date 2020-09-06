@@ -13,7 +13,7 @@ namespace BetterTravel.DataAccess.EF
         {
             var connectionStrings = new ConnectionStrings {BetterTravelDb = ConnectionString};
 
-            return new AppDbContext(null, new OptionsWrapper<ConnectionStrings>(connectionStrings));
+            return new AppDbContext(null, new OptionsWrapper<ConnectionStrings>(connectionStrings), null, null);
         }
     }
 }

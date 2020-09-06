@@ -11,7 +11,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
         public int Skip { get; set; }
         public int[] Countries { get; set; }
         public int[] Departures { get; set; }
-        public int[] HotelCategories { get; set; }
+        public HotelCategoryType[] HotelCategories { get; set; }
         public bool Localize { get; set; }
         public CurrencyType Currency { get; set; }
     }

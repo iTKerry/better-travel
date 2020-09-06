@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities;
+using BetterTravel.DataAccess.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
 using BetterTravel.Queries.ViewModels;
@@ -17,13 +18,15 @@ namespace BetterTravel.Queries.HotTours.GetHotelCategories
             GetHotelCategoriesQuery request, 
             CancellationToken cancellationToken)
         {
-            var categories = HotelCategory.AllCategories
+            var categories = Enum
+                .GetValues(typeof(HotelCategoryType))
+                .Cast<HotelCategoryType>()
                 .Select(category => new GetHotelCategoriesViewModel
                 {
-                    Id = category.Id,
+                    Id = (int) category,
                     Name = request.Localize
-                        ? L.GetValue(category.Name, Culture.Ru)
-                        : category.Name
+                        ? L.GetValue(category.ToString(), Culture.Ru)
+                        : category.ToString()
                 })
                 .ToList();
 

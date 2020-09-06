@@ -20,13 +20,12 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         PriceAmount,
                         PriceType,
                         C.CountryID,
+                        HotelCategory,
                         DL.DepartureLocationID,
-                        HC.HotelCategoryID,
                         C2.CurrencyId
                     FROM HotTour
                         JOIN Country C on C.CountryID = HotTour.CountryId
                         JOIN DepartureLocation DL on HotTour.DepartureLocationId = DL.DepartureLocationID
-                        JOIN HotelCategory HC on HotTour.CategoryId = HC.HotelCategoryID
                         JOIN Currency C2 on HotTour.Price_CurrencyId = C2.CurrencyId");
         }
 

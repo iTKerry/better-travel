@@ -1,6 +1,6 @@
 ﻿namespace BetterTravel.DataAccess.Enums
 {
-    public enum ChatType
+    public enum ChatType : short
     {
         Private,
         Group,

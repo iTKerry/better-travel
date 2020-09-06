@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BetterTravel.DataAccess.EF.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,7 +20,7 @@ namespace BetterTravel.DataAccess.EF.Migrations
                     TelegramChatID = table.Column<long>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: true)
+                    Type = table.Column<short>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,19 +67,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelCategory",
-                schema: "dbo",
-                columns: table => new
-                {
-                    HotelCategoryID = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HotelCategory", x => x.HotelCategoryID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ChatSettings",
                 columns: table => new
                 {
@@ -113,29 +100,23 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 {
                     HotTourID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartureDate = table.Column<DateTime>(nullable: false),
+                    HotelCategory = table.Column<short>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    DepartureDate = table.Column<DateTime>(nullable: true),
                     ImageLink = table.Column<string>(nullable: true),
                     DetailsLink = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true),
                     DepartureLocationId = table.Column<int>(nullable: true),
                     DurationCount = table.Column<int>(nullable: true),
-                    DurationType = table.Column<int>(nullable: true),
+                    DurationType = table.Column<short>(nullable: true),
                     PriceAmount = table.Column<int>(nullable: true),
-                    PriceType = table.Column<int>(nullable: true),
+                    PriceType = table.Column<short>(nullable: true),
+                    Price_CurrencyId = table.Column<int>(nullable: true),
                     CountryId = table.Column<int>(nullable: true),
                     ResortName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HotTour", x => x.HotTourID);
-                    table.ForeignKey(
-                        name: "FK_HotTour_HotelCategory_CategoryId",
-                        column: x => x.CategoryId,
-                        principalSchema: "dbo",
-                        principalTable: "HotelCategory",
-                        principalColumn: "HotelCategoryID",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_HotTour_Country_CountryId",
                         column: x => x.CountryId,
@@ -149,6 +130,13 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         principalSchema: "dbo",
                         principalTable: "DepartureLocation",
                         principalColumn: "DepartureLocationID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HotTour_Currency_Price_CurrencyId",
+                        column: x => x.Price_CurrencyId,
+                        principalSchema: "dbo",
+                        principalTable: "Currency",
+                        principalColumn: "CurrencyId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -238,12 +226,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 column: "SettingsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HotTour_CategoryId",
-                schema: "dbo",
-                table: "HotTour",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_HotTour_CountryId",
                 schema: "dbo",
                 table: "HotTour",
@@ -254,6 +236,12 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 schema: "dbo",
                 table: "HotTour",
                 column: "DepartureLocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HotTour_Price_CurrencyId",
+                schema: "dbo",
+                table: "HotTour",
+                column: "Price_CurrencyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -272,10 +260,6 @@ namespace BetterTravel.DataAccess.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChatSettings");
-
-            migrationBuilder.DropTable(
-                name: "HotelCategory",
-                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Country",

@@ -1,6 +1,6 @@
 ﻿namespace BetterTravel.DataAccess.Enums
 {
-    public enum PriceType
+    public enum PriceType : short
     {
         Unknown,
         Single,

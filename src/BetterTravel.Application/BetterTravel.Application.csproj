@@ -5,9 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CSharpFunctionalExtensions" Version="2.11.5" />
+      <PackageReference Include="CSharpFunctionalExtensions" Version="2.11.7" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.7" />
-      <PackageReference Include="Refit" Version="5.1.67" />
+      <PackageReference Include="Refit" Version="5.2.1" />
     </ItemGroup>
 
     <ItemGroup>
