@@ -6,34 +6,50 @@ using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.Events;
 using BetterTravel.DataAccess.Events.Base;
 using BetterTravel.DataAccess.Redis.Abstractions;
-using BetterTravel.DataAccess.Redis.Repositories;
+using CSharpFunctionalExtensions;
+using Microsoft.Extensions.Logging;
 
 namespace BetterTravel.DataAccess.EF.Common
 {
     public sealed class EventDispatcher : IEventDispatcher
     {
         private readonly IHotTourFoundRepository _hotToursCacheRepository;
+        private readonly ILogger<EventDispatcher> _logger;
 
-        public EventDispatcher(IHotTourFoundRepository cacheRepository) =>
-            _hotToursCacheRepository = cacheRepository;
-
-        public async Task DispatchAsync(int entityId, IEnumerable<IDomainEvent> domainEvents)
+        public EventDispatcher(IHotTourFoundRepository cacheRepository, ILogger<EventDispatcher> logger)
         {
-            foreach (var domainEvent in domainEvents) 
-                await DispatchAsync(entityId, domainEvent);
+            _hotToursCacheRepository = cacheRepository;
+            _logger = logger;
         }
 
-        public async Task DispatchAsync(int entityId, IDomainEvent domainEvent)
+        public async Task DispatchAsync(IEnumerable<IDomainEvent> domainEvents)
+        {
+            foreach (var domainEvent in domainEvents) 
+                await DispatchAsync(domainEvent);
+        }
+
+        public async Task DispatchAsync(IDomainEvent domainEvent)
         {
             switch (domainEvent)
             {
                 case HotTourFound hotTourFound:
-                    var hotTourFoundData = new HotTourFoundData {EntityId = entityId, Title = hotTourFound.Title};
-                    await _hotToursCacheRepository.AddValueAsync(hotTourFoundData);
+                    await DispatchHotTourFound(hotTourFound);
                     break;
                 default:
                     throw new InvalidOperationException();
             }
         }
+
+        private async Task DispatchHotTourFound(HotTourFound hotTourFound) =>
+            await Result
+                .FailureIf(hotTourFound is null, $"{nameof(hotTourFound)} is null.")
+                .Map(() => new HotTourFoundData
+                {
+                    EntityId = hotTourFound!.HotTour.Id, 
+                    Name = hotTourFound.HotTour.Info.Name
+                })
+                .Tap(dto => _logger.LogDebug($"{nameof(hotTourFound)}: ID {dto.EntityId}; NAME: {dto.Name}"))
+                .Bind(dto => _hotToursCacheRepository.AddValueAsync(dto))
+                .OnFailure(error => _logger.LogError(error));
     }
 }

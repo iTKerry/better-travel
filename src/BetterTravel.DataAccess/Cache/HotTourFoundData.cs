@@ -5,6 +5,6 @@ namespace BetterTravel.DataAccess.Cache
     public class HotTourFoundData : CachedObject
     {
         public int EntityId { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using BetterTravel.Common.Configurations;
 using BetterTravel.Common.Utils;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
@@ -86,7 +85,7 @@ namespace BetterTravel.DataAccess.EF
 
         private async Task ProcessDomainEvents(AggregateRoot root)
         {
-            await _eventDispatcher.DispatchAsync(root.Id, root.DomainEvents);
+            await _eventDispatcher.DispatchAsync(root.DomainEvents);
             root.ClearDomainEvents();
         }
     }

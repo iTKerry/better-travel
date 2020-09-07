@@ -44,6 +44,6 @@ namespace BetterTravel.DataAccess.Entities
         public virtual Resort Resort { get; }
         
         public void NotifyFound() => 
-            RaiseDomainEvent(new HotTourFound(Info.Name));
+            RaiseDomainEvent(new HotTourFound(this));
     }
 }

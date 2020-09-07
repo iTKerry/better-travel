@@ -6,7 +6,7 @@ namespace BetterTravel.DataAccess.EF.Abstractions
 {
     public interface IEventDispatcher
     {
-        Task DispatchAsync(int entityId, IEnumerable<IDomainEvent> domainEvents);
-        Task DispatchAsync(int entityId, IDomainEvent domainEvent);
+        Task DispatchAsync(IEnumerable<IDomainEvent> domainEvents);
+        Task DispatchAsync(IDomainEvent domainEvent);
     }
 }
