@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BetterTravel.DataAccess.EF.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,8 @@ namespace BetterTravel.DataAccess.EF.Migrations
                 columns: table => new
                 {
                     CurrencyId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Code = table.Column<string>(nullable: true),
+                    Sign = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

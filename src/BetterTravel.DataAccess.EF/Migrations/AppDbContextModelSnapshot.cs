@@ -121,7 +121,12 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         .HasColumnName("CurrencyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Code")
+                        .HasColumnName("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sign")
+                        .HasColumnName("Sign")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

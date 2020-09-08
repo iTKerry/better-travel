@@ -7,24 +7,25 @@ namespace BetterTravel.DataAccess.Entities.Enumerations
 {
     public class Currency : Entity
     {
-        public static readonly Currency UAH = new Currency((int) CurrencyType.UAH, CurrencyType.UAH.ToString());
-        public static readonly Currency USD = new Currency((int) CurrencyType.USD, CurrencyType.USD.ToString());
-        public static readonly Currency EUR = new Currency((int) CurrencyType.EUR, CurrencyType.EUR.ToString());
+        public static readonly Currency UAH = Create(CurrencyType.UAH, "₴");
+        public static readonly Currency USD = Create(CurrencyType.USD, "$");
+        public static readonly Currency EUR = Create(CurrencyType.EUR, "€");
         
         public static readonly Currency[] AllCurrencies =
         {
-            UAH, USD, EUR, 
+            UAH, USD, EUR
         };
-
+        
         protected Currency()
         {
         }
 
-        private Currency(int id, string name) 
-            : base(id) => 
-            Name = name;
-        
-        public string Name { get; }
+        private Currency(int id, string code, string sign)
+            : base(id) =>
+            (Code, Sign) = (code, sign);
+
+        public string Code { get; }
+        public string Sign { get; }
 
         public static Currency FromId(int id) =>
             AllCurrencies.SingleOrDefault(c => c.Id == id) 
@@ -34,11 +35,14 @@ namespace BetterTravel.DataAccess.Entities.Enumerations
             AllCurrencies.SingleOrDefault(c => c.Id == (int) type) 
             ?? throw new ArgumentException($"There is no such currency for type: {type}");
         
-        public static Currency FromName(string name) =>
-            AllCurrencies.SingleOrDefault(c => c.Name == name) 
-            ?? throw new ArgumentException($"There is no such currency for type: {name}");
+        public static Currency FromCode(string code) =>
+            AllCurrencies.SingleOrDefault(c => c.Code == code) 
+            ?? throw new ArgumentException($"There is no such currency for code: {code}");
 
         public bool IsType(CurrencyType type) =>
             Id == (int) type;
+        
+        private static Currency Create(CurrencyType type, string sign) =>
+            new Currency((int) type, type.ToString(), sign);
     }
 }

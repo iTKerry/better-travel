@@ -1,4 +1,3 @@
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 

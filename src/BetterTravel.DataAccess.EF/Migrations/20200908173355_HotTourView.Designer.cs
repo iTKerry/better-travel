@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BetterTravel.DataAccess.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200906144935_Init")]
-    partial class Init
+    [Migration("20200908173355_HotTourView")]
+    partial class HotTourView
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,7 +123,12 @@ namespace BetterTravel.DataAccess.EF.Migrations
                         .HasColumnName("CurrencyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Code")
+                        .HasColumnName("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sign")
+                        .HasColumnName("Sign")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

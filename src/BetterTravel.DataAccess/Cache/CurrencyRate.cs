@@ -1,5 +1,6 @@
 using System;
 using BetterTravel.DataAccess.Cache.Base;
+using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 
 namespace BetterTravel.DataAccess.Cache
@@ -10,7 +11,10 @@ namespace BetterTravel.DataAccess.Cache
         public double Rate { get; set; }
         public DateTime ExchangeDate { get; set; }
 
-        public override string ToString() => 
-            $"{Type}: {Rate:C}";
+        public override string ToString()
+        {
+            var currency = Currency.FromType(Type);
+            return $"{currency.Code} ({currency.Sign}{Rate:C})";
+        }
     }
 }

@@ -6,7 +6,6 @@ using BetterTravel.Application.Exchange.Abstractions;
 using BetterTravel.Commands.Abstractions;
 using BetterTravel.Commands.Telegram.SettingsCurrency.Keyboard;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
@@ -48,7 +47,7 @@ namespace BetterTravel.Commands.Telegram.SettingsCurrencySwitch
                 {
                     Id = currency.Id,
                     Name = currency.IsType(CurrencyType.UAH)
-                        ? currency.Name
+                        ? $"{currency.Code} {currency.Sign}"
                         : rates.First(rate => currency.IsType(rate.Type)).ToString(),
                     IsSubscribed = chat.Settings.Currency == currency
                 }).ToList());

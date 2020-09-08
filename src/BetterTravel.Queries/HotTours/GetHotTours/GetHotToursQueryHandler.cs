@@ -9,7 +9,6 @@ using BetterTravel.Common.Localization;
 using BetterTravel.DataAccess.Cache;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Common;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
 using BetterTravel.DataAccess.Views;
@@ -110,7 +109,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
                 ImageLink = dto.ImageLink,
                 PriceAmount = GetPriceAmount(dto, currencyRate),
                 PriceType = dto.PriceType,
-                PriceCurrency = currencyRate.Item1.Name,
+                PriceCurrency = currencyRate.Item1.Code,
                 CountryName = localize
                     ? L.GetValue(Country.FromId(dto.CountryId).Name, Culture.Ru)
                     : Country.FromId(dto.CountryId).Name,

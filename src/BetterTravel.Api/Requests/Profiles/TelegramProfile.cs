@@ -9,7 +9,6 @@ using BetterTravel.Commands.Telegram.SettingsDepartures;
 using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
 using BetterTravel.Commands.Telegram.SettingsSubscriptionToggle;
 using BetterTravel.Commands.Telegram.Start;
-using BetterTravel.DataAccess.Entities;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using Telegram.Bot.Types;
 
