@@ -39,13 +39,13 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
 
             var newTours = await provider.GetHotToursAsync(query);
             var existingTours = await unitOfWork.HotToursRepository.GetAsync(new QueryObject<HotTour>());
-            
+
             var uniqueTours = newTours
-                .Where(newTour =>
-                    existingTours.All(existingTour =>
-                        existingTour.Info.Name != newTour.Info.Name &&
-                        existingTour.Price.Amount != newTour.Price.Amount &&
-                        existingTour.HotelCategory != newTour.HotelCategory))
+                .Where(nTour => existingTours.All(eTour =>
+                    eTour.Info.Name != nTour.Info.Name ||
+                    eTour.Info.Name == nTour.Info.Name && eTour.Price.Amount != nTour.Price.Amount ||
+                    eTour.Info.Name == nTour.Info.Name && eTour.DepartureLocation != nTour.DepartureLocation ||
+                    eTour.Info.Name == nTour.Info.Name && eTour.DepartureDate != nTour.DepartureDate))
                 .ToList();
         
             unitOfWork.HotToursRepository.Save(uniqueTours);
