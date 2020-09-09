@@ -31,7 +31,7 @@ namespace BetterTravel.DataAccess.Redis.Repositories
                 .Tap(list => list.Add(data))
                 .Bind(SetValuesAsync);
 
-        public async Task<Result> DeleteAsync()
+        public async Task<Result> CleanAsync()
         {
             try
             {

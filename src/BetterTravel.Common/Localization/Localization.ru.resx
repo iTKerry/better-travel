@@ -184,4 +184,16 @@
   <data name="NoDeparture" xml:space="preserve">
     <value>Без проезда</value>
   </data>
+  <data name="Single" xml:space="preserve">
+    <value>за человека</value>
+  </data>
+  <data name="Double" xml:space="preserve">
+    <value>за двоих</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>из</value>
+  </data>
+  <data name="Nights" xml:space="preserve">
+    <value>Ночей</value>
+  </data>
 </root>

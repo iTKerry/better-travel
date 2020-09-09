@@ -17,6 +17,7 @@ namespace BetterTravel.DataAccess.EF.Repositories
 
         public async Task<List<Chat>> GetAllAsync() =>
             await Ctx.Chats
+                .Include(c => c.Settings)
                 .Include(c => c.Settings.CountrySubscriptions)
                 .ThenInclude(c => c.Settings.DepartureSubscriptions)
                 .ToListAsync();

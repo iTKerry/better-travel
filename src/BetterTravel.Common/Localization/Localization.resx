@@ -184,4 +184,16 @@
   <data name="NoDeparture" xml:space="preserve">
     <value>No Departure</value>
   </data>
+  <data name="Single" xml:space="preserve">
+    <value>for person</value>
+  </data>
+  <data name="Double" xml:space="preserve">
+    <value>for two</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>from</value>
+  </data>
+  <data name="Nights" xml:space="preserve">
+    <value>nights</value>
+  </data>
 </root>

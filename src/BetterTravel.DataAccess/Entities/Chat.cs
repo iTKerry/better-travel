@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BetterTravel.DataAccess.Entities.Base;
 using BetterTravel.DataAccess.Entities.Enumerations;
 using BetterTravel.DataAccess.Enums;
@@ -34,10 +35,12 @@ namespace BetterTravel.DataAccess.Entities
                 .Map(() => new Chat(chatId, infoResult.Value, settingsResult.Value));
         }
 
-        public bool IsSubscribedToCountry(Country country) =>
+        public bool CanReceiveUpdatesFromCountry(Country country) =>
+            !Settings.CountrySubscriptions.Any() || 
             Settings.CountrySubscriptions.Any(c => c.Country == country);
 
-        public bool IsSubscribedToDeparture(DepartureLocation departure) =>
+        public bool CanReceiveUpdatesFromDeparture(DepartureLocation departure) =>
+            !Settings.DepartureSubscriptions.Any() ||
             Settings.DepartureSubscriptions.Any(d => d.Departure == departure);
         
         public Result ToggleSubscription() =>

@@ -8,6 +8,6 @@ namespace BetterTravel.DataAccess.Redis.Abstractions
         : ICacheRepository<HotTourFoundData>
     {
         Task<Result> AddValueAsync(HotTourFoundData data);
-        Task<Result> DeleteAsync();
+        Task<Result> CleanAsync();
     }
 }

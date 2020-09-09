@@ -170,5 +170,29 @@ namespace BetterTravel.Common.Localization {
                 return ResourceManager.GetString("NoDeparture", resourceCulture);
             }
         }
+        
+        public static string Single {
+            get {
+                return ResourceManager.GetString("Single", resourceCulture);
+            }
+        }
+        
+        public static string Double {
+            get {
+                return ResourceManager.GetString("Double", resourceCulture);
+            }
+        }
+        
+        public static string from {
+            get {
+                return ResourceManager.GetString("from", resourceCulture);
+            }
+        }
+        
+        public static string Nights {
+            get {
+                return ResourceManager.GetString("Nights", resourceCulture);
+            }
+        }
     }
 }

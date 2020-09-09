@@ -37,23 +37,8 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                 Count = 1000
             };
 
-            var deleteResult = await cache.DeleteAsync();
-            if (deleteResult.IsFailure)
-                _logger.LogCritical(deleteResult.Error);
-            
             var newTours = await provider.GetHotToursAsync(query);
-            
-            var newToursNames = newTours
-                .Select(q => q.Info.Name)
-                .ToList();
-
-            var queryObject = new QueryObject<HotTour>
-            {
-                WherePredicate = cachedTour => 
-                    newToursNames.Any(t => t == cachedTour.Info.Name)
-            };
-            
-            var existingTours = await unitOfWork.HotToursRepository.GetAsync(queryObject);
+            var existingTours = await unitOfWork.HotToursRepository.GetAsync(new QueryObject<HotTour>());
             
             var uniqueTours = newTours
                 .Where(newTour =>
@@ -64,7 +49,11 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
                 .ToList();
         
             unitOfWork.HotToursRepository.Save(uniqueTours);
-            
+
+            var deleteResult = await cache.CleanAsync();
+            if (deleteResult.IsFailure)
+                _logger.LogCritical(deleteResult.Error);
+
             await unitOfWork.CommitAsync();
         
             _logger.LogInformation($"Fetched {newTours.Count} and stored {uniqueTours.Count} tours.");
