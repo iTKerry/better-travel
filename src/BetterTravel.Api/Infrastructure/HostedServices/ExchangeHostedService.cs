@@ -19,8 +19,8 @@ namespace BetterTravel.Api.Infrastructure.HostedServices
         public ExchangeHostedService(
             ILogger<ExchangeHostedService> logger,
             IExchangeProvider exchangeProvider,
-            IServiceProvider services)
-            : base(services, logger) =>
+            IServiceScopeFactory scopeFactory)
+            : base(logger, scopeFactory) =>
             _exchangeProvider = exchangeProvider;
 
         protected override async Task JobAsync(IServiceScope serviceScope) =>

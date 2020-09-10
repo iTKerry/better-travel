@@ -6,6 +6,6 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
     public static partial class ServiceCollectionExtensions
     {
         public static IServiceCollection AddBetterTravelDb(this IServiceCollection services) => 
-            services.AddDbContext<AppDbContext>(ServiceLifetime.Scoped);
+            services.AddDbContext<AppDbContext>();
     }
 }

@@ -13,7 +13,7 @@
     <ItemGroup>
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-        <PackageReference Include="BetterExtensions.AspNet" Version="0.0.1" />
+        <PackageReference Include="BetterExtensions.AspNet" Version="0.0.2" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.7" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.7" />
@@ -43,6 +43,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.Application.Services\BetterTravel.Application.Services.csproj" />
       <ProjectReference Include="..\BetterTravel.Commands\BetterTravel.Commands.csproj" />
       <ProjectReference Include="..\BetterTravel.Common\BetterTravel.Common.csproj" />
       <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />

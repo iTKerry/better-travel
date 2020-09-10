@@ -20,6 +20,9 @@ namespace BetterTravel.DataAccess.EF.Abstractions
 
         public virtual async Task<List<T>> GetAsync(QueryObject<T> queryObject)
         {
+            if (queryObject is null)
+                throw new ArgumentNullException(nameof(queryObject));
+
             var query = Ctx.Set<T>().AsQueryable();
 
             if (queryObject.WherePredicate != null)
@@ -36,8 +39,8 @@ namespace BetterTravel.DataAccess.EF.Abstractions
         
         public virtual async Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject)
         {
-            if (queryObject.Projection is null)
-                throw new ArgumentNullException(nameof(queryObject.Projection));
+            if (queryObject is null)
+                throw new ArgumentNullException(nameof(queryObject));
             
             var query = Ctx.Set<T>().AsQueryable();
 

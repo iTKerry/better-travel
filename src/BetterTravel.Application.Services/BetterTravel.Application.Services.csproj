@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BetterTravel.Application\BetterTravel.Application.csproj" />
+      <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Telegram.Bot" Version="15.7.1" />
+    </ItemGroup>
+
+</Project>

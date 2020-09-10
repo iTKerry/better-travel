@@ -6,6 +6,8 @@ using BetterTravel.Application.Exchange;
 using BetterTravel.Application.Exchange.Abstractions;
 using BetterTravel.Application.HotToursFetcher;
 using BetterTravel.Application.HotToursFetcher.Abstractions;
+using BetterTravel.Application.Services;
+using BetterTravel.Application.Services.Abstractions;
 using BetterTravel.Common.Configurations;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -27,6 +29,16 @@ namespace BetterTravel.Api.IoC
                 .RegisterType<HotToursProvider>()
                 .As<IHotToursProvider>()
                 .InstancePerDependency();
+
+            builder
+                .RegisterType<HotToursFetcherService>()
+                .As<IHotToursFetcherService>()
+                .AsImplementedInterfaces();
+
+            builder
+                .RegisterType<HotToursNotifierService>()
+                .As<IHotToursNotifierService>()
+                .AsImplementedInterfaces();
             
             builder
                 .Register(context =>
