@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.DataAccess.EF.Common;
 using BetterTravel.DataAccess.Views.Base;
@@ -15,42 +16,42 @@ namespace BetterTravel.DataAccess.EF.Abstractions
         public ReadOnlyRepository(AppDbContext db) => 
             Ctx = db;
 
-        public async Task<List<TView>> GetAsync(QueryObject<TView> queryObject)
+        public async Task<List<TView>> GetAllAsync(
+            ProjectedQueryParams<TView> projectedQueryParams,
+            CancellationToken cancellationToken)
         {
-            var query = Ctx.Set<TView>()
-                .AsQueryable()
-                .AsNoTracking();
+            var query = Ctx.Set<TView>().AsNoTracking();
 
-            if (queryObject.WherePredicate != null)
-                query = query.Where(queryObject.WherePredicate);
+            if (projectedQueryParams.WherePredicate != null)
+                query = query.Where(projectedQueryParams.WherePredicate);
 
-            if (queryObject.Skip != 0)
-                query = query.Skip(queryObject.Skip);
+            if (projectedQueryParams.Skip != 0)
+                query = query.Skip(projectedQueryParams.Skip);
 
-            if (queryObject.Top != 0)
-                query = query.Take(queryObject.Top);
+            if (projectedQueryParams.Top != 0)
+                query = query.Take(projectedQueryParams.Top);
             
-            return await query.ToListAsync();
+            return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task<List<TResult>> GetAsync<TResult>(QueryObject<TView, TResult> queryObject)
+        public async Task<List<TResult>> GetAllAsync<TResult>(
+            ProjectedQueryParams<TView, TResult> projectedQueryParams,
+            CancellationToken cancellationToken)
         {
-            var query = Ctx.Set<TView>()
-                .AsQueryable()
-                .AsNoTracking();
+            var query = Ctx.Set<TView>().AsNoTracking();
 
-            if (queryObject.WherePredicate != null)
-                query = query.Where(queryObject.WherePredicate);
+            if (projectedQueryParams.WherePredicate != null)
+                query = query.Where(projectedQueryParams.WherePredicate);
 
-            var projectedQuery = query.Select(queryObject.Projection);
+            var projectedQuery = query.Select(projectedQueryParams.Projection);
             
-            if (queryObject.Skip != 0)
-                projectedQuery = projectedQuery.Skip(queryObject.Skip);
+            if (projectedQueryParams.Skip != 0)
+                projectedQuery = projectedQuery.Skip(projectedQueryParams.Skip);
 
-            if (queryObject.Top != 0)
-                projectedQuery = projectedQuery.Take(queryObject.Top);
+            if (projectedQueryParams.Top != 0)
+                projectedQuery = projectedQuery.Take(projectedQueryParams.Top);
             
-            return await projectedQuery.ToListAsync();
+            return await projectedQuery.ToListAsync(cancellationToken);
         }
     }
 }

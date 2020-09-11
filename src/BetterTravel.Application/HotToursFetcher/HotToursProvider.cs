@@ -24,9 +24,9 @@ namespace BetterTravel.Application.HotToursFetcher
         public HotToursProvider(IOptions<ThirdPartyServices> thirdPartyOptions) =>
             _api = RestService.For<IHotToursProviderApi>(thirdPartyOptions.Value.HotToursProviderUrl);
 
-        public async Task<List<HotTour>> GetHotToursAsync(HotToursQuery query)
+        public async Task<List<HotTour>> GetHotToursAsync(HotToursProviderQuery providerQuery)
         {
-            var request = new HotToursRequest(query);
+            var request = new HotToursRequest(providerQuery);
             var response = await _api.HotTours(request);
 
             return response.TourListItems

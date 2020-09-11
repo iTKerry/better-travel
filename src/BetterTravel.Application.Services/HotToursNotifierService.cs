@@ -56,7 +56,10 @@ namespace BetterTravel.Application.Services
 
             await _cache.GetValuesAsync()
                 .Map(cachedFoundTours => cachedFoundTours.Select(data => data.EntityId).ToList())
-                .Map(entityIds => new QueryObject<HotTour> {WherePredicate = tour => entityIds.Contains(tour.Id)})
+                .Map(entityIds => new ProjectedQueryParams<HotTour>
+                {
+                    WherePredicate = tour => entityIds.Contains(tour.Id)
+                })
                 .Map(queryObject => _unitOfWork.HotToursRepository.GetAsync(queryObject))
                 .Map(tours => chats
                     .Select(chat => (

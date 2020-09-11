@@ -1,6 +1,6 @@
 ﻿namespace BetterTravel.Application.HotToursFetcher
 {
-    public class HotToursQuery
+    public class HotToursProviderQuery
     {
         public int DurationFrom { get; set; }
         public int DurationTo { get; set; }

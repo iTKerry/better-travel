@@ -4,7 +4,7 @@ namespace BetterTravel.Application.HotToursFetcher.Requests
 {
     public class HotToursRequest
     {
-        public HotToursRequest(HotToursQuery query)
+        public HotToursRequest(HotToursProviderQuery providerQuery)
         {
             CountryIds = string.Empty;
             ResortIds = string.Empty;
@@ -14,13 +14,13 @@ namespace BetterTravel.Application.HotToursFetcher.Requests
             RestTypeIds = string.Empty;
             DateFrom = DateTime.Now.ToString("dd-MM-yyyy");
             DateTo = DateTime.Now.AddYears(1).ToString("dd-MM-yyyy");
-            DurationQtyDayFrom = query.DurationFrom;
-            DurationQtyDayTo = query.DurationTo;
-            PriceFrom = query.PriceFrom;
-            PriceTo = query.PriceTo;
+            DurationQtyDayFrom = providerQuery.DurationFrom;
+            DurationQtyDayTo = providerQuery.DurationTo;
+            PriceFrom = providerQuery.PriceFrom;
+            PriceTo = providerQuery.PriceTo;
             LanguageId = 2;
             CurrentPage = 1;
-            PageSize = query.Count;
+            PageSize = providerQuery.Count;
             SortId = 0;
         }
         

@@ -35,7 +35,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
             GetHotToursQuery request, 
             CancellationToken cancellationToken)
         {
-            Expression<Func<HotTourView, bool>> wherePredicate = tour =>
+            Expression<Func<HotTourView, bool>> predicate = tour =>
                 (!request.Countries.Any() || request.Countries.Contains(tour.CountryId)) &&
                 (!request.Departures.Any() || request.Departures.Contains(tour.DepartureLocationId)) &&
                 (!request.HotelCategories.Any() || request.HotelCategories.Contains(tour.HotelCategory));
@@ -57,9 +57,9 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
                 ResortName = tour.ResortName,
             };
 
-            var queryObject = new QueryObject<HotTourView, GetHotToursViewDto>
+            var projectedQueryParams = new ProjectedQueryParams<HotTourView, GetHotToursViewDto>
             {
-                WherePredicate = wherePredicate,
+                WherePredicate = predicate,
                 Projection = projection,
                 Skip = request.Skip,
                 Top = request.Take
@@ -69,7 +69,7 @@ namespace BetterTravel.Queries.HotTours.GetHotTours
                 .Map(exchanges => (Maybe<CurrencyRate>) exchanges.FirstOrDefault(ex => ex.Type == request.Currency))
                 .Map(maybeExchange => GetCurrencyRate(request.Currency, maybeExchange))
                 .Map(async currencyRate =>
-                    (await _repository.GetAsync(queryObject))
+                    (await _repository.GetAllAsync(projectedQueryParams, cancellationToken))
                     .Select(tour => MapDtoToViewModel(tour, request.Localize, currencyRate))
                     .ToList())
                 .Finally(result => result.IsSuccess

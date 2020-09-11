@@ -18,42 +18,42 @@ namespace BetterTravel.DataAccess.EF.Abstractions
         protected Repository(AppDbContext dbContext) => 
             Ctx = dbContext;
 
-        public virtual async Task<List<T>> GetAsync(QueryObject<T> queryObject)
+        public virtual async Task<List<T>> GetAsync(ProjectedQueryParams<T> projectedQueryParams)
         {
-            if (queryObject is null)
-                throw new ArgumentNullException(nameof(queryObject));
+            if (projectedQueryParams is null)
+                throw new ArgumentNullException(nameof(projectedQueryParams));
 
             var query = Ctx.Set<T>().AsQueryable();
 
-            if (queryObject.WherePredicate != null)
-                query = query.Where(queryObject.WherePredicate);
+            if (projectedQueryParams.WherePredicate != null)
+                query = query.Where(projectedQueryParams.WherePredicate);
 
-            if (queryObject.Skip != 0)
-                query = query.Skip(queryObject.Skip);
+            if (projectedQueryParams.Skip != 0)
+                query = query.Skip(projectedQueryParams.Skip);
 
-            if (queryObject.Top != 0)
-                query = query.Take(queryObject.Top);
+            if (projectedQueryParams.Top != 0)
+                query = query.Take(projectedQueryParams.Top);
             
             return await query.ToListAsync();
         }
         
-        public virtual async Task<List<TResult>> GetAsync<TResult>(QueryObject<T, TResult> queryObject)
+        public virtual async Task<List<TResult>> GetAsync<TResult>(ProjectedQueryParams<T, TResult> projectedQueryParams)
         {
-            if (queryObject is null)
-                throw new ArgumentNullException(nameof(queryObject));
+            if (projectedQueryParams is null)
+                throw new ArgumentNullException(nameof(projectedQueryParams));
             
             var query = Ctx.Set<T>().AsQueryable();
 
-            if (queryObject.WherePredicate != null)
-                query = query.Where(queryObject.WherePredicate);
+            if (projectedQueryParams.WherePredicate != null)
+                query = query.Where(projectedQueryParams.WherePredicate);
 
-            var projectedQuery = query.Select(queryObject.Projection);
+            var projectedQuery = query.Select(projectedQueryParams.Projection);
             
-            if (queryObject.Skip != 0)
-                projectedQuery = projectedQuery.Skip(queryObject.Skip);
+            if (projectedQueryParams.Skip != 0)
+                projectedQuery = projectedQuery.Skip(projectedQueryParams.Skip);
 
-            if (queryObject.Top != 0)
-                projectedQuery = projectedQuery.Take(queryObject.Top);
+            if (projectedQueryParams.Top != 0)
+                projectedQuery = projectedQuery.Take(projectedQueryParams.Top);
             
             return await projectedQuery.ToListAsync();
         }

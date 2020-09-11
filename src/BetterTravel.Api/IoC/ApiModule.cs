@@ -8,6 +8,7 @@ using BetterTravel.Application.HotToursFetcher;
 using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.Application.Services;
 using BetterTravel.Application.Services.Abstractions;
+using BetterTravel.Application.Services.HotToursFetcher;
 using BetterTravel.Common.Configurations;
 using MediatR;
 using Microsoft.Extensions.Options;

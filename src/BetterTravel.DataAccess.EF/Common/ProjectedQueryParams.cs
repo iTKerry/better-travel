@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace BetterTravel.DataAccess.EF.Common
 {
-    public sealed class QueryObject<TEntity, TProjected>
+    public sealed class ProjectedQueryParams<TEntity, TProjected>
     {
         public int Skip { get; set; }
         public int Top { get; set; }
@@ -11,7 +11,7 @@ namespace BetterTravel.DataAccess.EF.Common
         public Expression<Func<TEntity, TProjected>> Projection { get; set; }
     }
     
-    public sealed class QueryObject<TEntity>
+    public sealed class ProjectedQueryParams<TEntity>
     {
         public int Skip { get; set; }
         public int Top { get; set; }
