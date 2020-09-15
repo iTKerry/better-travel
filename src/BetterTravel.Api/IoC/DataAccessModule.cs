@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Autofac;
+using BetterExtensions.Domain.Repository;
+using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.DataAccess.EF;
 using BetterTravel.DataAccess.EF.Abstractions;
 using BetterTravel.DataAccess.EF.Common;
@@ -16,7 +18,7 @@ namespace BetterTravel.Api.IoC
     [ExcludeFromCodeCoverage]
     public class DataAccessModule : Module
     {
-        protected override Assembly ThisAssembly => typeof(AppDbContext).Assembly;
+        protected override Assembly ThisAssembly => typeof(WriteDbContext).Assembly;
 
         protected override void Load(ContainerBuilder builder)
         {
@@ -34,18 +36,18 @@ namespace BetterTravel.Api.IoC
                 .As<IEventDispatcher>();
 
             builder
-                .RegisterType<HotToursRepository>()
-                .As<IHotToursRepository>()
+                .RegisterType<HotToursWriteRepository>()
+                .As<IHotToursWriteRepository>()
                 .InstancePerDependency();
 
             builder
-                .RegisterType<ChatRepository>()
-                .As<IChatRepository>()
+                .RegisterType<ChatWriteRepository>()
+                .As<IChatWriteRepository>()
                 .InstancePerDependency();
 
             builder
-                .RegisterGeneric(typeof(ReadOnlyRepository<>))
-                .As(typeof(IReadOnlyRepository<>));
+                .RegisterGeneric(typeof(ReadRepository<>))
+                .As(typeof(IReadRepository<>));
 
             builder
                 .RegisterType<CurrencyRateRepository>()

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache.Base;
+using BetterTravel.DataAccess.Abstractions.Cache.Base;
 using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Redis.Abstractions

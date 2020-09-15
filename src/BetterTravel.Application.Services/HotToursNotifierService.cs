@@ -6,13 +6,12 @@ using BetterTravel.Application.Exchange.Abstractions;
 using BetterTravel.Application.Services.Abstractions;
 using BetterTravel.Common.Localization;
 using BetterTravel.Common.Utils;
-using BetterTravel.DataAccess.Cache;
-using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.EF.Common;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Entities.Enumerations;
+using BetterTravel.DataAccess.Abstractions.Cache;
+using BetterTravel.DataAccess.Abstractions.Entities;
+using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
+using BetterTravel.DataAccess.Abstractions.Repository;
+using BetterTravel.DataAccess.Abstractions.ValueObjects;
 using BetterTravel.DataAccess.Redis.Abstractions;
-using BetterTravel.DataAccess.ValueObjects;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
@@ -52,21 +51,18 @@ namespace BetterTravel.Application.Services
             }
             
             var exchangeRates = exchangeRateResult.Value;
-            var chats = await _unitOfWork.ChatRepository.GetAllAsync();
+            var chats = await _unitOfWork.ChatWriteRepository.GetAllAsync();
 
             await _cache.GetValuesAsync()
                 .Map(cachedFoundTours => cachedFoundTours.Select(data => data.EntityId).ToList())
-                .Map(entityIds => new ProjectedQueryParams<HotTour>
-                {
-                    WherePredicate = tour => entityIds.Contains(tour.Id)
-                })
-                .Map(queryObject => _unitOfWork.HotToursRepository.GetAsync(queryObject))
+                .Map(entityIds => _unitOfWork.HotToursWriteRepository
+                    .GetAllAsync(tour => entityIds.Contains(tour.Id)))
                 .Map(tours => chats
                     .Select(chat => (
                         Chat: chat,
                         Tours: ExtractChatTours(chat, tours),
                         Exchange: GetExchangeForChat(chat, exchangeRates)))
-                    .Where(t => t.Tours.Any())
+                    .Where(t => t.Tours!.Any())
                     .ToList())
                 .Bind(list => Result
                     .FailureIf(

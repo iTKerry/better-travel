@@ -1,4 +1,4 @@
-using BetterTravel.DataAccess.Entities.Enumerations;
+using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 
 namespace BetterTravel.Commands.Telegram.SettingsCountryToggle

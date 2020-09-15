@@ -2,13 +2,14 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using BetterExtensions.Domain.Common;
+using BetterExtensions.Domain.Repository;
 using BetterTravel.Application.HotToursFetcher;
 using BetterTravel.Application.HotToursFetcher.Abstractions;
 using BetterTravel.Application.Services.Abstractions;
-using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.EF.Common;
+using BetterTravel.DataAccess.Abstractions.Repository;
+using BetterTravel.DataAccess.Abstractions.Views;
 using BetterTravel.DataAccess.Redis.Abstractions;
-using BetterTravel.DataAccess.Views;
 using Microsoft.Extensions.Logging;
 
 namespace BetterTravel.Application.Services.HotToursFetcher
@@ -19,13 +20,13 @@ namespace BetterTravel.Application.Services.HotToursFetcher
         private readonly IHotToursProvider _toursProvider;
         private readonly IHotTourFoundRepository _cache;
         private readonly ILogger<HotToursFetcherService> _logger;
-        private readonly IReadOnlyRepository<HotTourView> _repository;
+        private readonly IReadRepository<HotTourView> _repository;
 
         public HotToursFetcherService(
             IUnitOfWork unitOfWork, 
             IHotToursProvider toursProvider, 
             IHotTourFoundRepository cache,
-            IReadOnlyRepository<HotTourView> repository,
+            IReadRepository<HotTourView> repository,
             ILogger<HotToursFetcherService> logger)
         {
             _unitOfWork = unitOfWork;
@@ -70,7 +71,7 @@ namespace BetterTravel.Application.Services.HotToursFetcher
                     e.Name == n.Info.Name && e.DepartureDate != n.DepartureDate))
                 .ToList();
         
-            _unitOfWork.HotToursRepository.Save(uniqueTours);
+            _unitOfWork.HotToursWriteRepository.SaveRange(uniqueTours);
 
             var deleteResult = await _cache.CleanAsync();
             if (deleteResult.IsFailure)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BetterTravel.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(WriteDbContext))]
     [Migration("20200908173323_Initial")]
     partial class Initial
     {

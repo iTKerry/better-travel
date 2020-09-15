@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BetterTravel.DataAccess.EF.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(WriteDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Events.Base;
+using BetterExtensions.Domain.Events;
 
 namespace BetterTravel.DataAccess.EF.Abstractions
 {

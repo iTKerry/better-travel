@@ -1,4 +1,4 @@
-using BetterTravel.DataAccess.Enums;
+using BetterTravel.DataAccess.Abstractions.Enums;
 
 namespace BetterTravel.Api.Requests.HotTours
 {

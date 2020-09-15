@@ -1,5 +1,5 @@
 using System;
-using BetterTravel.DataAccess.Cache;
+using BetterTravel.DataAccess.Abstractions.Cache;
 using BetterTravel.DataAccess.Redis.Abstractions;
 using Microsoft.Extensions.Caching.Distributed;
 

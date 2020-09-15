@@ -1,16 +1,16 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
 using BetterTravel.DataAccess.EF.Seeder.Abstractions;
-using BetterTravel.DataAccess.Entities.Enumerations;
 using Microsoft.EntityFrameworkCore;
 
 namespace BetterTravel.DataAccess.EF.Seeder
 {
     public class DbSeeder : IDbSeeder
     {
-        private readonly AppDbContext _dbContext;
+        private readonly WriteDbContext _dbContext;
 
-        public DbSeeder(AppDbContext dbContext) => 
+        public DbSeeder(WriteDbContext dbContext) => 
             _dbContext = dbContext;
 
         public async Task SeedAsync(CancellationToken cancellationToken = default)

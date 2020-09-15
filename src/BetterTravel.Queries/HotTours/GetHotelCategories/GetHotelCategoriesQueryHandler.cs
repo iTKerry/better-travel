@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Enums;
+using BetterTravel.DataAccess.Abstractions.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
 using BetterTravel.Queries.ViewModels;
@@ -30,7 +30,7 @@ namespace BetterTravel.Queries.HotTours.GetHotelCategories
                 })
                 .ToList();
 
-            return Task.FromResult(Ok(categories));
+            return Task.FromResult(Data(categories));
         }
     }
 }

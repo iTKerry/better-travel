@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache.Base;
+using BetterTravel.DataAccess.Abstractions.Cache.Base;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;

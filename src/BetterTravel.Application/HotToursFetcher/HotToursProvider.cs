@@ -8,10 +8,10 @@ using BetterTravel.Application.HotToursFetcher.Requests;
 using BetterTravel.Application.HotToursFetcher.Responses;
 using BetterTravel.Common.Configurations;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities;
-using BetterTravel.DataAccess.Entities.Enumerations;
-using BetterTravel.DataAccess.Enums;
-using BetterTravel.DataAccess.ValueObjects;
+using BetterTravel.DataAccess.Abstractions.Entities;
+using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
+using BetterTravel.DataAccess.Abstractions.Enums;
+using BetterTravel.DataAccess.Abstractions.ValueObjects;
 using Microsoft.Extensions.Options;
 using Refit;
 

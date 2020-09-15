@@ -30,6 +30,6 @@ namespace BetterTravel.Queries.Exchange.GetExchange
                     }).ToList())
                 .Finally(result => result.IsFailure
                     ? ValidationFailed(result.Error)
-                    : Ok(result.Value));
+                    : Data(result.Value));
     }
 }

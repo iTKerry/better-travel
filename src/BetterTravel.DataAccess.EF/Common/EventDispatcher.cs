@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache;
+using BetterExtensions.Domain.Events;
+using BetterTravel.DataAccess.Abstractions.Cache;
+using BetterTravel.DataAccess.Abstractions.Events;
 using BetterTravel.DataAccess.EF.Abstractions;
-using BetterTravel.DataAccess.Events;
-using BetterTravel.DataAccess.Events.Base;
 using BetterTravel.DataAccess.Redis.Abstractions;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Logging;

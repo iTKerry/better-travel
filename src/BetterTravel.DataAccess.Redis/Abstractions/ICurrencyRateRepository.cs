@@ -1,4 +1,4 @@
-using BetterTravel.DataAccess.Cache;
+using BetterTravel.DataAccess.Abstractions.Cache;
 
 namespace BetterTravel.DataAccess.Redis.Abstractions
 {

@@ -12,7 +12,7 @@ using BetterTravel.Commands.Telegram.SettingsDepartures;
 using BetterTravel.Commands.Telegram.SettingsDepartureToggle;
 using BetterTravel.Commands.Telegram.SettingsSubscriptionToggle;
 using BetterTravel.Commands.Telegram.Start;
-using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
 using CSharpFunctionalExtensions;

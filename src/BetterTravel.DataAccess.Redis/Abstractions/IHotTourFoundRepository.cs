@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache;
+using BetterTravel.DataAccess.Abstractions.Cache;
 using CSharpFunctionalExtensions;
 
 namespace BetterTravel.DataAccess.Redis.Abstractions

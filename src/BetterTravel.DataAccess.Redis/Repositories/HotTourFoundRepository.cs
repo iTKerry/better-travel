@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache;
+using BetterTravel.DataAccess.Abstractions.Cache;
 using BetterTravel.DataAccess.Redis.Abstractions;
 using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Caching.Distributed;

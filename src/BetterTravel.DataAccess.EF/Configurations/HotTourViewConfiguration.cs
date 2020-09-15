@@ -1,6 +1,6 @@
 ﻿using System;
+using BetterTravel.DataAccess.Abstractions.Views;
 using BetterTravel.DataAccess.EF.Metadata;
-using BetterTravel.DataAccess.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

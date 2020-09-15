@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.Cache;
+using BetterTravel.DataAccess.Abstractions.Cache;
 using CSharpFunctionalExtensions;
 
 namespace BetterTravel.Application.Exchange.Abstractions

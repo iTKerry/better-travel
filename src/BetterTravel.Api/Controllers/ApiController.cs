@@ -3,7 +3,7 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using BetterTravel.Common.Utils;
-using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.MediatR.Core.HandlerResults;
 using MediatR;
@@ -27,8 +27,9 @@ namespace BetterTravel.Api.Controllers
         protected async Task<IActionResult> FromResult<T>(IHandlerResult<T> result) =>
             result switch
             {
-                OkHandlerResult<T> ok => await Ok(ok.Data),
+                DataHandlerResult<T> data => await Ok(data.Data),
                 NotFoundHandlerResult<T> _ => NotFound(),
+                PagedDataHandlerResult<T> pagedData => await Ok(pagedData),
                 ValidationFailedHandlerResult<T> failed => Error(failed.Message),
 
                 _ => throw new InvalidOperationException(),

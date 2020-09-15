@@ -8,7 +8,7 @@ namespace BetterTravel.Api.Extensions.ServiceCollection
         public static IServiceCollection AddBetterTravelHealthChecks(this IServiceCollection services) =>
             services
                 .AddHealthChecks()
-                .AddDbContextCheck<AppDbContext>()
+                .AddDbContextCheck<WriteDbContext>()
                 .Services;
     }
 }

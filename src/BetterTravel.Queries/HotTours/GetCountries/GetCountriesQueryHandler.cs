@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BetterTravel.Common.Localization;
-using BetterTravel.DataAccess.Entities.Enumerations;
+using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
 using BetterTravel.Queries.ViewModels;
@@ -27,7 +27,7 @@ namespace BetterTravel.Queries.HotTours.GetCountries
                 })
                 .ToList();
 
-            return Task.FromResult(Ok(countries));
+            return Task.FromResult(Data(countries));
         }
     }
 }

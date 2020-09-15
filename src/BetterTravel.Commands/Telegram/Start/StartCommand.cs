@@ -1,4 +1,4 @@
-﻿using BetterTravel.DataAccess.Enums;
+﻿using BetterTravel.DataAccess.Abstractions.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 
 namespace BetterTravel.Commands.Telegram.Start

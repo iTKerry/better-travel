@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BetterTravel.DataAccess\BetterTravel.DataAccess.csproj" />
+      <ProjectReference Include="..\BetterTravel.DataAccess.Abstractions\BetterTravel.DataAccess.Abstractions.csproj" />
     </ItemGroup>
 
 </Project>

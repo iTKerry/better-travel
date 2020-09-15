@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.MediatR.Core.Abstractions;
 using Telegram.Bot;
 using Telegram.Bot.Types;

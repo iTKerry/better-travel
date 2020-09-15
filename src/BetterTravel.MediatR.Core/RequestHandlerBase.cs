@@ -11,8 +11,11 @@ namespace BetterTravel.MediatR.Core
     {
         public abstract Task<IHandlerResult<TResponse>> Handle(TRequest request, CancellationToken cancellationToken);
 
-        protected static IHandlerResult<TResponse> Ok(TResponse data) =>
-            new OkHandlerResult<TResponse>(data);
+        protected static IHandlerResult<TResponse> Data(TResponse data) =>
+            new DataHandlerResult<TResponse>(data);
+        
+        protected static IHandlerResult<TResponse> PagedData(TResponse data, int count) =>
+            new PagedDataHandlerResult<TResponse>(data, count);
 
         protected static IHandlerResult<TResponse> NotFound() =>
             new NotFoundHandlerResult<TResponse>();

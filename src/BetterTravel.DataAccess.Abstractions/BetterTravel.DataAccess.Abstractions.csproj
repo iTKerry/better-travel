@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BetterExtensions.Domain" Version="0.0.1" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.11.7" />
+  </ItemGroup>
+
+</Project>

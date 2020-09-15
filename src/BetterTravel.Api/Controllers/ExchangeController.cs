@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BetterTravel.Common.Utils;
-using BetterTravel.DataAccess.EF.Abstractions;
+using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.Queries.Exchange.GetExchange;
 using BetterTravel.Queries.ViewModels;
 using MediatR;

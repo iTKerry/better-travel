@@ -23,7 +23,7 @@ namespace BetterTravel.Api
             try
             {
                 Log.Information("Starting web host");
-                await host.MigrateDatabaseAsync<AppDbContext>();
+                await host.MigrateDatabaseAsync<WriteDbContext>();
                 await host.RunAsync();
             }
             catch (Exception ex)
