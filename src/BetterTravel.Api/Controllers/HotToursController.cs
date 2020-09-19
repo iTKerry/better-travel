@@ -4,6 +4,7 @@ using AutoMapper;
 using BetterTravel.Api.Requests.HotTours;
 using BetterTravel.Common.Utils;
 using BetterTravel.DataAccess.Abstractions.Repository;
+using BetterTravel.MediatR.Core.HandlerResults;
 using BetterTravel.Queries.HotTours.GetCountries;
 using BetterTravel.Queries.HotTours.GetDepartures;
 using BetterTravel.Queries.HotTours.GetHotelCategories;
@@ -29,7 +30,7 @@ namespace BetterTravel.Api.Controllers
         /// <param name="data">Request params</param>
         /// <returns>Hot-tours</returns>
         [HttpGet("get", Name = nameof(GetTours))]
-        [ProducesResponseType(typeof(Envelope<List<HotToursViewModel>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Envelope<PagedDataHandlerResult<List<HotToursViewModel>>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTours([FromQuery] GetHotToursDto data)
         {
             var query = Mapper.Map<GetHotToursQuery>(data);
