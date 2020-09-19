@@ -7,17 +7,22 @@ using BetterTravel.MediatR.Core.Abstractions;
 
 namespace BetterTravel.Queries.HotTours.GetHotTours
 {
-    public class GetHotToursQuery : IQuery<List<HotToursViewModel>>
+    public sealed class GetHotToursQuery : IQuery<List<HotToursViewModel>>
     {
+        public GetHotToursQuery(
+            int[] countries, 
+            int[] departures, 
+            HotelCategoryType[] hotelCategories)
+        {
+            Filter = tour =>
+                (!countries.Any() || countries.Contains(tour.CountryId)) &&
+                (!departures.Any() || departures.Contains(tour.DepartureLocationId)) &&
+                (!hotelCategories.Any() || hotelCategories.Contains(tour.HotelCategory));
+        }
+        
         public int Take { get; set; }
         public int Skip { get; set; }
-        public int[] Countries { get; set; }
-        public int[] Departures { get; set; }
-        public HotelCategoryType[] HotelCategories { get; set; }
-        
-        public Expression<Func<HotToursViewModel, bool>> Filter => tour =>
-            (!Countries.Any() || Countries.Contains(tour.CountryId)) &&
-            (!Departures.Any() || Departures.Contains(tour.DepartureLocationId)) &&
-            (!HotelCategories.Any() || HotelCategories.Contains(tour.HotelCategory));
+
+        public Expression<Func<HotToursViewModel, bool>> Filter { get; }
     }
 }
