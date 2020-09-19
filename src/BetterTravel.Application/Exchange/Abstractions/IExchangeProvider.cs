@@ -7,6 +7,6 @@ namespace BetterTravel.Application.Exchange.Abstractions
 {
     public interface IExchangeProvider
     {
-        public Task<Result<List<CurrencyRate>>> GetExchangeAsync(bool cached = true);
+        Task<Result<List<CurrencyRate>>> GetExchangeAsync(bool cached = true);
     }
 }

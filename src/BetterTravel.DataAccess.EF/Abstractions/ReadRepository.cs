@@ -14,9 +14,9 @@ namespace BetterTravel.DataAccess.EF.Abstractions
     public class ReadRepository<TView> : IReadRepository<TView>
         where TView : View
     {
-        protected readonly DbContext Ctx;
+        protected readonly ReadDbContext Ctx;
 
-        public ReadRepository(DbContext db) => 
+        public ReadRepository(ReadDbContext db) => 
             Ctx = db;
 
         public async Task<List<TView>> GetAllAsync(
