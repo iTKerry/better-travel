@@ -9,7 +9,6 @@ using BetterTravel.Queries.HotTours.GetCountries;
 using BetterTravel.Queries.HotTours.GetDepartures;
 using BetterTravel.Queries.HotTours.GetHotelCategories;
 using BetterTravel.Queries.HotTours.GetHotTours;
-using BetterTravel.Queries.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

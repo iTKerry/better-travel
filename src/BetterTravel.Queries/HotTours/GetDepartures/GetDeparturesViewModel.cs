@@ -1,4 +1,4 @@
-﻿namespace BetterTravel.Queries.ViewModels
+﻿namespace BetterTravel.Queries.HotTours.GetDepartures
 {
     public class GetDeparturesViewModel
     {

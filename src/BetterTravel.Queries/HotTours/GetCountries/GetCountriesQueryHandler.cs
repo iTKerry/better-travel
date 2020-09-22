@@ -6,7 +6,6 @@ using BetterTravel.Common.Localization;
 using BetterTravel.DataAccess.Abstractions.Entities.Enumerations;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
-using BetterTravel.Queries.ViewModels;
 
 namespace BetterTravel.Queries.HotTours.GetCountries
 {

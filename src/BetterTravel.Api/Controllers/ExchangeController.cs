@@ -4,7 +4,6 @@ using AutoMapper;
 using BetterTravel.Common.Utils;
 using BetterTravel.DataAccess.Abstractions.Repository;
 using BetterTravel.Queries.Exchange.GetExchange;
-using BetterTravel.Queries.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

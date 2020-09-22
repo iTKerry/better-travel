@@ -7,7 +7,6 @@ using BetterTravel.Common.Localization;
 using BetterTravel.DataAccess.Abstractions.Enums;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
-using BetterTravel.Queries.ViewModels;
 
 namespace BetterTravel.Queries.HotTours.GetHotelCategories
 {

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using BetterTravel.Application.Exchange.Abstractions;
 using BetterTravel.MediatR.Core.Abstractions;
 using BetterTravel.Queries.Abstractions;
-using BetterTravel.Queries.ViewModels;
 using CSharpFunctionalExtensions;
 
 namespace BetterTravel.Queries.Exchange.GetExchange

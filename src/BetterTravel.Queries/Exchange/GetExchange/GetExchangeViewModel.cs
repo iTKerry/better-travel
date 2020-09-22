@@ -1,6 +1,6 @@
 using System;
 
-namespace BetterTravel.Queries.ViewModels
+namespace BetterTravel.Queries.Exchange.GetExchange
 {
     public class GetExchangeViewModel
     {
