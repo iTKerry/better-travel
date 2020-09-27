@@ -1,0 +1,18 @@
+{
+    "name": "better-travel",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "507ee109-87aa-4930-a111-6be1cb99f7c7",
+            "appPassword": "C4xunu.yLgv7.QI1i6Rp-3pXb38.fZMn7D",
+            "endpoint": "http://localhost:3978/api/messages",
+            "id": "e2ba3820-00a9-11eb-8475-0d45fe72c427",
+            "name": "http://localhost:3978/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\sources\\better-travel\\src\\BetterTravel.BotApi\\BetterTravel.bot",
+    "overrides": null
+}
