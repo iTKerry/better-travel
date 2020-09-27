@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using BetterTravel.BotApi.Bots;
+using BetterTravel.BotApi.Dialogs;
 
 namespace BetterTravel.BotApi
 {
@@ -25,7 +26,7 @@ namespace BetterTravel.BotApi
 
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
-            services.AddTransient<IBot, EchoBot>();
+            services.AddTransient<IBot, DialogBot<MainDialog>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,0 +1,3 @@
+[submodule "better-travel-api"]
+	path = better-travel-api
+	url = https://github.com/iTKerry/better-travel-api
