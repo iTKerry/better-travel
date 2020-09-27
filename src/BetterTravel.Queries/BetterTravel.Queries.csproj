@@ -10,6 +10,7 @@
       <ProjectReference Include="..\BetterTravel.DataAccess.Abstractions\BetterTravel.DataAccess.Abstractions.csproj" />
       <ProjectReference Include="..\BetterTravel.DataAccess.EF\BetterTravel.DataAccess.EF.csproj" />
       <ProjectReference Include="..\BetterTravel.MediatR.Core\BetterTravel.MediatR.Core.csproj" />
+      <ProjectReference Include="..\BetterTravel.WebApplication\BetterTravel.BlazorApp.csproj" />
     </ItemGroup>
 
 </Project>
