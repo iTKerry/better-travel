@@ -3,5 +3,3 @@
     <h1 align="center">BetterTravel</h1>
     <p align="center">Travel more, pay less. Hot-tours finder app</p>
 </p>
-
-## TODO: All projects from src folder should be located into separate repos
