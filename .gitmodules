@@ -1,6 +1,0 @@
-[submodule "better-travel-bot"]
-	path = better-travel-bot
-	url = https://github.com/better-open-source/better-travel-bot
-[submodule "better-travel-app"]
-	path = better-travel-app
-	url = https://github.com/better-open-source/better-travel-app
