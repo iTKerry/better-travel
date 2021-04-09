@@ -1,0 +1,673 @@
+[
+  {
+    "Id": "110",
+    "Name": "Египет",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "360",
+    "Name": "Турция",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "700",
+    "Name": "ОАЭ",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "5910",
+    "Name": "Албания",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "620",
+    "Name": "Доминикана",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "640",
+    "Name": "Мальдивы",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1550",
+    "Name": "Черногория",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "540",
+    "Name": "Болгария",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "6570",
+    "Name": "Танзания",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1190",
+    "Name": "Мексика",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "520",
+    "Name": "Кипр",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "750",
+    "Name": "Австрия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "2900",
+    "Name": "Азербайджан",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "930",
+    "Name": "Андорра",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "3110",
+    "Name": "Антигуа",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "6010",
+    "Name": "Армения",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "7000",
+    "Name": "Аруба",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1210",
+    "Name": "Барбадос",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "6980",
+    "Name": "Бахрейн",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1640",
+    "Name": "Беларусь",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "760",
+    "Name": "Бельгия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1150",
+    "Name": "Бразилия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "680",
+    "Name": "Великобритания",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "570",
+    "Name": "Венгрия",
+    "Attributes": {
+      "currencyId": "2"
+    }
+  },
+  {
+    "Id": "740",
+    "Name": "Вьетнам",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "780",
+    "Name": "Германия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "7132",
+    "Name": "Горнолыжная Турция",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "840",
+    "Name": "Греция",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1690",
+    "Name": "Грузия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "920",
+    "Name": "Дания",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1010",
+    "Name": "Израиль",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "800",
+    "Name": "Индия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "980",
+    "Name": "Индонезия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1180",
+    "Name": "Иордания",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "5930",
+    "Name": "Ирландия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1530",
+    "Name": "Исландия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "510",
+    "Name": "Испания",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "670",
+    "Name": "Италия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "6590",
+    "Name": "Казахстан",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "650",
+    "Name": "Камбоджа",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1500",
+    "Name": "Канада",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "5980",
+    "Name": "Катар",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "3240",
+    "Name": "Кения",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "880",
+    "Name": "Китай",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "630",
+    "Name": "Куба",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1490",
+    "Name": "Латвия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1290",
+    "Name": "Литва",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1480",
+    "Name": "Маврикий",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "5900",
+    "Name": "Македония",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "990",
+    "Name": "Малайзия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "250",
+    "Name": "Мальта",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1450",
+    "Name": "Марокко",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1440",
+    "Name": "Молдова",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1710",
+    "Name": "Мьянма",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1540",
+    "Name": "Нидерланды",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1260",
+    "Name": "Норвегия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "770",
+    "Name": "Оман",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "580",
+    "Name": "Польша",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "860",
+    "Name": "Португалия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "710",
+    "Name": "Россия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1580",
+    "Name": "Румыния",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1060",
+    "Name": "Сейшельские острова",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "2990",
+    "Name": "Сербия",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1000",
+    "Name": "Сингапур",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "870",
+    "Name": "Словакия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1090",
+    "Name": "Словения",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "830",
+    "Name": "США",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "690",
+    "Name": "Таиланд (Тайланд)",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "610",
+    "Name": "Тунис",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1420",
+    "Name": "Узбекистан",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "370",
+    "Name": "Украина",
+    "Attributes": {
+      "currencyId": "0",
+      "currencyName": "UAH"
+    }
+  },
+  {
+    "Id": "1050",
+    "Name": "Филиппины",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "900",
+    "Name": "Финляндия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "390",
+    "Name": "Франция",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "550",
+    "Name": "Хорватия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "420",
+    "Name": "Чехия",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "720",
+    "Name": "Швейцария",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "910",
+    "Name": "Швеция",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1410",
+    "Name": "Шри-Ланка",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "7131",
+    "Name": "Экскурсионная Турция",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1400",
+    "Name": "Эстония",
+    "Attributes": {
+      "currencyId": "2",
+      "currencyName": "EUR"
+    }
+  },
+  {
+    "Id": "1360",
+    "Name": "ЮАР",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "1170",
+    "Name": "Ямайка",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  },
+  {
+    "Id": "660",
+    "Name": "Япония",
+    "Attributes": {
+      "currencyId": "1",
+      "currencyName": "USD"
+    }
+  }
+]
