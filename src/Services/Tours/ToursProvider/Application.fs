@@ -1,7 +1,6 @@
 ﻿[<AutoOpen>]
 module Application
 
-open System
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 

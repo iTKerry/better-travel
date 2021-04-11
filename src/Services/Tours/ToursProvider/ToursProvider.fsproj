@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Utils.fs" />
         <Compile Include="HostedServices.fs" />
         <Compile Include="Application.fs" />
         <Compile Include="Program.fs" />
