@@ -8,8 +8,8 @@ module Configs =
           "RememberMe", "false" ]
         |> Map.ofList
         
-    let hotelsData =
-        [ "request[CurrentCountryId]", "37";
+    let hotelsData (countryId : int) =
+        [ "request[CurrentCountryId]", $"{countryId}";
           "request[NetworkId]", "37";
           "request[CurrencyId]", "0";
           "request[DirectionId]", "360";
@@ -60,3 +60,4 @@ module Urls =
     let loginUri = $"{baseUrl}/user/login"
     let getTourOfferListUri = $"{baseUrl}/TourOffer/GetList"
     let getHotelsUri = $"{baseUrl}/LiveTourSearch/GeHotels"
+    let getResortListUri = $"{baseUrl}/dictionary/directionResortGetList"

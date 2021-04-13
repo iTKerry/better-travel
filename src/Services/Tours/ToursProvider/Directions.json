@@ -1,673 +1,506 @@
 [
   {
-    "Id": "110",
-    "Name": "Египет",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "360",
-    "Name": "Турция",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "700",
-    "Name": "ОАЭ",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "5910",
-    "Name": "Албания",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "620",
-    "Name": "Доминикана",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "640",
-    "Name": "Мальдивы",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "1550",
-    "Name": "Черногория",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "540",
-    "Name": "Болгария",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "6570",
-    "Name": "Танзания",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "1190",
-    "Name": "Мексика",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "520",
-    "Name": "Кипр",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "750",
-    "Name": "Австрия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "2900",
-    "Name": "Азербайджан",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 110,
+    "value": 110,
+    "label": "Египет",
+    "parent": 0
   },
   {
-    "Id": "930",
-    "Name": "Андорра",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 360,
+    "value": 360,
+    "label": "Турция",
+    "parent": 0
   },
   {
-    "Id": "3110",
-    "Name": "Антигуа",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 700,
+    "value": 700,
+    "label": "ОАЭ",
+    "parent": 0
   },
   {
-    "Id": "6010",
-    "Name": "Армения",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 5910,
+    "value": 5910,
+    "label": "Албания",
+    "parent": 0
   },
   {
-    "Id": "7000",
-    "Name": "Аруба",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 620,
+    "value": 620,
+    "label": "Доминикана",
+    "parent": 0
   },
   {
-    "Id": "1210",
-    "Name": "Барбадос",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 640,
+    "value": 640,
+    "label": "Мальдивы",
+    "parent": 0
   },
   {
-    "Id": "6980",
-    "Name": "Бахрейн",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1550,
+    "value": 1550,
+    "label": "Черногория",
+    "parent": 0
   },
   {
-    "Id": "1640",
-    "Name": "Беларусь",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 540,
+    "value": 540,
+    "label": "Болгария",
+    "parent": 0
   },
   {
-    "Id": "760",
-    "Name": "Бельгия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 6570,
+    "value": 6570,
+    "label": "Танзания",
+    "parent": 0
   },
   {
-    "Id": "1150",
-    "Name": "Бразилия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1190,
+    "value": 1190,
+    "label": "Мексика",
+    "parent": 0
   },
   {
-    "Id": "680",
-    "Name": "Великобритания",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 520,
+    "value": 520,
+    "label": "Кипр",
+    "parent": 0
   },
   {
-    "Id": "570",
-    "Name": "Венгрия",
-    "Attributes": {
-      "currencyId": "2"
-    }
+    "id": 750,
+    "value": 750,
+    "label": "Австрия",
+    "parent": 0
   },
   {
-    "Id": "740",
-    "Name": "Вьетнам",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 2900,
+    "value": 2900,
+    "label": "Азербайджан",
+    "parent": 0
   },
   {
-    "Id": "780",
-    "Name": "Германия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 930,
+    "value": 930,
+    "label": "Андорра",
+    "parent": 0
   },
   {
-    "Id": "7132",
-    "Name": "Горнолыжная Турция",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 3110,
+    "value": 3110,
+    "label": "Антигуа",
+    "parent": 0
   },
   {
-    "Id": "840",
-    "Name": "Греция",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 6010,
+    "value": 6010,
+    "label": "Армения",
+    "parent": 0
   },
   {
-    "Id": "1690",
-    "Name": "Грузия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 7000,
+    "value": 7000,
+    "label": "Аруба",
+    "parent": 0
   },
   {
-    "Id": "920",
-    "Name": "Дания",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1210,
+    "value": 1210,
+    "label": "Барбадос",
+    "parent": 0
   },
   {
-    "Id": "1010",
-    "Name": "Израиль",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 6980,
+    "value": 6980,
+    "label": "Бахрейн",
+    "parent": 0
   },
   {
-    "Id": "800",
-    "Name": "Индия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1640,
+    "value": 1640,
+    "label": "Беларусь",
+    "parent": 0
   },
   {
-    "Id": "980",
-    "Name": "Индонезия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 760,
+    "value": 760,
+    "label": "Бельгия",
+    "parent": 0
   },
   {
-    "Id": "1180",
-    "Name": "Иордания",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1150,
+    "value": 1150,
+    "label": "Бразилия",
+    "parent": 0
   },
   {
-    "Id": "5930",
-    "Name": "Ирландия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 680,
+    "value": 680,
+    "label": "Великобритания",
+    "parent": 0
   },
   {
-    "Id": "1530",
-    "Name": "Исландия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 570,
+    "value": 570,
+    "label": "Венгрия",
+    "parent": 0
   },
   {
-    "Id": "510",
-    "Name": "Испания",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 740,
+    "value": 740,
+    "label": "Вьетнам",
+    "parent": 0
   },
   {
-    "Id": "670",
-    "Name": "Италия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 780,
+    "value": 780,
+    "label": "Германия",
+    "parent": 0
   },
   {
-    "Id": "6590",
-    "Name": "Казахстан",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 7132,
+    "value": 7132,
+    "label": "Горнолыжная Турция",
+    "parent": 0
   },
   {
-    "Id": "650",
-    "Name": "Камбоджа",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 840,
+    "value": 840,
+    "label": "Греция",
+    "parent": 0
   },
   {
-    "Id": "1500",
-    "Name": "Канада",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1690,
+    "value": 1690,
+    "label": "Грузия",
+    "parent": 0
   },
   {
-    "Id": "5980",
-    "Name": "Катар",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 920,
+    "value": 920,
+    "label": "Дания",
+    "parent": 0
   },
   {
-    "Id": "3240",
-    "Name": "Кения",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1010,
+    "value": 1010,
+    "label": "Израиль",
+    "parent": 0
   },
   {
-    "Id": "880",
-    "Name": "Китай",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 800,
+    "value": 800,
+    "label": "Индия",
+    "parent": 0
   },
   {
-    "Id": "630",
-    "Name": "Куба",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 980,
+    "value": 980,
+    "label": "Индонезия",
+    "parent": 0
   },
   {
-    "Id": "1490",
-    "Name": "Латвия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1180,
+    "value": 1180,
+    "label": "Иордания",
+    "parent": 0
   },
   {
-    "Id": "1290",
-    "Name": "Литва",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 5930,
+    "value": 5930,
+    "label": "Ирландия",
+    "parent": 0
   },
   {
-    "Id": "1480",
-    "Name": "Маврикий",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1530,
+    "value": 1530,
+    "label": "Исландия",
+    "parent": 0
   },
   {
-    "Id": "5900",
-    "Name": "Македония",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 510,
+    "value": 510,
+    "label": "Испания",
+    "parent": 0
   },
   {
-    "Id": "990",
-    "Name": "Малайзия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 670,
+    "value": 670,
+    "label": "Италия",
+    "parent": 0
   },
   {
-    "Id": "250",
-    "Name": "Мальта",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 6590,
+    "value": 6590,
+    "label": "Казахстан",
+    "parent": 0
   },
   {
-    "Id": "1450",
-    "Name": "Марокко",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 650,
+    "value": 650,
+    "label": "Камбоджа",
+    "parent": 0
   },
   {
-    "Id": "1440",
-    "Name": "Молдова",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1500,
+    "value": 1500,
+    "label": "Канада",
+    "parent": 0
   },
   {
-    "Id": "1710",
-    "Name": "Мьянма",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 5980,
+    "value": 5980,
+    "label": "Катар",
+    "parent": 0
   },
   {
-    "Id": "1540",
-    "Name": "Нидерланды",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 3240,
+    "value": 3240,
+    "label": "Кения",
+    "parent": 0
   },
   {
-    "Id": "1260",
-    "Name": "Норвегия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 880,
+    "value": 880,
+    "label": "Китай",
+    "parent": 0
   },
   {
-    "Id": "770",
-    "Name": "Оман",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 630,
+    "value": 630,
+    "label": "Куба",
+    "parent": 0
   },
   {
-    "Id": "580",
-    "Name": "Польша",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1490,
+    "value": 1490,
+    "label": "Латвия",
+    "parent": 0
   },
   {
-    "Id": "860",
-    "Name": "Португалия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1290,
+    "value": 1290,
+    "label": "Литва",
+    "parent": 0
   },
   {
-    "Id": "710",
-    "Name": "Россия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1480,
+    "value": 1480,
+    "label": "Маврикий",
+    "parent": 0
   },
   {
-    "Id": "1580",
-    "Name": "Румыния",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 5900,
+    "value": 5900,
+    "label": "Македония",
+    "parent": 0
   },
   {
-    "Id": "1060",
-    "Name": "Сейшельские острова",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 990,
+    "value": 990,
+    "label": "Малайзия",
+    "parent": 0
   },
   {
-    "Id": "2990",
-    "Name": "Сербия",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 250,
+    "value": 250,
+    "label": "Мальта",
+    "parent": 0
   },
   {
-    "Id": "1000",
-    "Name": "Сингапур",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1450,
+    "value": 1450,
+    "label": "Марокко",
+    "parent": 0
   },
   {
-    "Id": "870",
-    "Name": "Словакия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1440,
+    "value": 1440,
+    "label": "Молдова",
+    "parent": 0
   },
   {
-    "Id": "1090",
-    "Name": "Словения",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
+    "id": 1710,
+    "value": 1710,
+    "label": "Мьянма",
+    "parent": 0
   },
   {
-    "Id": "830",
-    "Name": "США",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1540,
+    "value": 1540,
+    "label": "Нидерланды",
+    "parent": 0
   },
   {
-    "Id": "690",
-    "Name": "Таиланд (Тайланд)",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 1260,
+    "value": 1260,
+    "label": "Норвегия",
+    "parent": 0
   },
   {
-    "Id": "610",
-    "Name": "Тунис",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 770,
+    "value": 770,
+    "label": "Оман",
+    "parent": 0
   },
   {
-    "Id": "1420",
-    "Name": "Узбекистан",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 580,
+    "value": 580,
+    "label": "Польша",
+    "parent": 0
   },
   {
-    "Id": "370",
-    "Name": "Украина",
-    "Attributes": {
-      "currencyId": "0",
-      "currencyName": "UAH"
-    }
+    "id": 860,
+    "value": 860,
+    "label": "Португалия",
+    "parent": 0
   },
   {
-    "Id": "1050",
-    "Name": "Филиппины",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "900",
-    "Name": "Финляндия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "390",
-    "Name": "Франция",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "550",
-    "Name": "Хорватия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "420",
-    "Name": "Чехия",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "720",
-    "Name": "Швейцария",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "910",
-    "Name": "Швеция",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "1410",
-    "Name": "Шри-Ланка",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "7131",
-    "Name": "Экскурсионная Турция",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "1400",
-    "Name": "Эстония",
-    "Attributes": {
-      "currencyId": "2",
-      "currencyName": "EUR"
-    }
-  },
-  {
-    "Id": "1360",
-    "Name": "ЮАР",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "1170",
-    "Name": "Ямайка",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
-  },
-  {
-    "Id": "660",
-    "Name": "Япония",
-    "Attributes": {
-      "currencyId": "1",
-      "currencyName": "USD"
-    }
+    "id": 710,
+    "value": 710,
+    "label": "Россия",
+    "parent": 0
+  },
+  {
+    "id": 1580,
+    "value": 1580,
+    "label": "Румыния",
+    "parent": 0
+  },
+  {
+    "id": 1060,
+    "value": 1060,
+    "label": "Сейшельские острова",
+    "parent": 0
+  },
+  {
+    "id": 2990,
+    "value": 2990,
+    "label": "Сербия",
+    "parent": 0
+  },
+  {
+    "id": 1000,
+    "value": 1000,
+    "label": "Сингапур",
+    "parent": 0
+  },
+  {
+    "id": 870,
+    "value": 870,
+    "label": "Словакия",
+    "parent": 0
+  },
+  {
+    "id": 1090,
+    "value": 1090,
+    "label": "Словения",
+    "parent": 0
+  },
+  {
+    "id": 830,
+    "value": 830,
+    "label": "США",
+    "parent": 0
+  },
+  {
+    "id": 690,
+    "value": 690,
+    "label": "Таиланд (Тайланд)",
+    "parent": 0
+  },
+  {
+    "id": 610,
+    "value": 610,
+    "label": "Тунис",
+    "parent": 0
+  },
+  {
+    "id": 1420,
+    "value": 1420,
+    "label": "Узбекистан",
+    "parent": 0
+  },
+  {
+    "id": 370,
+    "value": 370,
+    "label": "Украина",
+    "parent": 0
+  },
+  {
+    "id": 1050,
+    "value": 1050,
+    "label": "Филиппины",
+    "parent": 0
+  },
+  {
+    "id": 900,
+    "value": 900,
+    "label": "Финляндия",
+    "parent": 0
+  },
+  {
+    "id": 390,
+    "value": 390,
+    "label": "Франция",
+    "parent": 0
+  },
+  {
+    "id": 550,
+    "value": 550,
+    "label": "Хорватия",
+    "parent": 0
+  },
+  {
+    "id": 420,
+    "value": 420,
+    "label": "Чехия",
+    "parent": 0
+  },
+  {
+    "id": 720,
+    "value": 720,
+    "label": "Швейцария",
+    "parent": 0
+  },
+  {
+    "id": 910,
+    "value": 910,
+    "label": "Швеция",
+    "parent": 0
+  },
+  {
+    "id": 1410,
+    "value": 1410,
+    "label": "Шри-Ланка",
+    "parent": 0
+  },
+  {
+    "id": 7131,
+    "value": 7131,
+    "label": "Экскурсионная Турция",
+    "parent": 0
+  },
+  {
+    "id": 1400,
+    "value": 1400,
+    "label": "Эстония",
+    "parent": 0
+  },
+  {
+    "id": 1360,
+    "value": 1360,
+    "label": "ЮАР",
+    "parent": 0
+  },
+  {
+    "id": 1170,
+    "value": 1170,
+    "label": "Ямайка",
+    "parent": 0
+  },
+  {
+    "id": 660,
+    "value": 660,
+    "label": "Япония",
+    "parent": 0
   }
 ]
