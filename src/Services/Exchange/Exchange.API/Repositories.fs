@@ -4,9 +4,9 @@ open System
 open Microsoft.Extensions.Caching.Memory
 open Monobank
 
-module CurrencyRepo =
+module CurrencyRateRepo =
     
-    type CurrencyData =
+    type CurrencyRate =
         { CodeA : int
           CodeB : int
           Date  : int
@@ -15,20 +15,20 @@ module CurrencyRepo =
           Cross : float }
     
     [<Literal>]
-    let private currencyKey = "_currency"
+    let private currencyRateKey = "_currencyRate"
     let private options = MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromHours(1.0))
         
-    let update (cache : IMemoryCache) (data : CurrencyData []) =
-        cache.Set(currencyKey, data, options)
+    let update (cache : IMemoryCache) (rates : CurrencyRate []) =
+        cache.Set(currencyRateKey, rates, options)
     
     let getAsync (cache : IMemoryCache) =
         async {
-            match cache.TryGetValue<CurrencyData []> currencyKey with
-            | true, value -> return value
+            match cache.TryGetValue<CurrencyRate []> currencyRateKey with
+            | true, rates -> return rates
             | _ -> 
-                let! data = Currency.AsyncLoad currencyUrl
-                let result =
-                    data
+                let! jsonData = Currency.AsyncLoad currencyUrl
+                let rates =
+                    jsonData
                     |> Array.map (fun curr ->
                         { CodeA = curr.CurrencyCodeA
                           CodeB = curr.CurrencyCodeB
@@ -36,5 +36,5 @@ module CurrencyRepo =
                           Sell  = curr.RateSell  |> Option.map float |> Option.defaultValue 0.0 
                           Buy   = curr.RateBuy   |> Option.map float |> Option.defaultValue 0.0
                           Cross = curr.RateCross |> Option.map float |> Option.defaultValue 0.0 })
-                return update cache result 
+                return update cache rates 
         }

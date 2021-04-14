@@ -12,5 +12,5 @@ type CurrencyProviderService(logger : ILogger<CurrencyProviderService>, cache : 
     inherit TimedHostedService(new Timer(TimeSpan.FromHours(1.0).TotalMilliseconds), logger)
     override this.doWork _ =
         async {
-            do! CurrencyRepo.getAsync cache |> Async.Ignore
+            do! CurrencyRateRepo.getAsync cache |> Async.Ignore
         } |> Async.RunSynchronously

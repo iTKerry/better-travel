@@ -12,18 +12,20 @@ open Microsoft.AspNetCore.Hosting
 open FSharp.Control.Tasks
 open Repositories
 
-let currencyHandler : HttpHandler =
+let rateHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
             let cache = ctx.GetService<IMemoryCache>()
-            let! data = CurrencyRepo.getAsync cache
+            let! data = CurrencyRateRepo.getAsync cache
             return! json data next ctx
         }
 
 let webApp =
     choose [
         subRoute "/api"
-            (choose [ GET >=> route "/currency" >=> currencyHandler ])
+            (GET >=> choose [
+                route "/rate" >=> rateHandler
+            ])
     ]
 
 let configureApp (app : IApplicationBuilder) =
