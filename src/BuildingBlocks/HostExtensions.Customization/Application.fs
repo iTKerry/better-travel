@@ -3,6 +3,7 @@ module Application
 
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
+open Microsoft.Extensions.Hosting
 
 type AppState =
     { CliArguments    : string array option

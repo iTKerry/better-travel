@@ -7,6 +7,12 @@ module Configs =
           "Password",   "111";
           "RememberMe", "false" ]
         |> Map.ofList
+    
+    let activeTours =
+        [ "officeId",          381
+          "state",             8
+          "filterTourOfferId", 0 ]
+        |> Map.ofList
         
     let hotelsData (countryId : int) =
         [ "request[CurrentCountryId]", $"{countryId}";
