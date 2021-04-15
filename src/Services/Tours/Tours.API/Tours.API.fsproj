@@ -15,10 +15,6 @@
     <ItemGroup>
       <Content Include=".dockerignore" />
       <Content Include="Dockerfile" />
-      <Content Include="Directions.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="directions_with_resorts.json" />
     </ItemGroup>
 
     <ItemGroup>

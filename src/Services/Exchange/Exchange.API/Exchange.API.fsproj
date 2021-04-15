@@ -25,6 +25,12 @@
     </ItemGroup>
     
     <ItemGroup>
+        <None Update="Seed/Currencies.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\..\..\BuildingBlocks\HostExtensions.Customization\HostExtensions.Customization.fsproj" />
     </ItemGroup>
 
