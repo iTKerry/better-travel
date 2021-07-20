@@ -21,6 +21,7 @@
       <PackageReference Include="FSharp.Data" Version="4.0.1" />
       <PackageReference Include="Giraffe" Version="4.1.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="RestSharp" Version="106.11.7" />
     </ItemGroup>
 
