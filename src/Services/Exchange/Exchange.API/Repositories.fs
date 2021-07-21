@@ -1,7 +1,10 @@
 ﻿module Repositories
 
 open System
+open System.IO
 open Microsoft.Extensions.Caching.Memory
+open FSharp.Data
+open Newtonsoft.Json
 
 module RateRepository =
     
@@ -32,8 +35,6 @@ module RateRepository =
 
 module CurrencyRepository =
     
-    open FSharp.Data
-    
     [<Literal>]
     let private currencyKey = "_currency"
     
@@ -48,12 +49,9 @@ module CurrencyRepository =
           NumericCode    : int }
     
     let private currencies =
-        Currencies.Parse currenciesPath
-        |> Array.map (fun curr ->
-            { Currency       = curr.Currency
-              Entity         = curr.Entity
-              AlphabeticCode = curr.AlphabeticCode |> Option.defaultValue ""
-              NumericCode    = curr.NumericCode    |> Option.defaultValue 0 })
+        let json = File.ReadAllText(currenciesPath)
+        let data = JsonConvert.DeserializeObject<CurrencyInfo[]>(json)
+        data
 
     let update (cache : IMemoryCache) (currencies : CurrencyInfo []) =
         cache.Set(currencyKey, currencies)

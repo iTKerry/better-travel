@@ -56,13 +56,6 @@
         "NumericCode": 951
     },
     {
-        "AlphabeticCode": null,
-        "Currency": "No universal currency",
-        "Entity": "ANTARCTICA",
-        "MinorUnit": null,
-        "NumericCode": null
-    },
-    {
         "AlphabeticCode": "XCD",
         "Currency": "East Caribbean Dollar",
         "Entity": "ANTIGUA AND BARBUDA",
@@ -1281,13 +1274,6 @@
         "NumericCode": 840
     },
     {
-        "AlphabeticCode": null,
-        "Currency": "No universal currency",
-        "Entity": "PALESTINE, STATE OF",
-        "MinorUnit": null,
-        "NumericCode": null
-    },
-    {
         "AlphabeticCode": "PAB",
         "Currency": "Balboa",
         "Entity": "PANAMA",
@@ -1552,13 +1538,6 @@
         "Entity": "SOUTH AFRICA",
         "MinorUnit": "2",
         "NumericCode": 710
-    },
-    {
-        "AlphabeticCode": null,
-        "Currency": "No universal currency",
-        "Entity": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
-        "MinorUnit": null,
-        "NumericCode": null
     },
     {
         "AlphabeticCode": "SSP",
@@ -3223,29 +3202,5 @@
         "MinorUnit": null,
         "NumericCode": 935,
         "WithdrawalDate": "2009-06"
-    },
-    {
-        "AlphabeticCode": "XFO",
-        "Currency": "Gold-Franc",
-        "Entity": "ZZ01_Gold-Franc",
-        "MinorUnit": null,
-        "NumericCode": null,
-        "WithdrawalDate": "2006-10"
-    },
-    {
-        "AlphabeticCode": "XRE",
-        "Currency": "RINET Funds Code",
-        "Entity": "ZZ02_RINET Funds Code",
-        "MinorUnit": null,
-        "NumericCode": null,
-        "WithdrawalDate": "1999-11"
-    },
-    {
-        "AlphabeticCode": "XFU",
-        "Currency": "UIC-Franc",
-        "Entity": "ZZ05_UIC-Franc",
-        "MinorUnit": null,
-        "NumericCode": null,
-        "WithdrawalDate": "2013-11"
     }
 ]
