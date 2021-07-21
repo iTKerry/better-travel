@@ -57,15 +57,15 @@ type ToursProviderService(logger : ILogger<ToursProviderService>) =
         async {
             logger.LogInformation "Doing work."
             
-            match! loginCookiesStealer Urls.loginUri Configs.loginCredentials with
-            | Ok cookies ->
-                logger.LogInformation "Cookies stealing completed successfully."
-                let baseRequest = createRequest Method.POST cookies
-                
-                match! getToursList baseRequest with
-                | Ok tours  -> logger.LogInformation tours
-                | Error err -> logger.LogError err
-                
-            | Error error -> logger.LogError error
+//            match! loginCookiesStealer Urls.loginUri Configs.loginCredentials with
+//            | Ok cookies ->
+//                logger.LogInformation "Cookies stealing completed successfully."
+//                let baseRequest = createRequest Method.POST cookies
+//                
+//                match! getToursList baseRequest with
+//                | Ok tours  -> logger.LogInformation tours
+//                | Error err -> logger.LogError err
+//                
+//            | Error error -> logger.LogError error
             
         } |> Async.RunSynchronously
