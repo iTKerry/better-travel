@@ -10,10 +10,10 @@ open RestSharp
 
 open Utils
 
-let client (timeout : int) (providerUrl : string) =
+let private client (timeout : int) (providerUrl : string) =
     RestClient(providerUrl, Timeout = TimeSpan.FromSeconds(float timeout).Milliseconds)
     
-let defaultClient providerUrl =
+let private defaultClient providerUrl =
     client 10 providerUrl
 
 let private executeRequestAsync (client : RestClient, request : RestRequest) =
@@ -57,15 +57,15 @@ type ToursProviderService(logger : ILogger<ToursProviderService>) =
         async {
             logger.LogInformation "Doing work."
             
-            match! loginCookiesStealer Urls.loginUri Configs.loginCredentials with
-            | Ok cookies ->
-                logger.LogInformation "Cookies stealing completed successfully."
-                let baseRequest = createRequest Method.POST cookies
-                
-                match! getToursList baseRequest with
-                | Ok tours  -> logger.LogInformation tours
-                | Error err -> logger.LogError err
-                
-            | Error error -> logger.LogError error
+//            match! loginCookiesStealer Urls.loginUri Configs.loginCredentials with
+//            | Ok cookies ->
+//                logger.LogInformation "Cookies stealing completed successfully."
+//                let baseRequest = createRequest Method.POST cookies
+//                
+//                match! getToursList baseRequest with
+//                | Ok tours  -> logger.LogInformation tours
+//                | Error err -> logger.LogError err
+//                
+//            | Error error -> logger.LogError error
             
         } |> Async.RunSynchronously
