@@ -62,9 +62,9 @@ module Configs =
           "maximumRows", "0"; ]
 
 module Urls = 
-    let baseUrl = "https://crm.poehalisnami.ua"
+    let baseUrl = "https://crm.*.ua"
     let loginUri = $"{baseUrl}/user/login"
     let getTourOfferListUri = $"{baseUrl}/TourOffer/GetList"
     let getHotelsUri = $"{baseUrl}/LiveTourSearch/GeHotels"
     let getDirectionsUri = $"{baseUrl}/LiveTourSearch/GetDirections"
-    let getResortListUri = $"{baseUrl}/LiveTourSearch/GetResorts"
+    let getResortListUri = $"{baseUrl}/dictionary/directionResortGetList"
