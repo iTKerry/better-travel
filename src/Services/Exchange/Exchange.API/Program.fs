@@ -33,6 +33,7 @@ let webApp =
                 route "/rate" >=> rateHandler
                 route "/currency" >=> currencyHandler
             ])
+        RequestErrors.NOT_FOUND "Not Found"
     ]
 
 let configureApp (app : IApplicationBuilder) =
