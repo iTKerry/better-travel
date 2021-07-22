@@ -8,6 +8,8 @@
 
     <ItemGroup>
         <Compile Include="Utils.fs" />
+        <Compile Include="AuthorizedHttpClient.fs" />
+        <Compile Include="Providers.fs" />
         <Compile Include="HostedServices.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
@@ -19,6 +21,8 @@
 
     <ItemGroup>
       <PackageReference Include="FSharp.Data" Version="4.1.1" />
+      <PackageReference Include="FsToolkit.ErrorHandling" Version="2.6.0" />
+      <PackageReference Include="FsToolkit.ErrorHandling.TaskResult" Version="2.6.0" />
       <PackageReference Include="Giraffe" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

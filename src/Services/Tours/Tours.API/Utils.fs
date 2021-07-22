@@ -14,11 +14,11 @@ module Configs =
           "filterTourOfferId", 0 ]
         |> Map.ofList
         
-    let hotelsData (countryId : int) =
+    let requestSample (directionId : int) =
         [ "request[CurrentCountryId]", "37";
           "request[NetworkId]", "37";
           "request[CurrencyId]", "0";
-          "request[DirectionId]", $"{countryId}";
+          "request[DirectionId]", $"{directionId}";
           "request[ResortIds]", "";
           "request[HotelClassIds]", "";
           "request[HotelIds]", "";
@@ -60,6 +60,18 @@ module Configs =
           "request[HotelCriteriaIds]", "";
           "keyword", "";
           "maximumRows", "0"; ]
+        |> Map.ofList
+
+    let getHotelsParam (directionId : int) (resortIds : int list) =
+        let resortIds =
+            match resortIds with
+            | ids -> ids |> List.map (fun id -> id.ToString()) |> String.concat ","
+            | _ -> ""
+        
+        [ "maximumRows", "0";
+          "request[DirectionId]", directionId.ToString();
+          "request[ResortIds]", resortIds; ]
+        |> Map.ofList
 
 module Urls = 
     let baseUrl = "https://crm.*.ua"
