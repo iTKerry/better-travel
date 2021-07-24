@@ -15,7 +15,8 @@ open Microsoft.Extensions.Hosting
 [<CLIMutable>]
 type HotelsRequest =
     { DirectionId : int
-      ResortIds   : int list }
+      ResortIds   : int list
+      SearchTerm  : string option }
 
 let directionsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
@@ -31,7 +32,7 @@ let hotelsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
             let request = ctx.BindQueryString<HotelsRequest>()
-            match! Providers.hotels request.DirectionId request.ResortIds with
+            match! Providers.hotels request.DirectionId request.ResortIds request.SearchTerm with
             | Ok hotels -> return! json hotels next ctx
             | Error err -> return! (RequestErrors.BAD_REQUEST err) next ctx
         }

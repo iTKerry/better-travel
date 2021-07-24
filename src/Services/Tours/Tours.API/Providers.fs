@@ -29,8 +29,8 @@ let resorts directionId =
     |> Array.tryFind (fun x -> x.Id = directionId)
     |> Option.map    (fun x -> x.Resorts)
     
-let private enrichWithParams dirId resIds (req : RestRequest) =
-    Configs.getHotelsParam dirId resIds
+let private enrichWithParams dirId resIds term (req : RestRequest) =
+    Configs.getHotelsParam dirId resIds term
     |> Map.iter (fun k v -> req.AddParameter(k, v) |> ignore)
     req
 
@@ -46,9 +46,9 @@ let private getHotels (req : RestRequest) =
         return response |> Result.map parseResponse
     }
     
-let hotels directionId resorts =
+let hotels directionId resorts term =
     asyncResult {
         let! request = AuthorizedHttpClient.createRequestAsync Method.POST
-        let request = enrichWithParams directionId resorts request
+        let request = enrichWithParams directionId resorts term request
         return! getHotels request
     }
