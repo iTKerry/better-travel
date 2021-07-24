@@ -62,21 +62,19 @@ module Configs =
           "maximumRows", "0"; ]
         |> Map.ofList
 
-    let getHotelsParam (directionId : int) (resortIds : int list) =
-        let resortIds =
-            match resortIds with
+    let getHotelsParam (directionId : int) (resortIds : int list) (term : string option) =
+        let resIds = function
             | ids -> ids |> List.map (fun id -> id.ToString()) |> String.concat ","
-            | _ -> ""
-        
-        [ "maximumRows", "0";
+        [ "maximumRows", "1000"
+          "keyword", term |> Option.defaultValue ""
           "request[DirectionId]", directionId.ToString();
-          "request[ResortIds]", resortIds; ]
+          "request[ResortIds]", resIds resortIds; ]
         |> Map.ofList
 
 module Urls = 
-    let baseUrl = "https://crm.*.ua"
-    let loginUri = $"{baseUrl}/user/login"
-    let getTourOfferListUri = $"{baseUrl}/TourOffer/GetList"
-    let getHotelsUri = $"{baseUrl}/LiveTourSearch/GeHotels"
-    let getDirectionsUri = $"{baseUrl}/LiveTourSearch/GetDirections"
-    let getResortListUri = $"{baseUrl}/dictionary/directionResortGetList"
+    let baseUrl              = "https://crm.*.ua"
+    let loginUri             = $"{baseUrl}/user/login"
+    let getTourOfferListUri  = $"{baseUrl}/TourOffer/GetList"
+    let getHotelsUri         = $"{baseUrl}/LiveTourSearch/GeHotels"
+    let getDirectionsUri     = $"{baseUrl}/LiveTourSearch/GetDirections"
+    let getResortListUri     = $"{baseUrl}/dictionary/directionResortGetList"
