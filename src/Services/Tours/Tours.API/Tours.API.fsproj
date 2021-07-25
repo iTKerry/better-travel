@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Models.fs" />
         <Compile Include="Utils.fs" />
         <Compile Include="AuthorizedHttpClient.fs" />
         <Compile Include="Providers.fs" />
@@ -30,6 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\BuildingBlocks\Common\Common.fsproj" />
       <ProjectReference Include="..\..\..\BuildingBlocks\HostExtensions.Customization\HostExtensions.Customization.fsproj" />
     </ItemGroup>
 

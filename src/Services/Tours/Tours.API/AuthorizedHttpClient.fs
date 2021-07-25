@@ -3,6 +3,7 @@
 open System
 open System.Net
 open RestSharp
+open FsToolkit.ErrorHandling
 open Utils
 
 let private client (timeout : int) (providerUrl : string) =
@@ -25,19 +26,20 @@ let executeRequestAsync (url : string, request : RestRequest) =
 let private getCookiesAsync (url : string) (content : Map<string, _>) =
     async {
         let request = RestRequest(url, Method.POST, AlwaysMultipartFormData = true)
-        content |> Map.iter (fun k v -> request.AddParameter(k, v) |> ignore)
+        content |> Map.iter ^fun k v -> request.AddParameter(k, v) |> ignore
         
         match! executeRequestAsync (url, request) with
         | Ok response -> return response.Cookies |> Seq.toList |> Ok
-        | Error error -> return Error error }
+        | Error error -> return Error error
+    }
 
 let private createRequest (method : Method) (cookies : RestResponseCookie list) =
     let request = RestRequest(method)
-    cookies |> List.iter (fun cookie -> request.AddCookie(cookie.Name, cookie.Value) |> ignore)
+    cookies |> List.iter ^fun cookie -> request.AddCookie(cookie.Name, cookie.Value) |> ignore
     request
 
 let createRequestAsync (method : Method) =
-    async {
-        let! res = getCookiesAsync Urls.loginUri Configs.loginCredentials
-        return res |> Result.map (createRequest method)
+    asyncResult {
+        return! getCookiesAsync Urls.loginUri Configs.loginCredentials
+        |> AsyncResult.map (createRequest method)
     }

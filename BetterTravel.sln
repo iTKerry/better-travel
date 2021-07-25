@@ -18,6 +18,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tours.API", "src\Services\T
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HostExtensions.Customization", "src\BuildingBlocks\HostExtensions.Customization\HostExtensions.Customization.fsproj", "{6733C96C-4D10-4503-AF3E-944AA4B40857}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Common", "src\BuildingBlocks\Common\Common.fsproj", "{BF083CA7-2991-4E3F-9DB3-57FB51FF8223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,7 @@ Global
 		{8143B591-DA9F-4FAA-BC99-E4CDADC7BBA5} = {0F5AC5B5-9DAF-4D63-905F-C94F7814C3AB}
 		{7BFF3FB7-9CE1-4026-ACEB-2581342C48A7} = {04FA60B7-796D-4517-BAA4-530E2A8A9AF7}
 		{6733C96C-4D10-4503-AF3E-944AA4B40857} = {3FD0FC4E-EF40-44B0-98A6-3DDD8454CBF8}
+		{BF083CA7-2991-4E3F-9DB3-57FB51FF8223} = {3FD0FC4E-EF40-44B0-98A6-3DDD8454CBF8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8143B591-DA9F-4FAA-BC99-E4CDADC7BBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,5 +48,9 @@ Global
 		{6733C96C-4D10-4503-AF3E-944AA4B40857}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6733C96C-4D10-4503-AF3E-944AA4B40857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6733C96C-4D10-4503-AF3E-944AA4B40857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF083CA7-2991-4E3F-9DB3-57FB51FF8223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF083CA7-2991-4E3F-9DB3-57FB51FF8223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF083CA7-2991-4E3F-9DB3-57FB51FF8223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF083CA7-2991-4E3F-9DB3-57FB51FF8223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

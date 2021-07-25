@@ -4,7 +4,9 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/Services/Tours/ToursProvider/ToursProvider.fsproj", "ToursProvider/"]
+COPY ["src/BuildingBlocks/Common/Common.fsproj", "Common/"]
 RUN dotnet restore "src/Services/Tours/ToursProvider/ToursProvider.fsproj"
+RUN dotnet restore "src/BuildingBlocks/Common/Common.fsproj"
 COPY . .
 WORKDIR "/src/Services/Tours/ToursProvider"
 RUN dotnet build "ToursProvider.fsproj" -c Release -o /app/build
