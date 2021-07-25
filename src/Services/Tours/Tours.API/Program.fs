@@ -1,5 +1,6 @@
 ﻿module Program
 
+open FsToolkit.ErrorHandling
 open HostedServices
 
 open Giraffe
@@ -28,11 +29,19 @@ let resortsHandler (directionId : int) : HttpHandler =
         | Some res -> json res next ctx
         | None     -> (RequestErrors.NOT_FOUND $"No resorts for direction %i{directionId}") next ctx
 
+
+let private resortsResultAsync (ctx : HttpContext) = 
+    ctx.TryBindQueryString<HotelsRequest>()
+    |> Async.retn
+    |> AsyncResult.bind ^fun request ->
+       Providers.hotels request.DirectionId
+                        request.ResortIds
+                        request.SearchTerm
+
 let hotelsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
-            let request = ctx.BindQueryString<HotelsRequest>()
-            match! Providers.hotels request.DirectionId request.ResortIds request.SearchTerm with
+            match! resortsResultAsync ctx with
             | Ok hotels -> return! json hotels next ctx
             | Error err -> return! (RequestErrors.BAD_REQUEST err) next ctx
         }

@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <Compile Include="Operators.fs" />
+        <Compile Include="Async.fs" />
     </ItemGroup>
 
 </Project>
