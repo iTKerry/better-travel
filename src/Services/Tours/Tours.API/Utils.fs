@@ -64,7 +64,9 @@ module Configs =
 
     let getHotelsParam (directionId : int) (resortIds : int list) (term : string option) =
         let resIds = function
-            | ids -> ids |> List.map ^fun id -> id.ToString() |> String.concat ","
+            | ids -> ids
+                     |> List.map ^fun id -> id.ToString()
+                     |> String.concat ","
         [ "maximumRows", "1000"
           "keyword", term |> Option.defaultValue ""
           "request[DirectionId]", directionId.ToString();
