@@ -1,6 +1,12 @@
 ﻿module Models
 
 
+[<CLIMutable>]
+type HotelsRequest =
+    { DirectionId : int
+      ResortIds   : int list
+      SearchTerm  : string option }
+
 type Resort =
     { Id   : int
       Name : string }

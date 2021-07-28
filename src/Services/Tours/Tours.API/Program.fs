@@ -12,12 +12,7 @@ open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Hosting
-
-[<CLIMutable>]
-type HotelsRequest =
-    { DirectionId : int
-      ResortIds   : int list
-      SearchTerm  : string option }
+open FsToolkit.ErrorHandling.Operator.AsyncResult
 
 let directionsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
@@ -29,14 +24,9 @@ let resortsHandler (directionId : int) : HttpHandler =
         | Some res -> json res next ctx
         | None     -> (RequestErrors.NOT_FOUND $"No resorts for direction %i{directionId}") next ctx
 
-
-let private resortsResultAsync (ctx : HttpContext) = 
-    ctx.TryBindQueryString<HotelsRequest>()
-    |> Async.retn
-    |> AsyncResult.bind ^fun request ->
-       Providers.hotels request.DirectionId
-                        request.ResortIds
-                        request.SearchTerm
+let private resortsResultAsync (ctx : HttpContext) =
+    ctx.TryBindQueryString<HotelsRequest>() |> Async.retn
+    >>= Providers.hotels
 
 let hotelsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->

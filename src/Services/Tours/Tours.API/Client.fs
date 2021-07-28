@@ -1,10 +1,11 @@
-﻿module AuthorizedHttpClient
+﻿module Client
 
 open System
 open System.Net
 open RestSharp
 open FsToolkit.ErrorHandling
 open Utils
+open FsToolkit.ErrorHandling.Operator.AsyncResult
 
 let private client (timeout : int) (providerUrl : string) =
     RestClient(providerUrl, Timeout = TimeSpan.FromSeconds(float timeout).Milliseconds)
@@ -39,7 +40,5 @@ let private createRequest (method : Method) (cookies : RestResponseCookie list) 
     request
 
 let createRequestAsync (method : Method) =
-    asyncResult {
-        return! getCookiesAsync Urls.loginUri Configs.loginCredentials
-        |> AsyncResult.map (createRequest method)
-    }
+    createRequest method
+    <!> getCookiesAsync Urls.loginUri Configs.loginCredentials
