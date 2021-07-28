@@ -1,18 +1,19 @@
 ﻿module Program
 
 open FsToolkit.ErrorHandling
+open FsToolkit.ErrorHandling.Operator.AsyncResult
+open FSharp.Control.Tasks
+
+open Models
 open HostedServices
 
 open Giraffe
-
-open FSharp.Control.Tasks
 
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Hosting
-open FsToolkit.ErrorHandling.Operator.AsyncResult
 
 let directionsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
