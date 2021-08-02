@@ -1,6 +1,7 @@
 ﻿module Providers
 
 open System.IO
+open Errors
 open FsToolkit.ErrorHandling.Operator.AsyncResult
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
@@ -20,7 +21,8 @@ let directions =
 let resorts directionId =
     directionsWithResorts
     |> Array.tryFind ^fun x -> x.Id = directionId
-    |> Option.map    ^fun x -> x.Resorts
+    |> Option.map    ^fun x -> Ok x.Resorts
+    |> Option.defaultValue (DirectionNotFound directionId |> AppError.createResult)
     
 let private enrichByParams (req : HotelsRequest) (rest : RestRequest) =
     Configs.getHotelsParam req.DirectionId req.ResortIds req.SearchTerm
@@ -34,7 +36,7 @@ let private parseResponse (response : IRestResponse) =
         |> Seq.toList
         |> Ok
     with
-    | ex -> Error ex.Message
+    | exn -> InvalidJsonResponse exn.Message |> AppError.createResult
         
 let private getHotels (req : RestRequest) =
     Client.executeRequestAsync (Urls.getHotelsUri, req)

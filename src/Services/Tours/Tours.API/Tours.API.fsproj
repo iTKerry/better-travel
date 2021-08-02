@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Domain\Errors.fs" />
         <Compile Include="Models.fs" />
         <Compile Include="Utils.fs" />
         <Compile Include="Client.fs" />
@@ -16,24 +17,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".dockerignore" />
-      <Content Include="Dockerfile" />
+        <Content Include=".dockerignore" />
+        <Content Include="Dockerfile" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FSharp.Data" Version="4.1.1" />
-      <PackageReference Include="FsToolkit.ErrorHandling" Version="2.6.0" />
-      <PackageReference Include="FsToolkit.ErrorHandling.TaskResult" Version="2.6.0" />
-      <PackageReference Include="Giraffe" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="RestSharp" Version="106.12.0" />
-      <PackageReference Update="FSharp.Core" Version="5.0.2" />
+        <PackageReference Include="FSharp.Data" Version="4.1.1" />
+        <PackageReference Include="FsToolkit.ErrorHandling" Version="2.6.0" />
+        <PackageReference Include="FsToolkit.ErrorHandling.TaskResult" Version="2.6.0" />
+        <PackageReference Include="Giraffe" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="RestSharp" Version="106.12.0" />
+        <PackageReference Update="FSharp.Core" Version="5.0.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\BuildingBlocks\Common\Common.fsproj" />
-      <ProjectReference Include="..\..\..\BuildingBlocks\HostExtensions.Customization\HostExtensions.Customization.fsproj" />
+        <ProjectReference Include="..\..\..\BuildingBlocks\Common\Common.fsproj" />
+        <ProjectReference Include="..\..\..\BuildingBlocks\HostExtensions.Customization\HostExtensions.Customization.fsproj" />
     </ItemGroup>
 
 </Project>
