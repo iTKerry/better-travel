@@ -7,12 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Domain\Queries.fs" />
+        <Compile Include="Domain\Commands.fs" />
+        <Compile Include="Domain\Events.fs" />
         <Compile Include="Domain\Errors.fs" />
         <Compile Include="Models.fs" />
         <Compile Include="Utils.fs" />
         <Compile Include="Client.fs" />
         <Compile Include="Providers.fs" />
         <Compile Include="HostedServices.fs" />
+        <Compile Include="QueryHandlers\GetDirectionsHandler.fs" />
+        <Compile Include="QueryHandlers\GetResortsHandler.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 

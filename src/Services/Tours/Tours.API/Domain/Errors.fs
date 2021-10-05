@@ -11,6 +11,7 @@ type ClientError =
 
 type DomainError =
     | DirectionNotFound   of int
+    | DataError           of string
 
 type AppError =
     | Domain of DomainError

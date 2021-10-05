@@ -15,7 +15,7 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Hosting
 
-let mapError = function
+let private mapError = function
     | Domain err ->
         match err with
         | DirectionNotFound directionId ->
@@ -33,16 +33,16 @@ let mapError = function
         | RequestError (url, code, msg) ->
             ServerErrors.INTERNAL_ERROR $"Error with Client for url %s{url} with code {code} and message: {msg}"
 
-let resultAsJson next ctx = function
+let private resultAsJson next ctx = function
     | Ok data -> json data next ctx 
     | Error err -> mapError err next ctx
 
 
-let directionsHandler : HttpHandler =
+let private directionsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         json Providers.directions next ctx
 
-let resortsHandler (directionId : int) : HttpHandler =
+let private resortsHandler (directionId : int) : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         resultAsJson next ctx (Providers.resorts directionId)
 
@@ -52,13 +52,13 @@ let private resortsResultAsync (ctx : HttpContext) =
     |>  Async.retn
     >>= Providers.hotels
 
-let hotelsHandler : HttpHandler =
+let private hotelsHandler : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->
         resortsResultAsync ctx
         |> Async.map (resultAsJson next ctx)
         |> Async.RunSynchronously
 
-let webApp =
+let private webApp =
     choose [
         route    "/ping"  >=> text "pong"
         subRoute "/api"
@@ -71,10 +71,10 @@ let webApp =
         RequestErrors.NOT_FOUND "Not Found"
     ]
 
-let configureApp (app : IApplicationBuilder) =
+let private configureApp (app : IApplicationBuilder) =
     app.UseGiraffe webApp
 
-let configureServices (services : IServiceCollection) =
+let private configureServices (services : IServiceCollection) =
     services.AddGiraffe() |> ignore
     services.AddHostedService<ToursProviderService>() |> ignore
 

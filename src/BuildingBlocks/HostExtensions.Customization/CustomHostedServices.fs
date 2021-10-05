@@ -28,3 +28,4 @@ type TimedHostedService(timer : Timer, logger : ILogger) =
     interface IDisposable with
         member this.Dispose() =
             timer.Dispose()
+            
