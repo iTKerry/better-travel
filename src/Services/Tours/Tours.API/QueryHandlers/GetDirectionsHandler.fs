@@ -9,7 +9,7 @@ type DirectionResponse =
 
 type GetDirectionsHandler(logger : ILogger) =
 
-    let getData =
+    let getDirections =
         try
             Providers.directions
             |> Array.map ^fun x -> { Id = x.Id; Name = x.Name }
@@ -20,5 +20,5 @@ type GetDirectionsHandler(logger : ILogger) =
             DataError exn.Message |> AppError.createResult
 
     member this.Handle () =
-        retn getData
+        retn getDirections
     
